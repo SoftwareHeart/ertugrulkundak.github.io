@@ -1,18 +1,62 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ertuğrul Kundak - Full Stack Developer</title>
+    <meta name="description"
+        content="Full Stack Yazılım Geliştirici. .NET Core, C#, JavaScript uzmanı. İstanbul'da yazılım geliştirme hizmetleri.">
+    <meta name="keywords"
+        content="Ertuğrul Kundak, Full Stack Developer, .NET Core, C#, JavaScript, İstanbul, Yazılım Geliştirici">
+    <meta name="author" content="Ertuğrul Kundak">
+
+    <!-- External CSS -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Ertuğrul Kundak - Full Stack Developer">
+    <meta property="og:description"
+        content="Clean Architecture ve SOLID prensiplerine bağlı kalarak ölçeklenebilir çözümler üretiyorum.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ertugrulkundak.github.io">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Ertuğrul Kundak",
+        "jobTitle": "Full Stack Yazılım Geliştirici",
+        "email": "ertugrulkundak@hotmail.com",
+        "telephone": "+90-530-475-02-98",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "İstanbul",
+            "addressCountry": "TR"
+        },
+        "alumniOf": {
+            "@type": "University",
+            "name": "Manisa Celal Bayar Üniversitesi"
+        },
+        "knowsAbout": ["C#", ".NET Core", "JavaScript", "SQL Server", "Web Development"]
+    }
+    </script>
 </head>
+
 <body>
+    <!-- Navigation -->
     <nav>
         <div class="nav-container">
             <div class="logo">Ertuğrul Kundak</div>
             <ul>
                 <li><a href="#about">Hakkımda</a></li>
+                <li><a href="#experience">Deneyim</a></li>
                 <li><a href="#skills">Yetenekler</a></li>
                 <li><a href="#projects">Projeler</a></li>
                 <li><a href="#contact">İletişim</a></li>
@@ -20,209 +64,989 @@
         </div>
     </nav>
 
+    <!-- Hero Section -->
     <section id="hero">
         <div class="hero-content">
-            <h1>Full Stack Yazılım Geliştirici</h1>
-            <p>.NET Core API geliştirme ve frontend teknolojilerinde 1+ yıl deneyim</p>
+            <h1>Ertuğrul Kundak</h1>
+            <p class="hero-subtitle">Full Stack Yazılım Geliştirici</p>
+            <p class="hero-description">
+                Clean Architecture ve SOLID prensiplerine bağlı kalarak ölçeklenebilir çözümler üretiyorum.
+                Frontend'de veri görselleştirme, Backend'de .NET Core API geliştirme konularında deneyim sahibiyim.
+            </p>
             <div class="hero-buttons">
-                <a href="#projects" class="btn">Projelerimi İncele</a>
+                <a href="#projects" class="btn">
+                    <i class="fas fa-code"></i> Projelerimi İncele
+                </a>
                 <a href="portfolyo.pdf" class="btn btn-secondary" target="_blank">
-                    <i class="fas fa-download"></i> Portföy PDF
+                    <i class="fas fa-download"></i> Portfolyo İndir
                 </a>
             </div>
         </div>
     </section>
 
-    <section id="about">
+    <!-- Stats Section -->
+    <section class="stats-section">
         <div class="container">
-            <h2>Hakkımda</h2>
-            <p>
-                Clean Architecture ve SOLID prensiplerine uygun, ölçeklenebilir çözümler geliştiriyorum. 
-                Portföy optimizasyonu ile %80 performans artışı sağladım ve KNN algoritması ile yapay zeka 
-                destekli fon öneri sistemi geliştirdim. Cyber Security'22 Hackathon'da 32 takım arasından 
-                2. olarak 5000 TL ödül kazandım.
-            </p>
+            <div class="stats-grid">
+                <div class="stat-item loading">
+                    <div class="stat-number">1+</div>
+                    <div class="stat-label">Yıl Deneyim</div>
+                </div>
+                <div class="stat-item loading">
+                    <div class="stat-number">5000₺</div>
+                    <div class="stat-label">Hackathon Ödülü</div>
+                </div>
+                <div class="stat-item loading">
+                    <div class="stat-number">80%</div>
+                    <div class="stat-label">Performans Artışı</div>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 style="color:white">Hakkımda</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="ben.jpg" alt="Ertuğrul Kundak Profil Fotoğrafı" class="profile-img">
+                </div>
+                <div class="about-text">
+                    <p>
+                        <span class="highlight">Full Stack Yazılım Geliştirici</span> olarak Frontend'de veri
+                        görselleştirme,
+                        Backend'de .NET Core API geliştirme konularında deneyim sahibiyim. Clean Architecture ve SOLID
+                        prensiplerine bağlı kalarak, ölçeklenebilir çözümler üretiyorum.
+                    </p>
+                    <p>
+                        <span class="highlight">Portföy optimizasyonu</span> ile %80 performans artışı sağladım ve
+                        <span class="highlight">KNN algoritması</span> ile yapay zeka destekli fon öneri sistemi
+                        geliştirdim.
+                        Cyber Security'22 Hackathon'da <span class="highlight">32 takım arasından 2. olarak</span> 5000
+                        TL ödül kazandım.
+                    </p>
+                    <p>
+                        Analitik düşünme ve çabuk öğrenme yeteneği ile öne çıkan bir profilim var. Matematik ve tarih
+                        alanlarında güçlü akademik altyapıya sahibim. <strong>B1 seviyesinde İngilizce</strong> bilgim
+                        bulunmaktadır.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2>Kariyer Deneyimim</h2>
+            <div class="experience-timeline">
+                <article class="timeline-item loading">
+                    <div class="timeline-date">Haziran 2024 - Mart 2025</div>
+                    <h3 class="timeline-title">Full Stack Developer</h3>
+                    <div class="timeline-company">İyiGelir</div>
+                    <p>Yeni mobil ve web uygulaması için API tasarımı, kodlama ve frontend geliştirme süreçlerinde aktif
+                        rol aldım. Sistem performansı ve kullanıcı deneyimi odaklı çözümler geliştirdim.</p>
+                    <ul>
+                        <li><strong>Performance Optimization:</strong> Portföy sayfası yükleme hızını %80 oranında
+                            artırdım</li>
+                        <li><strong>AI Integration:</strong> KNN algoritması ile yapay zeka destekli fon öneri sistemi
+                            geliştirdim</li>
+                        <li><strong>Bug Fixing & Support:</strong> Destek alanında kritik bugları çözdüm ve sistem
+                            kararlılığını artırdım</li>
+                        <li><strong>Database Optimization:</strong> Veritabanı tablolarına index ekleyerek sorgu
+                            performansını optimize ettim</li>
+                        <li><strong>Responsive Design:</strong> Yeni portföy sayfasında tam responsive tasarım uyguladım
+                        </li>
+                        <li><strong>Data Visualization:</strong> Highcharts kullanarak fon fiyat grafiklerini
+                            görselleştirdim</li>
+                        <li><strong>Analytics Dashboard:</strong> 30 grafik içeren fon detay analiz sayfasını tasarladım
+                            (1-3 saniye yükleme)</li>
+                        <li><strong>Queue Management:</strong> 30 grafiği 5'er 5'er kuyruk yapısında yükleyerek optimize
+                            ettim</li>
+                        <li><strong>Multi-Currency:</strong> Dolar-Euro-TL bazlı dinamik sayfa açılımları geliştirdim
+                        </li>
+                        <li><strong>Academic Portal:</strong> Akademik alan tasarımı ve backend-frontend entegrasyonu
+                        </li>
+                    </ul>
+                </article>
+
+                <article class="timeline-item loading">
+                    <div class="timeline-date">Şubat 2024 - Mayıs 2024</div>
+                    <h3 class="timeline-title">Stajyer</h3>
+                    <div class="timeline-company">İyiGelir</div>
+                    <p>75 iş günü boyunca .NET Core MVC projelerinde geliştirme yaaptım. Entity Framework ve database
+                        optimizasyonu konularında deneyim kazandım.</p>
+                    <ul>
+                        <li><strong>Entity Framework:</strong> Code First yaklaşımı ile veritabanı modellemesi</li>
+                        <li><strong>Performance Tuning:</strong> Mevcut sistemde performans optimizasyonları
+                            gerçekleştirdim</li>
+                        <li><strong>Portfolio Management:</strong> Portföylerin toplu gösterim sayfasını tasarladım ve
+                            kodladım</li>
+                        <li><strong>Advanced Filtering:</strong> Gelişmiş filtreleme sistemleri geliştirdim</li>
+                        <li><strong>Database Design:</strong> İlişkisel veritabanı yapısında iyileştirmeler yaptım</li>
+                    </ul>
+                </article>
+
+                <article class="timeline-item loading">
+                    <div class="timeline-date">Aralık 2022</div>
+                    <h3 class="timeline-title">Katılımcı</h3>
+                    <div class="timeline-company">Cyber Security'22 Hackathon</div>
+                    <p>Ekip arkadaşlarımla birlikte 32 takım içerisinden savunan takım birincisi, genel yarışma ikincisi
+                        olarak <strong>5000 TL'lik ödülü</strong> kazandık.</p>
+                </article>
+
+                <article class="timeline-item loading">
+                    <div class="timeline-date">Temmuz 2023 - Eylül 2023</div>
+                    <h3 class="timeline-title">Stajyer</h3>
+                    <div class="timeline-company">PenDC</div>
+                    <p>Zorunlu yaz stajımı 40 iş günü boyunca yaptım. Staj sürecim boyunca HTML/CSS, JavaScript
+                        kullanarak blog sitesi yaptım.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
     <section id="skills">
         <div class="container">
-            <h2>Teknik Yeteneklerim</h2>
+            <h2 style="color: #ecf0f1">Teknik Yeteneklerim</h2>
             <div class="skills-grid">
-                <div class="skill-card">
-                    <h3><i class="fas fa-server"></i> Backend</h3>
+                <article class="skill-card loading">
+                    <div class="skill-icon">
+                        <i class="fas fa-server" aria-hidden="true"></i>
+                    </div>
+                    <h3>Backend Geliştirme</h3>
                     <ul>
                         <li>C# & .NET Core</li>
                         <li>ASP.NET Core Web API</li>
                         <li>Entity Framework Core</li>
-                        <li>RESTful API</li>
+                        <li>RESTful API tasarımı</li>
+                        <li>SOLID Prensipleri</li>
                         <li>Clean Architecture</li>
+                        <li>Repository Pattern</li>
+                        <li>Dependency Injection</li>
+                        <li>Queue Management</li>
                     </ul>
-                </div>
-                <div class="skill-card">
-                    <h3><i class="fas fa-desktop"></i> Frontend</h3>
+                </article>
+
+                <article class="skill-card loading">
+                    <div class="skill-icon">
+                        <i class="fas fa-desktop" aria-hidden="true"></i>
+                    </div>
+                    <h3>Frontend Geliştirme</h3>
                     <ul>
                         <li>JavaScript (ES6+)</li>
-                        <li>React.js</li>
                         <li>HTML5 & CSS3</li>
-                        <li>Bootstrap</li>
                         <li>Responsive Design</li>
+                        <li>Data Visualization</li>
+                        <li>Highcharts Integration</li>
+                        <li>Performance Optimization</li>
+                        <li>Cross-browser Compatibility</li>
                     </ul>
-                </div>
-                <div class="skill-card">
-                    <h3><i class="fas fa-database"></i> Veritabanı</h3>
+                </article>
+
+                <article class="skill-card loading">
+                    <div class="skill-icon">
+                        <i class="fas fa-database" aria-hidden="true"></i>
+                    </div>
+                    <h3>Veritabanı & Performance</h3>
                     <ul>
                         <li>Microsoft SQL Server</li>
-                        <li>Entity Framework</li>
-                        <li>LINQ</li>
+                        <li>Entity Framework Core</li>
+                        <li>Database Indexing</li>
+                        <li>Query Optimization</li>
+                        <li>Performance Tuning</li>
+                        <li>LINQ Advanced Queries</li>
                         <li>Stored Procedures</li>
-                        <li>Database Design</li>
                     </ul>
-                </div>
-                <div class="skill-card">
-                    <h3><i class="fas fa-tools"></i> Araçlar & DevOps</h3>
+                </article>
+
+                <article class="skill-card loading">
+                    <div class="skill-icon">
+                        <i class="fas fa-chart-bar" aria-hidden="true"></i>
+                    </div>
+                    <h3>Data Analysis & AI</h3>
                     <ul>
-                        <li>Visual Studio</li>
-                        <li>Git & GitHub</li>
-                        <li>Azure DevOps</li>
-                        <li>Postman</li>
-                        <li>Agile/Scrum</li>
+                        <li>Machine Learning (KNN)</li>
+                        <li>Data Visualization</li>
+                        <li>Financial Data Analysis</li>
+                        <li>Multi-Currency Systems</li>
+                        <li>Statistical Analysis</li>
+                        <li>Algorithm Optimization</li>
                     </ul>
-                </div>
+                </article>
             </div>
         </div>
     </section>
 
+    <!-- Projects Section -->
     <section id="projects">
         <div class="container">
             <h2>Projelerim</h2>
-            <div class="project-grid">
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Pomodoro Çalışma Uygulaması</h3>
-                    </div>
-                    <div class="project-content">
-                        <p>Full stack Pomodoro tekniği uygulaması. Görev yönetimi, çalışma süresi takibi ve detaylı istatistikler.</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">React.js</span>
-                            <span class="tech-tag">ASP.NET Core</span>
-                            <span class="tech-tag">SQL Server</span>
-                            <span class="tech-tag">JWT Auth</span>
-                        </div>
-                        <a href="https://github.com/SoftwareHeart/pomodoro-client" class="btn">GitHub</a>
-                    </div>
-                </div>
 
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Kargo Şirketi CMS</h3>
-                    </div>
-                    <div class="project-content">
-                        <p>Kargo şirketi tanıtım sitesi ve admin panelli blog yönetim sistemi. SEO optimizasyonu ve istatistikler.</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">.NET Core MVC</span>
-                            <span class="tech-tag">Admin Panel</span>
-                            <span class="tech-tag">SEO</span>
-                            <span class="tech-tag">CRUD</span>
+            <!-- Profesyonel Projeler -->
+            <div class="project-category">
+                <h3 class="category-title">
+                    <i class="fas fa-briefcase"></i> Profesyonel Projeler
+                </h3>
+                <div class="project-grid">
+                    <!-- İyiGelir Portföy Optimizasyonu -->
+                    <article class="project-card loading featured">
+                        <header class="project-header">
+                            <h3><i class="fas fa-chart-line" aria-hidden="true"></i> İyiGelir Portföy Optimizasyonu</h3>
+                            <span class="project-badge">%80 Performance</span>
+                        </header>
+                        <div class="project-content">
+                            <p>Portföy sayfası performansını %80 artıran kapsamlı optimizasyon çalışması. Database
+                                indexing, responsive design ve sayfa yükleme hızı iyileştirmeleri.</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">.NET Core API</span>
+                                <span class="tech-tag">Performance Optimization</span>
+                                <span class="tech-tag">Database Tuning</span>
+                                <span class="tech-tag">Responsive Design</span>
+                            </div>
+                            <a href="#contact" class="btn btn-primary">
+                                <i class="fas fa-trophy" aria-hidden="true"></i> Full Stack Developer
+                            </a>
                         </div>
-                        <a href="https://github.com/SoftwareHeart/KargoAdmin" class="btn">GitHub</a>
-                    </div>
-                </div>
+                    </article>
 
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>AES Şifreleme Uygulaması</h3>
-                    </div>
-                    <div class="project-content">
-                        <p>AES-256 algoritması ile görüntü dosyalarının güvenli şifrelenmesi ve çözülmesi için Windows Forms uygulaması.</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">C#</span>
-                            <span class="tech-tag">Windows Forms</span>
-                            <span class="tech-tag">AES-256</span>
-                            <span class="tech-tag">Cryptography</span>
+                    <!-- KNN Fon Öneri Sistemi -->
+                    <article class="project-card loading featured">
+                        <header class="project-header">
+                            <h3><i class="fas fa-brain" aria-hidden="true"></i> KNN Fon Öneri Sistemi</h3>
+                            <span class="project-badge">Machine Learning</span>
+                        </header>
+                        <div class="project-content">
+                            <p>KNN algoritması ile yapay zeka destekli fon öneri sistemi. Kullanıcı profiline göre en
+                                uygun yatırım fonlarını önerir ve risk analizi yapar.</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">C#</span>
+                                <span class="tech-tag">.NET Core</span>
+                                <span class="tech-tag">Machine Learning</span>
+                                <span class="tech-tag">KNN Algorithm</span>
+                            </div>
+                            <a href="#contact" class="btn btn-primary">
+                                <i class="fas fa-trophy" aria-hidden="true"></i> Full Stack Developer
+                            </a>
                         </div>
-                        <a href="https://github.com/SoftwareHeart/Aes_Sifreleme" class="btn">GitHub</a>
-                    </div>
-                </div>
+                    </article>
 
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>TreeSearchAnalyzer</h3>
-                    </div>
-                    <div class="project-content">
-                        <p>Binary Search Tree'de DFS ve BFS algoritmalarının performans karşılaştırması. Nanosaniye hassasiyetinde analiz.</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">C++</span>
-                            <span class="tech-tag">DFS/BFS</span>
-                            <span class="tech-tag">Algorithms</span>
-                            <span class="tech-tag">Performance</span>
+                    <!-- Fon Analiz Dashboard -->
+                    <article class="project-card loading">
+                        <header class="project-header">
+                            <h3><i class="fas fa-chart-area" aria-hidden="true"></i> Fon Analiz Dashboard</h3>
+                            <span class="project-badge">30 Grafik</span>
+                        </header>
+                        <div class="project-content">
+                            <p>30 grafik içeren fon detay analiz sistemi. Highcharts ile fon fiyat görselleştirme ve 10
+                                yıllık veri analizi. Kuyruk yönetimi ile optimize edilmiş yükleme (1-3 saniye).</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">Highcharts</span>
+                                <span class="tech-tag">Queue Management</span>
+                                <span class="tech-tag">Data Visualization</span>
+                                <span class="tech-tag">Performance</span>
+                            </div>
+                            <a href="#contact" class="btn">
+                                <i class="fas fa-trophy" aria-hidden="true"></i> Full Stack Developer
+                            </a>
                         </div>
-                        <a href="https://github.com/SoftwareHeart/c---ile-veri-yapilari" class="btn">GitHub</a>
-                    </div>
+                    </article>
+
+                    <!-- Portföy Yönetim Sistemi -->
+                    <article class="project-card loading">
+                        <header class="project-header">
+                            <h3><i class="fas fa-layer-group" aria-hidden="true"></i> Portföy Yönetim Sistemi</h3>
+                            <span class="project-badge">Multi-Currency</span>
+                        </header>
+                        <div class="project-content">
+                            <p>Portföylerin toplu gösterim ve yönetim sistemi. Gelişmiş filtreleme, multi-currency
+                                desteği (USD/EUR/TL) ve database index optimizasyonu.</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">Entity Framework</span>
+                                <span class="tech-tag">Database Index</span>
+                                <span class="tech-tag">Multi-Currency</span>
+                                <span class="tech-tag">Advanced Filtering</span>
+                            </div>
+                            <a href="#contact" class="btn">
+                                <i class="fas fa-graduation-cap" aria-hidden="true"></i> Stajyer
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Mobil & Web API -->
+                    <article class="project-card loading">
+                        <header class="project-header">
+                            <h3><i class="fas fa-mobile-alt" aria-hidden="true"></i> Mobil & Web API</h3>
+                            <span class="project-badge">RESTful API</span>
+                        </header>
+                        <div class="project-content">
+                            <p>Yeni mobil ve web uygulaması için API tasarımı ve kodlaması. RESTful servisler, clean
+                                architecture ve veritabanı entegrasyonu.</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">ASP.NET Core</span>
+                                <span class="tech-tag">Web API</span>
+                                <span class="tech-tag">Mobile Backend</span>
+                                <span class="tech-tag">Clean Architecture</span>
+                            </div>
+                            <a href="#contact" class="btn">
+                                <i class="fas fa-trophy" aria-hidden="true"></i> Full Stack Developer
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Akademik Portal -->
+                    <article class="project-card loading">
+                        <header class="project-header">
+                            <h3><i class="fas fa-graduation-cap" aria-hidden="true"></i> Akademik Portal</h3>
+                            <span class="project-badge">Full Stack</span>
+                        </header>
+                        <div class="project-content">
+                            <p>Akademik alan için tasarlanan kapsamlı portal. Backend API geliştirme, frontend tasarım
+                                ve tam stack entegrasyonu.</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">.NET Core</span>
+                                <span class="tech-tag">Full Stack</span>
+                                <span class="tech-tag">Academic Portal</span>
+                                <span class="tech-tag">System Design</span>
+                            </div>
+                            <a href="#contact" class="btn">
+                                <i class="fas fa-trophy" aria-hidden="true"></i> Full Stack Developer
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <!-- Kişisel Projeler -->
+            <div class="project-category">
+                <h3 class="category-title">
+                    <i class="fas fa-code"></i> Kişisel Projeler
+                </h3>
+                <div class="project-grid">
+                    <!-- Pomodoro Çalışması -->
+                    <article class="project-card loading">
+                        <header class="project-header">
+                            <h3><i class="fas fa-clock" aria-hidden="true"></i> Pomodoro Çalışması</h3>
+                            <span class="project-badge">React + .NET</span>
+                        </header>
+                        <div class="project-content">
+                            <p>Full stack Pomodoro tekniği uygulaması. Kullanıcılar görevlerini yönetebilir, çalışma
+                                sürelerini takip edebilir ve detaylı istatistikler görüntüleyebilir.</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">React.js</span>
+                                <span class="tech-tag">ASP.NET Core</span>
+                                <span class="tech-tag">SQL Server</span>
+                                <span class="tech-tag">JWT Auth</span>
+                            </div>
+                            <a href="https://github.com/SoftwareHeart/pomodoro-client" class="btn" target="_blank"
+                                rel="noopener">
+                                <i class="fab fa-github" aria-hidden="true"></i> GitHub
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Kargo Şirketi Blog -->
+                    <article class="project-card loading">
+                        <header class="project-header">
+                            <h3><i class="fas fa-shipping-fast" aria-hidden="true"></i> Kargo Şirketi Blog</h3>
+                            <span class="project-badge">Admin Panel</span>
+                        </header>
+                        <div class="project-content">
+                            <p>Kargo şirketinin tanıtımı ve admin panelden yönetilebilir blog sistemi. Google SEO
+                                çalışması, blog CRUD işlemleri ve istatistiksel raporlama.</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">ASP.NET Core MVC</span>
+                                <span class="tech-tag">Entity Framework</span>
+                                <span class="tech-tag">Admin Panel</span>
+                                <span class="tech-tag">SEO</span>
+                            </div>
+                            <a href="https://github.com/SoftwareHeart/KargoAdmin" class="btn" target="_blank"
+                                rel="noopener">
+                                <i class="fab fa-github" aria-hidden="true"></i> GitHub
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- AES Şifreleme -->
+                    <article class="project-card loading">
+                        <header class="project-header">
+                            <h3><i class="fas fa-shield-alt" aria-hidden="true"></i> AES Şifreleme Uygulaması</h3>
+                            <span class="project-badge">AES-256</span>
+                        </header>
+                        <div class="project-content">
+                            <p>AES-256 algoritması ile görüntü dosyalarının güvenli şifrelenmesi. Otomatik anahtar-IV
+                                oluşturma, Base64 encoding ve çoklu format desteği.</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">C# WinForms</span>
+                                <span class="tech-tag">AES-256</span>
+                                <span class="tech-tag">Cryptography</span>
+                                <span class="tech-tag">Security</span>
+                            </div>
+                            <a href="https://github.com/SoftwareHeart/Aes_Sifreleme" class="btn" target="_blank"
+                                rel="noopener">
+                                <i class="fab fa-github" aria-hidden="true"></i> GitHub
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- TreeSearchAnalyzer -->
+                    <article class="project-card loading">
+                        <header class="project-header">
+                            <h3><i class="fas fa-search" aria-hidden="true"></i> TreeSearchAnalyzer</h3>
+                            <span class="project-badge">C++ Algorithm</span>
+                        </header>
+                        <div class="project-content">
+                            <p>Binary Search Tree arama algoritmalarının performans analizi. DFS ve BFS algoritmalarının
+                                karşılaştırması ve nanosaniye hassasiyetinde ölçüm.</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">C++</span>
+                                <span class="tech-tag">Binary Search Tree</span>
+                                <span class="tech-tag">DFS/BFS</span>
+                                <span class="tech-tag">Performance Analysis</span>
+                            </div>
+                            <a href="https://github.com/SoftwareHeart/c---ile-veri-yapilari" class="btn" target="_blank"
+                                rel="noopener">
+                                <i class="fab fa-github" aria-hidden="true"></i> GitHub
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <!-- Başarılar & Ödüller -->
+            <div class="project-category">
+                <h3 class="category-title">
+                    <i class="fas fa-trophy"></i> Başarılar & Ödüller
+                </h3>
+                <div class="project-grid">
+                    <!-- Cyber Security Hackathon -->
+                    <article class="project-card loading achievement">
+                        <header class="project-header">
+                            <h3><i class="fas fa-award" aria-hidden="true"></i> Cyber Security'22 Hackathon</h3>
+                            <span class="project-badge achievement-badge">2. Sıra</span>
+                        </header>
+                        <div class="project-content">
+                            <p>32 takım arasından 2. olarak 5000₺ ödül kazandığım siber güvenlik hackathonu. Güvenlik
+                                açıklarını tespit etme ve çözüm geliştirme konularında takım liderliği.</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">Cyber Security</span>
+                                <span class="tech-tag">Penetration Testing</span>
+                                <span class="tech-tag">Team Leadership</span>
+                                <span class="tech-tag">Problem Solving</span>
+                            </div>
+                            <a href="#contact" class="btn btn-achievement">
+                                <i class="fas fa-medal" aria-hidden="true"></i> 5000₺ Ödül Kazandım
+                            </a>
+                        </div>
+                    </article>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Contact Section -->
     <section id="contact">
         <div class="container">
             <h2>İletişim</h2>
             <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
+                <div class="contact-item loading">
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
                     <h3>E-posta</h3>
-                    <p>ertugrulkundak@hotmail.com</p>
+                    <p><a href="mailto:ertugrulkundak@hotmail.com">ertugrulkundak@hotmail.com</a></p>
                 </div>
-                <div class="contact-item">
-                    <i class="fab fa-linkedin"></i>
+                <div class="contact-item loading">
+                    <i class="fab fa-linkedin" aria-hidden="true"></i>
                     <h3>LinkedIn</h3>
-                    <p>linkedin.com/in/ertuğrulkundak</p>
+                    <p><a href="https://www.linkedin.com/in/ertuğrul-kundak" target="_blank"
+                            rel="noopener">linkedin.com/in/ertuğrul-kundak</a></p>
                 </div>
-                <div class="contact-item">
-                    <i class="fab fa-github"></i>
+                <div class="contact-item loading">
+                    <i class="fab fa-github" aria-hidden="true"></i>
                     <h3>GitHub</h3>
-                    <p>github.com/SoftwareHeart</p>
+                    <p><a href="https://github.com/SoftwareHeart" target="_blank"
+                            rel="noopener">github.com/SoftwareHeart</a></p>
                 </div>
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
+                <div class="contact-item loading">
+                    <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                     <h3>Konum</h3>
-                    <p>İstanbul, Türkiye</p>
+                    <p>Kaptanpaşa Mah, Beyoğlu/İstanbul</p>
+                </div>
+                <div class="contact-item loading">
+                    <i class="fas fa-phone" aria-hidden="true"></i>
+                    <h3>Telefon</h3>
+                    <p><a href="tel:+905304750298">0530 475 02 98</a></p>
+                </div>
+                <div class="contact-item loading">
+                    <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+                    <h3>Eğitim</h3>
+                    <p>Manisa Celal Bayar Üniversitesi<br>Yazılım Mühendisliği (3.31 GANO)</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- JavaScript -->
     <script>
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
 
-        // Add active class to navigation on scroll
-        window.addEventListener('scroll', function() {
+        // ===== ACTIVE NAVIGATION ON SCROLL =====
+        function updateActiveNavigation() {
             let current = '';
             const sections = document.querySelectorAll('section');
-            
+            const scrollPosition = window.pageYOffset;
+
             sections.forEach(section => {
-                const sectionTop = section.offsetTop;
+                const sectionTop = section.offsetTop - 120; // Nav height offset
                 const sectionHeight = section.clientHeight;
-                if (pageYOffset >= sectionTop - 60) {
+
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
                     current = section.getAttribute('id');
                 }
             });
 
+            // Update navigation links
             document.querySelectorAll('nav a').forEach(link => {
                 link.classList.remove('active');
                 if (link.getAttribute('href').slice(1) === current) {
                     link.classList.add('active');
                 }
             });
+        }
+
+        // ===== NAVBAR SCROLL EFFECT =====
+        function handleNavbarScroll() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        }
+
+        // ===== OPTIMIZED SCROLL LISTENER =====
+        let ticking = false;
+
+        function handleScroll() {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    updateActiveNavigation();
+                    handleNavbarScroll();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+
+        // ===== INTERSECTION OBSERVER FOR ANIMATIONS =====
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const animationObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0.1s';
+                    entry.target.style.animationFillMode = 'forwards';
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        // ===== DÜZELTILMIŞ COUNTER ANIMATION =====
+        function animateCounter(element, target, originalText) {
+            let current = 0;
+            const increment = target / 100;
+            const duration = 2000; // 2 saniye
+            const stepTime = duration / 100;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+
+                // Orijinal format bilgisini koruyarak güncelle
+                if (originalText.includes('%')) {
+                    element.textContent = Math.round(current) + '%';
+                } else if (originalText.includes('₺')) {
+                    element.textContent = Math.round(current).toLocaleString('tr-TR') + '₺';
+                } else if (originalText.includes('.') && !originalText.includes('₺')) {
+                    element.textContent = current.toFixed(2);
+                } else if (originalText.includes('+')) {
+                    element.textContent = Math.round(current) + '+';
+                } else {
+                    element.textContent = Math.round(current).toLocaleString('tr-TR');
+                }
+            }, stepTime);
+        }
+
+        // ===== STATS COUNTER OBSERVER =====
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const numberElement = entry.target.querySelector('.stat-number');
+                    if (!numberElement || numberElement.dataset.animated) return;
+
+                    const originalText = numberElement.textContent;
+
+                    // Sayısal değeri çıkar (rakamlar ve nokta)
+                    const numberMatch = originalText.match(/[\d.]+/);
+                    const number = numberMatch ? parseFloat(numberMatch[0]) : 0;
+
+                    // Animasyonu başlat
+                    numberElement.textContent = '0';
+                    numberElement.dataset.animated = 'true';
+
+                    // Küçük gecikme ile daha smooth görünüm
+                    setTimeout(() => {
+                        animateCounter(numberElement, number, originalText);
+                    }, 200);
+
+                    // Bir kez çalışsın
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.3,
+            rootMargin: '0px 0px -100px 0px'
         });
+
+        // ===== TYPEWRITER EFFECT FOR HERO TITLE =====
+        function typeWriter() {
+            const heroTitle = document.querySelector('.hero-content h1');
+            if (!heroTitle) return;
+
+            const titleText = heroTitle.textContent;
+            heroTitle.textContent = '';
+            heroTitle.style.opacity = '1';
+
+            let i = 0;
+            const speed = 100; // Typing speed
+
+            function type() {
+                if (i < titleText.length) {
+                    heroTitle.textContent += titleText.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+
+            // Start typing after a delay
+            setTimeout(type, 1000);
+        }
+
+        // ===== FLOATING PARTICLES SYSTEM =====
+        class ParticleSystem {
+            constructor() {
+                this.particles = [];
+                this.heroSection = document.querySelector('#hero');
+                this.isRunning = false;
+                this.maxParticles = window.innerWidth > 768 ? 15 : 8;
+            }
+
+            createParticle() {
+                if (!this.heroSection || this.particles.length >= this.maxParticles) return;
+
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+
+                const size = Math.random() * 4 + 2; // 2-6px
+                const opacity = Math.random() * 0.5 + 0.3; // 0.3-0.8
+
+                particle.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            background: rgba(255, 255, 255, ${opacity});
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+        `;
+
+                const x = Math.random() * this.heroSection.offsetWidth;
+                const y = Math.random() * this.heroSection.offsetHeight;
+
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+
+                this.heroSection.appendChild(particle);
+                this.particles.push(particle);
+
+                this.animateParticle(particle);
+            }
+
+            animateParticle(particle) {
+                let opacity = parseFloat(particle.style.opacity || 0.5);
+                let size = parseFloat(particle.style.width);
+                let posY = parseFloat(particle.style.top);
+
+                const animate = () => {
+                    opacity -= 0.005;
+                    size += 0.05;
+                    posY -= 0.5;
+
+                    particle.style.opacity = opacity;
+                    particle.style.width = size + 'px';
+                    particle.style.height = size + 'px';
+                    particle.style.top = posY + 'px';
+
+                    if (opacity > 0 && posY > -20) {
+                        requestAnimationFrame(animate);
+                    } else {
+                        this.removeParticle(particle);
+                    }
+                };
+
+                requestAnimationFrame(animate);
+            }
+
+            removeParticle(particle) {
+                const index = this.particles.indexOf(particle);
+                if (index > -1) {
+                    this.particles.splice(index, 1);
+                    particle.remove();
+                }
+            }
+
+            start() {
+                if (this.isRunning) return;
+                this.isRunning = true;
+
+                const createInterval = setInterval(() => {
+                    if (this.heroSection && this.isRunning) {
+                        this.createParticle();
+                    } else {
+                        clearInterval(createInterval);
+                    }
+                }, 500);
+            }
+
+            stop() {
+                this.isRunning = false;
+                this.particles.forEach(particle => particle.remove());
+                this.particles = [];
+            }
+        }
+
+        // ===== LAZY LOADING FOR IMAGES =====
+        function initLazyLoading() {
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            if (img.dataset.src) {
+                                img.src = img.dataset.src;
+                                img.classList.remove('lazy');
+                                imageObserver.unobserve(img);
+                            }
+                        }
+                    });
+                });
+
+                document.querySelectorAll('img[data-src]').forEach(img => {
+                    imageObserver.observe(img);
+                });
+            }
+        }
+
+        // ===== KEYBOARD NAVIGATION SUPPORT =====
+        function initKeyboardNavigation() {
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Tab') {
+                    document.body.classList.add('keyboard-navigation');
+                }
+            });
+
+            document.addEventListener('mousedown', function () {
+                document.body.classList.remove('keyboard-navigation');
+            });
+        }
+
+        // ===== ERROR HANDLING FOR IMAGES =====
+        function initImageErrorHandling() {
+            window.addEventListener('error', function (e) {
+                if (e.target.tagName === 'IMG') {
+                    e.target.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 250"><rect width="250" height="250" fill="%23ddd"/><text x="50%" y="50%" text-anchor="middle" dy="0.3em" font-family="Arial" font-size="16" fill="%23999">Resim yüklenemedi</text></svg>';
+                }
+            }, true);
+        }
+
+        // ===== SERVICE WORKER REGISTRATION =====
+        function initServiceWorker() {
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function () {
+                    navigator.serviceWorker.register('/sw.js')
+                        .then(function (registration) {
+                            console.log('✅ ServiceWorker registration successful');
+                        })
+                        .catch(function (err) {
+                            console.log('❌ ServiceWorker registration failed: ', err);
+                        });
+                });
+            }
+        }
+
+        // ===== DARK MODE SUPPORT =====
+        function initDarkMode() {
+            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+            function handleColorSchemeChange(e) {
+                if (e.matches) {
+                    document.body.classList.add('dark-mode');
+                } else {
+                    document.body.classList.remove('dark-mode');
+                }
+            }
+
+            prefersDarkScheme.addListener(handleColorSchemeChange);
+            handleColorSchemeChange(prefersDarkScheme);
+        }
+
+        // ===== PERFORMANCE MONITORING =====
+        function initPerformanceMonitoring() {
+            // Web Vitals logging (optional)
+            if ('web-vital' in window) {
+                import('https://unpkg.com/web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+                    getCLS(console.log);
+                    getFID(console.log);
+                    getFCP(console.log);
+                    getLCP(console.log);
+                    getTTFB(console.log);
+                });
+            }
+        }
+
+        // ===== MAIN INITIALIZATION FUNCTION =====
+        function initializePortfolio() {
+            console.log('🚀 Portfolio initialization started...');
+
+            // Initialize all components
+            initLazyLoading();
+            initKeyboardNavigation();
+            initImageErrorHandling();
+            initDarkMode();
+
+            // Start typewriter effect
+            typeWriter();
+
+            // Initialize particle system
+            const particleSystem = new ParticleSystem();
+            particleSystem.start();
+
+            // Observe elements for animations
+            document.querySelectorAll('.loading').forEach(el => {
+                animationObserver.observe(el);
+            });
+
+            // Initialize stats counter with proper timing
+            setTimeout(() => {
+                document.querySelectorAll('.stat-item').forEach(item => {
+                    statsObserver.observe(item);
+                });
+            }, 300); // Wait for DOM to be fully ready
+
+            // Optional service worker
+            // initServiceWorker();
+
+            // Optional performance monitoring
+            // initPerformanceMonitoring();
+
+            console.log('✅ Portfolio initialized successfully!');
+            console.log('📧 İletişim: ertugrulkundak@hotmail.com');
+            console.log('🔗 LinkedIn: linkedin.com/in/ertuğrul-kundak');
+            console.log('👨‍💻 GitHub: github.com/SoftwareHeart');
+        }
+
+        // ===== START EVERYTHING =====
+        // Multiple initialization methods for maximum compatibility
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializePortfolio);
+        } else if (document.readyState === 'interactive') {
+            setTimeout(initializePortfolio, 100);
+        } else {
+            initializePortfolio();
+        }
+
+        // Backup initialization
+        window.addEventListener('load', function () {
+            // Double-check if everything is initialized
+            if (!document.querySelector('.stat-item[data-initialized]')) {
+                console.log('🔄 Running backup initialization...');
+                setTimeout(initializePortfolio, 200);
+            }
+        });
+
+        // ===== UTILITY FUNCTIONS =====
+
+        // Debounce function for performance
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Throttle function for scroll events
+        function throttle(func, limit) {
+            let inThrottle;
+            return function () {
+                const args = arguments;
+                const context = this;
+                if (!inThrottle) {
+                    func.apply(context, args);
+                    inThrottle = true;
+                    setTimeout(() => inThrottle = false, limit);
+                }
+            }
+        }
+
+        // ===== EASTER EGG =====
+        console.log(`
+🎉 Ertuğrul Kundak Portfolio
+🚀 Made with ❤️ and modern JavaScript
+📱 Responsive & Accessible Design
+⚡ Optimized for Performance
+
+📧 ertugrulkundak@hotmail.com
+🔗 linkedin.com/in/ertuğrul-kundak
+👨‍💻 github.com/SoftwareHeart
+`);
     </script>
+
+    <!-- Google Analytics (Optional - replace with your tracking ID) -->
+    <!-- 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_TRACKING_ID');
+    </script>
+    -->
 </body>
+
 </html>
