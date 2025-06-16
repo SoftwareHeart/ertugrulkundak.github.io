@@ -4,73 +4,225 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ertuğrul Kundak - Full Stack Developer</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background: #f5f5f5;
-        }
-        .container {
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-        }
-        .subtitle {
-            color: #666;
-            font-size: 18px;
-            margin-bottom: 30px;
-        }
-        .status {
-            background: #3498db;
-            color: white;
-            padding: 15px;
-            border-radius: 5px;
-            margin: 20px 0;
-        }
-        .links {
-            margin-top: 30px;
-        }
-        .links a {
-            display: inline-block;
-            margin: 10px;
-            padding: 10px 20px;
-            background: #2c3e50;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        .links a:hover {
-            background: #34495e;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Ertuğrul Kundak</h1>
-        <p class="subtitle">Full Stack Yazılım Geliştirici</p>
-        
-        <div class="status">
-            🚀 Kişisel website hazırlanıyor...
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Ertuğrul Kundak</div>
+            <ul>
+                <li><a href="#about">Hakkımda</a></li>
+                <li><a href="#skills">Yetenekler</a></li>
+                <li><a href="#projects">Projeler</a></li>
+                <li><a href="#contact">İletişim</a></li>
+            </ul>
         </div>
-        
-        <p>
-            .NET Core API geliştirme ve frontend teknolojilerinde 1+ yıl deneyim.<br>
-            Clean Architecture ve SOLID prensiplerine uygun çözümler geliştiriyorum.
-        </p>
-        
-        <div class="links">
-            <a href="https://github.com/SoftwareHeart" target="_blank">GitHub</a>
-            <a href="https://linkedin.com/in/ertuğrulkundak" target="_blank">LinkedIn</a>
-            <a href="mailto:ertugrulkundak@hotmail.com">İletişim</a>
+    </nav>
+
+    <section id="hero">
+        <div class="hero-content">
+            <h1>Full Stack Yazılım Geliştirici</h1>
+            <p>.NET Core API geliştirme ve frontend teknolojilerinde 1+ yıl deneyim</p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn">Projelerimi İncele</a>
+                <a href="portfolyo.pdf" class="btn btn-secondary" target="_blank">
+                    <i class="fas fa-download"></i> Portföy PDF
+                </a>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>Hakkımda</h2>
+            <p>
+                Clean Architecture ve SOLID prensiplerine uygun, ölçeklenebilir çözümler geliştiriyorum. 
+                Portföy optimizasyonu ile %80 performans artışı sağladım ve KNN algoritması ile yapay zeka 
+                destekli fon öneri sistemi geliştirdim. Cyber Security'22 Hackathon'da 32 takım arasından 
+                2. olarak 5000 TL ödül kazandım.
+            </p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2>Teknik Yeteneklerim</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3><i class="fas fa-server"></i> Backend</h3>
+                    <ul>
+                        <li>C# & .NET Core</li>
+                        <li>ASP.NET Core Web API</li>
+                        <li>Entity Framework Core</li>
+                        <li>RESTful API</li>
+                        <li>Clean Architecture</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3><i class="fas fa-desktop"></i> Frontend</h3>
+                    <ul>
+                        <li>JavaScript (ES6+)</li>
+                        <li>React.js</li>
+                        <li>HTML5 & CSS3</li>
+                        <li>Bootstrap</li>
+                        <li>Responsive Design</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3><i class="fas fa-database"></i> Veritabanı</h3>
+                    <ul>
+                        <li>Microsoft SQL Server</li>
+                        <li>Entity Framework</li>
+                        <li>LINQ</li>
+                        <li>Stored Procedures</li>
+                        <li>Database Design</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3><i class="fas fa-tools"></i> Araçlar & DevOps</h3>
+                    <ul>
+                        <li>Visual Studio</li>
+                        <li>Git & GitHub</li>
+                        <li>Azure DevOps</li>
+                        <li>Postman</li>
+                        <li>Agile/Scrum</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2>Projelerim</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Pomodoro Çalışma Uygulaması</h3>
+                    </div>
+                    <div class="project-content">
+                        <p>Full stack Pomodoro tekniği uygulaması. Görev yönetimi, çalışma süresi takibi ve detaylı istatistikler.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">React.js</span>
+                            <span class="tech-tag">ASP.NET Core</span>
+                            <span class="tech-tag">SQL Server</span>
+                            <span class="tech-tag">JWT Auth</span>
+                        </div>
+                        <a href="https://github.com/SoftwareHeart" class="btn">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Kargo Şirketi CMS</h3>
+                    </div>
+                    <div class="project-content">
+                        <p>Kargo şirketi tanıtım sitesi ve admin panelli blog yönetim sistemi. SEO optimizasyonu ve istatistikler.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">.NET Core MVC</span>
+                            <span class="tech-tag">Admin Panel</span>
+                            <span class="tech-tag">SEO</span>
+                            <span class="tech-tag">CRUD</span>
+                        </div>
+                        <a href="https://github.com/SoftwareHeart" class="btn">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>AES Şifreleme Uygulaması</h3>
+                    </div>
+                    <div class="project-content">
+                        <p>AES-256 algoritması ile görüntü dosyalarının güvenli şifrelenmesi ve çözülmesi için Windows Forms uygulaması.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">C#</span>
+                            <span class="tech-tag">Windows Forms</span>
+                            <span class="tech-tag">AES-256</span>
+                            <span class="tech-tag">Cryptography</span>
+                        </div>
+                        <a href="https://github.com/SoftwareHeart" class="btn">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>TreeSearchAnalyzer</h3>
+                    </div>
+                    <div class="project-content">
+                        <p>Binary Search Tree'de DFS ve BFS algoritmalarının performans karşılaştırması. Nanosaniye hassasiyetinde analiz.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">C++</span>
+                            <span class="tech-tag">DFS/BFS</span>
+                            <span class="tech-tag">Algorithms</span>
+                            <span class="tech-tag">Performance</span>
+                        </div>
+                        <a href="https://github.com/SoftwareHeart" class="btn">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>İletişim</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <h3>E-posta</h3>
+                    <p>ertugrulkundak@hotmail.com</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <h3>LinkedIn</h3>
+                    <p>linkedin.com/in/ertuğrulkundak</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-github"></i>
+                    <h3>GitHub</h3>
+                    <p>github.com/SoftwareHeart</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Konum</h3>
+                    <p>İstanbul, Türkiye</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add active class to navigation on scroll
+        window.addEventListener('scroll', function() {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 60) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
