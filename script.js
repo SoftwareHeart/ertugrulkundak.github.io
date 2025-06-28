@@ -1,4 +1,3 @@
-
 // ===== MOBILE MENU TOGGLE - Simplified and working =====
 function initMobileMenu() {
     const mobileToggle = document.querySelector('.mobile-menu-toggle');
@@ -436,18 +435,32 @@ function initializePortfolio() {
     console.log('✅ Portfolio initialized successfully!');
 }
 
-// Language Manager entegrasyonu
+// Language Manager entegrasyonu - CompleteLanguageManager ile uyumlu
 function initLanguageManager() {
-    // Language Manager'ın yüklenmesini bekle
-    if (typeof LanguageManager !== 'undefined') {
-        if (!window.languageManager) {
-            window.languageManager = new LanguageManager();
-            console.log('🌐 Language Manager integrated successfully');
+    // CompleteLanguageManager'ın yüklenmesini bekle
+    if (window.languageManager && window.languageManager.isReady()) {
+        console.log('🌐 Complete Language Manager already ready');
+
+        // Dil yöneticisi hazır olduğunda callback'leri ekle
+        if (window.languageManager) {
+            const originalSwitchLanguage = window.languageManager.switchLanguage;
+            window.languageManager.switchLanguage = function (lang, animate = true) {
+                const result = originalSwitchLanguage.call(this, lang, animate);
+
+                // Dil değişikliği sonrası yeniden initialization
+                setTimeout(() => {
+                    reinitializeAfterLanguageChange();
+                }, 600);
+
+                return result;
+            };
         }
-    } else {
-        // LanguageManager henüz yüklenmemişse bekle
-        setTimeout(initLanguageManager, 100);
+
+        return;
     }
+
+    // Language Manager henüz yüklenmemişse bekle
+    setTimeout(initLanguageManager, 100);
 }
 
 // Dil değiştiğinde smooth scroll'u güncelle
@@ -492,22 +505,6 @@ function reinitializeAfterLanguageChange() {
 
     // Smooth scrolling'i güncelle
     updateSmoothScrolling();
-}
-
-// Language Manager için callback ekle
-if (window.languageManager) {
-    // Dil değiştiğinde çalışacak callback
-    const originalSwitchLanguage = window.languageManager.switchLanguage;
-    window.languageManager.switchLanguage = function (lang, animate = true) {
-        const result = originalSwitchLanguage.call(this, lang, animate);
-
-        // Dil değişikliği sonrası yeniden initialization
-        setTimeout(() => {
-            reinitializeAfterLanguageChange();
-        }, 600);
-
-        return result;
-    };
 }
 
 // SEO ve Meta tag güncellemeleri
@@ -593,7 +590,7 @@ const languagePerformance = {
     }
 };
 
-// Language Manager yükleme tamamlandığında
+// CompleteLanguageManager yükleme tamamlandığında
 document.addEventListener('languageManagerReady', function () {
     languagePerformance.measure('Manager Ready');
 

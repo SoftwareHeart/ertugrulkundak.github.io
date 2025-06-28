@@ -13,10 +13,25 @@ class CompleteLanguageManager {
     async init() {
         try {
             await this.loadCompleteTranslations();
-            this.currentLang = this.getSavedLanguage() || this.detectBrowserLanguage();
+            const savedLang = this.getSavedLanguage();
+            const browserLang = this.detectBrowserLanguage();
+            this.currentLang = savedLang || browserLang;
+
+            console.log('🌐 Language initialization:', {
+                saved: savedLang,
+                browser: browserLang,
+                selected: this.currentLang
+            });
+
             this.createLanguageSwitcher();
             this.switchLanguage(this.currentLang, false);
             this.isLoaded = true;
+
+            // Dil yöneticisi hazır olduğunda event tetikle
+            document.dispatchEvent(new CustomEvent('languageManagerReady', {
+                detail: { language: this.currentLang }
+            }));
+
             console.log('✅ Complete Language Manager initialized successfully');
         } catch (error) {
             console.error('❌ Language Manager initialization failed:', error);
@@ -365,8 +380,11 @@ class CompleteLanguageManager {
 
     getSavedLanguage() {
         try {
-            return localStorage.getItem('portfolio-language');
+            const savedLang = localStorage.getItem('portfolio-language');
+            console.log('🔍 Saved language from localStorage:', savedLang);
+            return savedLang;
         } catch (error) {
+            console.warn('❌ Error reading from localStorage:', error);
             return null;
         }
     }
@@ -374,8 +392,9 @@ class CompleteLanguageManager {
     saveLanguage(lang) {
         try {
             localStorage.setItem('portfolio-language', lang);
+            console.log('💾 Language saved to localStorage:', lang);
         } catch (error) {
-            console.warn('LocalStorage not available');
+            console.warn('❌ Error saving to localStorage:', error);
         }
     }
 
@@ -385,7 +404,7 @@ class CompleteLanguageManager {
     }
 
     async switchLanguage(lang, animate = true) {
-        if (!this.supportedLanguages.includes(lang) || lang === this.currentLang) return;
+        if (!this.supportedLanguages.includes(lang)) return;
 
         try {
             // Loading state başlat
@@ -408,6 +427,11 @@ class CompleteLanguageManager {
             await this.updateAllContentSmoothly();
             this.updateLanguageSwitcher();
 
+            // Dil değişikliği event'ini tetikle
+            document.dispatchEvent(new CustomEvent('languageChanged', {
+                detail: { language: lang }
+            }));
+
             if (animate) {
                 // Animasyon süresini artır
                 setTimeout(() => {
@@ -428,24 +452,7 @@ class CompleteLanguageManager {
     }
 
     setLoadingState(loading) {
-        const toggle = document.querySelector('.language-toggle');
-        const switcher = document.querySelector('.language-switcher');
-
-        if (toggle) {
-            if (loading) {
-                toggle.classList.add('loading');
-            } else {
-                toggle.classList.remove('loading');
-            }
-        }
-
-        if (switcher) {
-            if (loading) {
-                switcher.classList.add('loading');
-            } else {
-                switcher.classList.remove('loading');
-            }
-        }
+        // Artık loading/spinner eklenmeyecek, fonksiyon boş bırakıldı
     }
 
     showLanguageSwitchOverlay() {
