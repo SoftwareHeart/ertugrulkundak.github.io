@@ -335,11 +335,19 @@ class CompleteLanguageManager {
         languageSwitcher.className = 'language-switcher';
         languageSwitcher.innerHTML = `
             <button class="language-toggle" onclick="languageManager.toggleLanguage()" 
-                    aria-label="Switch Language" title="Change Language">
+                    aria-label="Switch Language" title="Change Language"
+                    data-current-lang="${this.currentLang}">
                 <div class="language-flag flag-${this.currentLang}"></div>
                 <span class="language-text">${this.getLanguageDisplayName(this.currentLang)}</span>
             </button>
         `;
+
+        // Hover efekti için tooltip ekle
+        const toggle = languageSwitcher.querySelector('.language-toggle');
+        toggle.addEventListener('mouseenter', () => {
+            const nextLang = this.currentLang === 'tr' ? 'EN' : 'TR';
+            toggle.setAttribute('title', `Switch to ${nextLang}`);
+        });
 
         document.body.appendChild(languageSwitcher);
     }
@@ -373,52 +381,134 @@ class CompleteLanguageManager {
 
     toggleLanguage() {
         const newLang = this.currentLang === 'tr' ? 'en' : 'tr';
-        this.switchLanguage(newLang);
+        this.switchLanguage(newLang, true);
     }
 
     async switchLanguage(lang, animate = true) {
         if (!this.supportedLanguages.includes(lang) || lang === this.currentLang) return;
 
         try {
+            // Loading state başlat
+            this.setLoadingState(true);
+
             if (animate) {
+                // Overlay ekle
+                this.showLanguageSwitchOverlay();
                 document.body.classList.add('language-switching');
             }
+
+            // Kısa bir gecikme ile daha pürüzsüz geçiş
+            await new Promise(resolve => setTimeout(resolve, 100));
 
             this.currentLang = lang;
             this.saveLanguage(lang);
             document.documentElement.lang = lang;
-            this.updateAllContent();
+
+            // İçeriği güncelle
+            await this.updateAllContentSmoothly();
             this.updateLanguageSwitcher();
 
             if (animate) {
+                // Animasyon süresini artır
                 setTimeout(() => {
                     document.body.classList.remove('language-switching');
-                }, 500);
+                    this.hideLanguageSwitchOverlay();
+                    this.setLoadingState(false);
+                }, 600);
+            } else {
+                this.setLoadingState(false);
             }
 
             console.log(`✅ Language switched to: ${lang}`);
         } catch (error) {
             console.error('❌ Error switching language:', error);
+            this.setLoadingState(false);
+            this.hideLanguageSwitchOverlay();
         }
     }
 
-    updateAllContent() {
-        // Update all elements with data-lang attribute
+    setLoadingState(loading) {
+        const toggle = document.querySelector('.language-toggle');
+        const switcher = document.querySelector('.language-switcher');
+
+        if (toggle) {
+            if (loading) {
+                toggle.classList.add('loading');
+            } else {
+                toggle.classList.remove('loading');
+            }
+        }
+
+        if (switcher) {
+            if (loading) {
+                switcher.classList.add('loading');
+            } else {
+                switcher.classList.remove('loading');
+            }
+        }
+    }
+
+    showLanguageSwitchOverlay() {
+        let overlay = document.querySelector('.language-switch-overlay');
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.className = 'language-switch-overlay';
+            document.body.appendChild(overlay);
+        }
+
+        // Kısa bir gecikme ile overlay'i göster
+        setTimeout(() => {
+            overlay.classList.add('active');
+        }, 10);
+    }
+
+    hideLanguageSwitchOverlay() {
+        const overlay = document.querySelector('.language-switch-overlay');
+        if (overlay) {
+            overlay.classList.remove('active');
+            // Overlay'i tamamen kaldır
+            setTimeout(() => {
+                if (overlay.parentNode) {
+                    overlay.parentNode.removeChild(overlay);
+                }
+            }, 300);
+        }
+    }
+
+    async updateAllContentSmoothly() {
+        // Tüm çevrilebilir elementleri bul
         const elements = document.querySelectorAll('[data-lang]');
+
+        // Önce tüm elementleri fade-out yap
+        elements.forEach(element => {
+            element.classList.add('updating');
+        });
+
+        // Kısa bir gecikme
+        await new Promise(resolve => setTimeout(resolve, 150));
+
+        // İçeriği güncelle
         elements.forEach(element => {
             const key = element.getAttribute('data-lang');
             const translation = this.getTranslation(key);
             if (translation) {
                 element.innerHTML = translation;
             }
+            element.classList.remove('updating');
         });
 
-        // Update page title and meta
+        // Sayfa başlığı ve meta verilerini güncelle
+        this.updatePageMeta();
+    }
+
+    updatePageMeta() {
+        // Sayfa başlığını güncelle
         const titleKey = this.currentLang === 'tr'
             ? 'Ertuğrul Kundak - Full Stack Developer'
             : 'Ertuğrul Kundak - Full Stack Software Developer';
         document.title = titleKey;
 
+        // Meta açıklamasını güncelle
         const metaDesc = document.querySelector('meta[name="description"]');
         if (metaDesc) {
             const descKey = this.currentLang === 'tr'
@@ -428,15 +518,26 @@ class CompleteLanguageManager {
         }
     }
 
+    updateAllContent() {
+        // Eski fonksiyonu yeni fonksiyonla değiştir
+        this.updateAllContentSmoothly();
+    }
+
     updateLanguageSwitcher() {
         const flagElement = document.querySelector('.language-flag');
         const textElement = document.querySelector('.language-text');
+        const toggleElement = document.querySelector('.language-toggle');
 
         if (flagElement) {
             flagElement.className = `language-flag flag-${this.currentLang}`;
         }
         if (textElement) {
             textElement.textContent = this.getLanguageDisplayName(this.currentLang);
+        }
+        if (toggleElement) {
+            toggleElement.setAttribute('data-current-lang', this.currentLang);
+            const nextLang = this.currentLang === 'tr' ? 'EN' : 'TR';
+            toggleElement.setAttribute('title', `Switch to ${nextLang}`);
         }
     }
 

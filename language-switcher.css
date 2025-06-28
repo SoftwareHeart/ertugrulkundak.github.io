@@ -57,6 +57,36 @@
     transform: scale(1.05);
 }
 
+/* Loading state for language toggle */
+.language-toggle.loading {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.language-toggle.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    margin: -8px 0 0 -8px;
+    border: 2px solid transparent;
+    border-top: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 .language-flag {
     width: 20px;
     height: 15px;
@@ -234,24 +264,88 @@
     }
 }
 
-/* Animation for language switch */
+/* Enhanced Animation for language switch */
 .language-switching {
-    animation: languageSwitch 0.5s ease-in-out;
+    animation: languageSwitch 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth content transition */
+.content-transitioning {
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.content-transitioning.fade-out {
+    opacity: 0;
+    transform: translateY(-5px);
+}
+
+.content-transitioning.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Page overlay during language switch */
+.language-switch-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.02);
+    backdrop-filter: blur(1px);
+    z-index: calc(var(--z-fixed) + 1);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+    pointer-events: none;
+}
+
+.language-switch-overlay.active {
+    opacity: 1;
+    visibility: visible;
 }
 
 @keyframes languageSwitch {
     0% {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
+    }
+
+    25% {
+        opacity: 0.8;
+        transform: translateY(-2px) scale(0.98);
     }
 
     50% {
-        opacity: 0.7;
-        transform: translateY(-10px);
+        opacity: 0.6;
+        transform: translateY(-5px) scale(0.95);
+    }
+
+    75% {
+        opacity: 0.8;
+        transform: translateY(-2px) scale(0.98);
     }
 
     100% {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
     }
+}
+
+/* Smooth text transition for all translatable elements */
+[data-lang] {
+    transition: opacity 0.2s ease-in-out;
+}
+
+[data-lang].updating {
+    opacity: 0.7;
+}
+
+/* Loading indicator for language switcher */
+.language-switcher.loading {
+    pointer-events: none;
+}
+
+.language-switcher.loading .language-toggle {
+    opacity: 0.7;
 }
