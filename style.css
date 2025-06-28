@@ -1774,60 +1774,303 @@ nav a:focus,
 }
 
 /* === ACCESSIBILITY & PREFERENCES === */
+/* === MODERN DARK MODE SYSTEM === */
 @media (prefers-color-scheme: dark) {
     :root {
-        --light-gray: #2c3e50;
-        --medium-gray: #7f8c8d;
-        --dark-gray: #ecf0f1;
-        --text-primary: #ecf0f1;
-        --text-secondary: #bdc3c7;
-        --section-title-light-bg: #ffffff;
-        /* White text for dark mode */
+        /* Dark mode color palette */
+        --dark-bg-primary: #0f172a;
+        --dark-bg-secondary: #1e293b;
+        --dark-bg-tertiary: #334155;
+        --dark-surface: #475569;
+        --dark-border: #64748b;
+
+        /* Dark mode text colors */
+        --dark-text-primary: #f1f5f9;
+        --dark-text-secondary: #cbd5e1;
+        --dark-text-muted: #94a3b8;
+
+        /* Dark mode accent colors */
+        --dark-accent-blue: #3b82f6;
+        --dark-accent-orange: #f59e0b;
+        --dark-success: #10b981;
+
+        /* Dark mode gradients */
+        --dark-hero-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        --dark-card-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+        --dark-accent-gradient: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
     }
 
     body {
-        background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-        color: var(--text-primary);
+        background: var(--dark-bg-primary);
+        color: var(--dark-text-primary);
     }
 
-    /* Dark mode section titles - all white with shadow */
+    /* Hero section - modern dark gradient */
+    #hero {
+        background: var(--dark-hero-gradient);
+        color: var(--dark-text-primary);
+    }
+
+    /* All sections with consistent dark backgrounds */
+    #about {
+        background: var(--dark-bg-secondary);
+    }
+
+    #experience {
+        background: var(--dark-bg-primary);
+    }
+
+    #skills {
+        background: var(--dark-bg-secondary);
+    }
+
+    #projects {
+        background: var(--dark-bg-primary);
+    }
+
+    .stats-section {
+        background: var(--dark-bg-secondary);
+    }
+
+    /* Section titles - consistent white with better shadow */
     section h2 {
-        color: var(--white) !important;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+        color: var(--dark-text-primary) !important;
+        text-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
     }
 
+    /* Category titles */
+    .category-title {
+        color: var(--dark-text-primary) !important;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Cards with modern dark styling */
     .skill-card,
     .timeline-item,
     .project-card,
     .stat-item {
-        background: #34495e;
-        color: #ecf0f1;
-        border-color: #4a6741;
+        background: var(--dark-card-gradient);
+        color: var(--dark-text-primary);
+        border: 1px solid var(--dark-border);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.4);
     }
 
+    /* Card hover effects */
+    .skill-card:hover,
+    .timeline-item:hover,
+    .project-card:hover,
+    .stat-item:hover {
+        background: var(--dark-bg-tertiary);
+        border-color: var(--dark-accent-blue);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), 0 0 20px rgba(59, 130, 246, 0.2);
+    }
+
+    /* Text colors in dark mode */
     .about-text,
     .project-card p,
     .timeline-item p {
-        color: #bdc3c7;
+        color: var(--dark-text-secondary);
     }
 
-    #about,
-    #skills {
-        background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    /* Timeline and skill list items - better readability */
+    .timeline-item ul li,
+    .skill-card ul li {
+        color: var(--dark-text-primary);
+        font-weight: 500;
     }
 
-    .stats-section {
-        background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+    /* Strong elements in timeline - highlighted for better visibility */
+    .timeline-item ul li strong {
+        color: var(--white);
+        font-weight: 700;
+        background: linear-gradient(135deg, var(--dark-accent-blue), var(--dark-accent-orange));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: none;
     }
 
+    .timeline-title,
+    .skill-card h3,
+    .project-header h3 {
+        color: var(--dark-text-primary);
+    }
+
+    .timeline-company {
+        color: var(--dark-accent-orange);
+    }
+
+    /* Subtle highlights in dark mode */
     .highlight {
-        background: var(--primary-blue);
+        background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(245, 158, 11, 0.25));
+        color: var(--dark-text-primary);
+        border: 1px solid rgba(245, 158, 11, 0.3);
+        box-shadow: none;
+    }
+
+    .highlight::before {
+        background: var(--dark-accent-orange);
+        opacity: 0.7;
+    }
+
+    .highlight:hover {
+        background: linear-gradient(135deg, rgba(245, 158, 11, 0.25), rgba(245, 158, 11, 0.35));
+        box-shadow: 0 2px 12px rgba(245, 158, 11, 0.2);
+    }
+
+    .highlight:hover::before {
+        opacity: 1;
+    }
+
+    /* Navigation in dark mode */
+    nav {
+        background: rgba(15, 23, 42, 0.95);
+        border-bottom: 1px solid var(--dark-border);
+    }
+
+    /* Contact section */
+    #contact {
+        background: var(--dark-hero-gradient);
+    }
+
+    .contact-item {
+        background: rgba(30, 41, 59, 0.8);
+        border: 1px solid var(--dark-border);
+    }
+
+    .contact-item:hover {
+        background: rgba(51, 65, 85, 0.9);
+        border-color: var(--dark-accent-blue);
+    }
+
+    /* Tech tags in dark mode */
+    .tech-tag {
+        background: var(--dark-bg-tertiary);
+        color: var(--dark-text-primary);
+        border: 1px solid var(--dark-border);
+    }
+
+    .tech-tag:hover {
+        background: var(--dark-accent-gradient);
+        color: var(--white);
+        border-color: transparent;
+    }
+
+    /* Project badges in dark mode - subtle styling */
+    .project-badge {
+        background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(245, 158, 11, 0.25));
+        color: var(--dark-text-primary);
+        border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .project-badge:hover {
+        background: linear-gradient(135deg, rgba(245, 158, 11, 0.25), rgba(245, 158, 11, 0.35));
+        box-shadow: 0 2px 12px rgba(245, 158, 11, 0.2);
+    }
+
+    /* Achievement badge in dark mode */
+    .achievement-badge {
+        background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 215, 0, 0.25));
+        color: var(--dark-text-primary);
+        border: 1px solid rgba(255, 215, 0, 0.3);
+    }
+
+    .achievement-badge:hover {
+        background: linear-gradient(135deg, rgba(255, 215, 0, 0.25), rgba(255, 215, 0, 0.35));
+        box-shadow: 0 2px 12px rgba(255, 215, 0, 0.3);
+    }
+
+    /* Timeline elements */
+    .timeline-date {
+        background: var(--dark-accent-gradient);
         color: var(--white);
     }
 
-    .category-title {
-        color: var(--white) !important;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    /* Stats numbers */
+    .stat-number {
+        background: var(--dark-accent-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* Skill icons */
+    .skill-icon {
+        background: var(--dark-accent-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* Contact icons */
+    .contact-item i {
+        background: var(--gold-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* Links in dark mode */
+    .contact-item a {
+        color: var(--dark-text-secondary);
+    }
+
+    .contact-item a:hover {
+        color: var(--dark-accent-orange);
+        text-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+    }
+
+    /* Profile image container */
+    .about-image::before {
+        background: var(--dark-accent-gradient);
+    }
+
+    /* Timeline line */
+    .experience-timeline::before {
+        background: var(--dark-accent-gradient);
+    }
+
+    .timeline-item::before {
+        background: var(--dark-accent-gradient);
+        border-color: var(--dark-bg-secondary);
+    }
+
+    /* Project header backgrounds */
+    .project-header {
+        background: var(--dark-hero-gradient);
+    }
+
+    /* Scrollbar in dark mode */
+    ::-webkit-scrollbar-track {
+        background: var(--dark-bg-secondary);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--dark-accent-gradient);
+        border: 2px solid var(--dark-bg-secondary);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--dark-bg-tertiary);
+    }
+
+    /* Selection in dark mode */
+    ::selection {
+        background: rgba(59, 130, 246, 0.3);
+        color: var(--dark-text-primary);
+    }
+
+    ::-moz-selection {
+        background: rgba(59, 130, 246, 0.3);
+        color: var(--dark-text-primary);
+    }
+
+    /* Button focus states in dark mode */
+    .btn:focus,
+    nav a:focus,
+    .contact-item a:focus {
+        outline: 3px solid var(--dark-accent-orange);
+        box-shadow: 0 0 0 6px rgba(245, 158, 11, 0.2);
     }
 }
 
