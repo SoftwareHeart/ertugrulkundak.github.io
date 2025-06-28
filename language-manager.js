@@ -43,8 +43,12 @@ class CompleteLanguageManager {
 
                 // Stats Section
                 'stats.experience': 'Yıl Deneyim',
+                'stats.experience.desc': '2 şirkette çalıştım',
+                'stats.ranking': 'Hackathon Sıralaması',
+                'stats.ranking.desc': '32 takım arasından',
                 'stats.award': 'Hackathon Ödülü',
-                'stats.performance': 'Performans Artışı',
+                'stats.award.desc': 'Cyber Security\'22',
+                'stats.performance': 'Portföy Optimizasyonu',
 
                 // Section Titles
                 'section.about': 'Hakkımda',
@@ -188,7 +192,11 @@ class CompleteLanguageManager {
 
                 // Stats Section
                 'stats.experience': 'Years Experience',
+                'stats.experience.desc': 'Worked at 2 companies',
+                'stats.ranking': 'Hackathon Ranking',
+                'stats.ranking.desc': 'Among 32 teams',
                 'stats.award': 'Hackathon Prize',
+                'stats.award.desc': 'Cyber Security\'22',
                 'stats.performance': 'Performance Boost',
 
                 // Section Titles
@@ -292,7 +300,7 @@ class CompleteLanguageManager {
 
                 'proj.aes.title': 'AES Encryption Application',
                 'proj.aes.badge': 'AES-256',
-                'proj.aes.desc': 'Secure encryption of image files with AES-256 algorithm. Automatic key-IV generation, Base64 encoding and multi-format support.',
+                'proj.aes.desc': 'AES-256 algorithm ile görüntü dosyalarının güvenli şifrelenmesi. Otomatik anahtar-IV oluşturma, Base64 encoding ve çoklu format desteği.',
 
                 'proj.tree.title': 'TreeSearchAnalyzer',
                 'proj.tree.badge': 'C++ Algorithm',
