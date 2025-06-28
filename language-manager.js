@@ -39,6 +39,7 @@ class CompleteLanguageManager {
                 'hero.description': 'Clean Architecture ve SOLID prensiplerine bağlı kalarak ölçeklenebilir çözümler üretiyorum. Frontend\'de veri görselleştirme, Backend\'de .NET Core API geliştirme konularında deneyim sahibiyim.',
                 'hero.btn.projects': 'Projelerimi İncele',
                 'hero.btn.portfolio': 'Portfolyo İndir',
+                'hero.btn.cv': 'CV İndir',
 
                 // Stats Section
                 'stats.experience': 'Yıl Deneyim',
@@ -183,6 +184,7 @@ class CompleteLanguageManager {
                 'hero.description': 'I develop scalable solutions by adhering to Clean Architecture and SOLID principles. I have experience in data visualization on the Frontend and .NET Core API development on the Backend.',
                 'hero.btn.projects': 'View My Projects',
                 'hero.btn.portfolio': 'Download Portfolio',
+                'hero.btn.cv': 'Download CV',
 
                 // Stats Section
                 'stats.experience': 'Years Experience',
