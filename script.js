@@ -412,6 +412,8 @@ function initializePortfolio() {
     initImageErrorHandling();
     initDarkMode();
 
+
+    initLanguageManager();
     // Start typewriter effect
     typeWriter();
 
@@ -433,6 +435,209 @@ function initializePortfolio() {
 
     console.log('✅ Portfolio initialized successfully!');
 }
+
+// Language Manager entegrasyonu
+function initLanguageManager() {
+    // Language Manager'ın yüklenmesini bekle
+    if (typeof LanguageManager !== 'undefined') {
+        if (!window.languageManager) {
+            window.languageManager = new LanguageManager();
+            console.log('🌐 Language Manager integrated successfully');
+        }
+    } else {
+        // LanguageManager henüz yüklenmemişse bekle
+        setTimeout(initLanguageManager, 100);
+    }
+}
+
+// Dil değiştiğinde smooth scroll'u güncelle
+function updateSmoothScrolling() {
+    // Yeniden smooth scrolling listener'ları ekle
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        // Eski listener'ları temizle
+        anchor.replaceWith(anchor.cloneNode(true));
+    });
+
+    // Yeni listener'ları ekle
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+}
+
+// Dil değişikliği sonrası yeniden initialization
+function reinitializeAfterLanguageChange() {
+    // Stats counter'ları yeniden başlat
+    document.querySelectorAll('.stat-item').forEach(item => {
+        const numberElement = item.querySelector('.stat-number');
+        if (numberElement) {
+            numberElement.dataset.animated = '';
+        }
+    });
+
+    // Animation observer'ları yeniden başlat
+    setTimeout(() => {
+        document.querySelectorAll('.stat-item').forEach(item => {
+            statsObserver.observe(item);
+        });
+    }, 500);
+
+    // Smooth scrolling'i güncelle
+    updateSmoothScrolling();
+}
+
+// Language Manager için callback ekle
+if (window.languageManager) {
+    // Dil değiştiğinde çalışacak callback
+    const originalSwitchLanguage = window.languageManager.switchLanguage;
+    window.languageManager.switchLanguage = function (lang, animate = true) {
+        const result = originalSwitchLanguage.call(this, lang, animate);
+
+        // Dil değişikliği sonrası yeniden initialization
+        setTimeout(() => {
+            reinitializeAfterLanguageChange();
+        }, 600);
+
+        return result;
+    };
+}
+
+// SEO ve Meta tag güncellemeleri
+function updateSEOForLanguage(lang) {
+    // Meta tags güncelle
+    const metaTags = {
+        tr: {
+            title: 'Ertuğrul Kundak - Full Stack Yazılım Geliştirici',
+            description: 'Full Stack Yazılım Geliştirici. .NET Core, C#, JavaScript uzmanı. İstanbul\'da yazılım geliştirme hizmetleri.',
+            keywords: 'Ertuğrul Kundak, Full Stack Developer, .NET Core, C#, JavaScript, İstanbul, Yazılım Geliştirici',
+            ogTitle: 'Ertuğrul Kundak - Full Stack Yazılım Geliştirici',
+            ogDescription: 'Clean Architecture ve SOLID prensiplerine bağlı kalarak ölçeklenebilir çözümler üretiyorum.'
+        },
+        en: {
+            title: 'Ertuğrul Kundak - Full Stack Software Developer',
+            description: 'Full Stack Software Developer. .NET Core, C#, JavaScript expert. Software development services in Istanbul.',
+            keywords: 'Ertuğrul Kundak, Full Stack Developer, .NET Core, C#, JavaScript, Istanbul, Software Developer',
+            ogTitle: 'Ertuğrul Kundak - Full Stack Software Developer',
+            ogDescription: 'I develop scalable solutions by adhering to Clean Architecture and SOLID principles.'
+        }
+    };
+
+    const tags = metaTags[lang] || metaTags.tr;
+
+    // Update title
+    document.title = tags.title;
+
+    // Update meta description
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+        metaDesc.setAttribute('content', tags.description);
+    }
+
+    // Update meta keywords
+    let metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (metaKeywords) {
+        metaKeywords.setAttribute('content', tags.keywords);
+    }
+
+    // Update Open Graph tags
+    let ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) {
+        ogTitle.setAttribute('content', tags.ogTitle);
+    }
+
+    let ogDescription = document.querySelector('meta[property="og:description"]');
+    if (ogDescription) {
+        ogDescription.setAttribute('content', tags.ogDescription);
+    }
+}
+
+// URL güncelleme (opsiyonel - SEO için)
+function updateURLForLanguage(lang) {
+    if (history.pushState) {
+        const newURL = window.location.pathname + (lang === 'en' ? '?lang=en' : '');
+        history.pushState({ language: lang }, '', newURL);
+    }
+}
+
+// URL'den dil algılama (opsiyonel)
+function getLanguageFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const langParam = urlParams.get('lang');
+    return langParam && ['tr', 'en'].includes(langParam) ? langParam : null;
+}
+
+// Gelişmiş hata yakalama
+window.addEventListener('error', function (e) {
+    if (e.target.tagName === 'SCRIPT' && e.target.src.includes('language')) {
+        console.warn('Language script loading failed, falling back to default language');
+        // Fallback: Varsayılan dili kullan
+        document.documentElement.lang = 'tr';
+    }
+});
+
+// Performance monitoring
+const languagePerformance = {
+    start: Date.now(),
+
+    measure(step) {
+        const elapsed = Date.now() - this.start;
+        console.log(`🚀 Language ${step}: ${elapsed}ms`);
+    }
+};
+
+// Language Manager yükleme tamamlandığında
+document.addEventListener('languageManagerReady', function () {
+    languagePerformance.measure('Manager Ready');
+
+    // URL'den dil kontrolü
+    const urlLang = getLanguageFromURL();
+    if (urlLang && window.languageManager) {
+        window.languageManager.switchLanguage(urlLang, false);
+    }
+
+    // SEO güncellemesi
+    if (window.languageManager) {
+        updateSEOForLanguage(window.languageManager.getCurrentLanguage());
+    }
+});
+
+// Dil değişikliği event'i
+document.addEventListener('languageChanged', function (event) {
+    const newLang = event.detail.language;
+
+    // SEO güncellemesi
+    updateSEOForLanguage(newLang);
+
+    // URL güncellemesi (opsiyonel)
+    updateURLForLanguage(newLang);
+
+    languagePerformance.measure(`Changed to ${newLang}`);
+});
+
+// Browser back/forward button desteği
+window.addEventListener('popstate', function (event) {
+    if (event.state && event.state.language && window.languageManager) {
+        window.languageManager.switchLanguage(event.state.language, false);
+    }
+});
+
+// Klavye kısayolu: Alt + L ile dil değiştirme
+document.addEventListener('keydown', function (e) {
+    if (e.altKey && e.key.toLowerCase() === 'l' && window.languageManager) {
+        e.preventDefault();
+        window.languageManager.toggleLanguage();
+    }
+});
+
+console.log('🌐 Language integration loaded successfully');
 
 // ===== START EVERYTHING - Fixed double initialization =====
 if (document.readyState === 'loading') {

@@ -1,0 +1,257 @@
+/* === MODERN LANGUAGE SWITCHER === */
+.language-switcher {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: calc(var(--z-fixed) + 2);
+    background: rgba(44, 62, 80, 0.95);
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-2xl);
+    padding: 8px;
+    box-shadow: var(--shadow-lg);
+    transition: all var(--transition-smooth);
+}
+
+.language-switcher:hover {
+    background: rgba(44, 62, 80, 0.98);
+    box-shadow: var(--shadow-xl);
+    transform: translateY(-2px);
+}
+
+.language-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    padding: 8px 12px;
+    border-radius: var(--radius-xl);
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+    font-size: var(--text-sm);
+    cursor: pointer;
+    transition: all var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.language-toggle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left var(--transition-slow);
+}
+
+.language-toggle:hover::before {
+    left: 100%;
+}
+
+.language-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    transform: scale(1.05);
+}
+
+.language-flag {
+    width: 20px;
+    height: 15px;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    transition: all var(--transition-smooth);
+}
+
+.language-toggle:hover .language-flag {
+    transform: scale(1.1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Flag styles using CSS gradients */
+.flag-tr {
+    background: linear-gradient(to bottom, #e30a17 0%, #e30a17 100%);
+    position: relative;
+}
+
+.flag-tr::before {
+    content: '☪';
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 8px;
+}
+
+.flag-tr::after {
+    content: '⭐';
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 6px;
+}
+
+.flag-en {
+    background: linear-gradient(to bottom,
+            #012169 0%, #012169 33%,
+            white 33%, white 66%,
+            #C8102E 66%, #C8102E 100%);
+    position: relative;
+}
+
+.flag-en::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(45deg, transparent 45%, white 45%, white 55%, transparent 55%),
+        linear-gradient(-45deg, transparent 45%, white 45%, white 55%, transparent 55%),
+        linear-gradient(45deg, transparent 47%, #C8102E 47%, #C8102E 53%, transparent 53%),
+        linear-gradient(-45deg, transparent 47%, #C8102E 47%, #C8102E 53%, transparent 53%);
+}
+
+/* Language dropdown (gelecekte kullanım için) */
+.language-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 8px;
+    background: rgba(44, 62, 80, 0.98);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-xl);
+    padding: 8px;
+    box-shadow: var(--shadow-xl);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all var(--transition-smooth);
+    min-width: 120px;
+}
+
+.language-switcher:hover .language-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.language-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: var(--radius-md);
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: var(--text-sm);
+    transition: all var(--transition-smooth);
+    white-space: nowrap;
+}
+
+.language-option:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    transform: translateX(4px);
+}
+
+.language-option.active {
+    background: rgba(243, 156, 18, 0.2);
+    color: var(--accent-orange);
+}
+
+/* Responsive mobile adjustments */
+@media (max-width: 768px) {
+    .language-switcher {
+        top: 15px;
+        right: 80px;
+        /* Hamburger menüye yakın değil */
+        padding: 6px;
+    }
+
+    .language-toggle {
+        padding: 6px 10px;
+        font-size: var(--text-xs);
+    }
+
+    .language-flag {
+        width: 18px;
+        height: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .language-switcher {
+        right: 70px;
+        padding: 4px;
+    }
+
+    .language-toggle {
+        padding: 4px 8px;
+    }
+
+    .language-flag {
+        width: 16px;
+        height: 12px;
+    }
+
+    .flag-tr::before {
+        font-size: 6px;
+    }
+
+    .flag-tr::after {
+        font-size: 4px;
+    }
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+    .language-switcher {
+        background: rgba(15, 23, 42, 0.95);
+        border-color: var(--dark-border);
+    }
+
+    .language-switcher:hover {
+        background: rgba(15, 23, 42, 0.98);
+    }
+
+    .language-dropdown {
+        background: rgba(15, 23, 42, 0.98);
+        border-color: var(--dark-border);
+    }
+
+    .language-option.active {
+        background: rgba(245, 158, 11, 0.2);
+        color: var(--dark-accent-orange);
+    }
+}
+
+/* Animation for language switch */
+.language-switching {
+    animation: languageSwitch 0.5s ease-in-out;
+}
+
+@keyframes languageSwitch {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    50% {
+        opacity: 0.7;
+        transform: translateY(-10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
