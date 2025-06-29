@@ -579,6 +579,11 @@ class CompleteLanguageManager {
 
         // Sayfa başlığı ve meta verilerini güncelle
         this.updatePageMeta();
+
+        // Hero başlığı için typewriter animasyonunu tekrar başlat
+        if (typeof typeWriter === 'function') {
+            typeWriter();
+        }
     }
 
     updatePageMeta() {
