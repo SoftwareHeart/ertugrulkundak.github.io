@@ -2391,6 +2391,12 @@ nav a:focus,
         margin-top: 70px;
     }
 
+    /* Mobil cihazlarda hero başlığı için typewriter animasyonunu devre dışı bırak */
+    .hero-content h1 {
+        animation: none !important;
+        opacity: 1 !important;
+    }
+
     .hero-buttons {
         flex-direction: column;
         align-items: center;

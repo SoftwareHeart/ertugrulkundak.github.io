@@ -580,12 +580,17 @@ class CompleteLanguageManager {
         // Sayfa başlığı ve meta verilerini güncelle
         this.updatePageMeta();
 
-        // Hero başlığı için typewriter animasyonunu tekrar başlat
-        if (typeof typeWriter === 'function') {
-            typeWriter();
+        // Hero başlığı için typewriter animasyonunu SADECE mobil değilse ve daha önce çalışmamışsa başlat
+        const heroTitle = document.querySelector('.hero-content h1');
+        if (heroTitle && window.innerWidth > 768 && heroTitle.dataset.typewriterCompleted !== 'true') {
+            if (typeof typeWriter === 'function') {
+                typeWriter();
+            }
+        } else if (heroTitle) {
+            // Mobil cihazlarda veya animasyon zaten tamamlanmışsa sadece metni göster
+            heroTitle.style.opacity = '1';
         }
     }
-
     updatePageMeta() {
         // Sayfa başlığını güncelle
         const titleKey = this.currentLang === 'tr'

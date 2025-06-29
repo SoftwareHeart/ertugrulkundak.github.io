@@ -220,23 +220,49 @@ function typeWriter() {
     const heroTitle = document.querySelector('.hero-content h1');
     if (!heroTitle) return;
 
-    const titleText = heroTitle.textContent;
+    // Mobil cihazlarda typewriter animasyonunu devre dışı bırak
+    if (window.innerWidth <= 768) {
+        heroTitle.style.opacity = '1';
+        return;
+    }
+
+    const titleText = heroTitle.getAttribute('data-lang') ?
+        (window.languageManager ? window.languageManager.getTranslation(heroTitle.getAttribute('data-lang')) : heroTitle.textContent) :
+        heroTitle.textContent;
+
+    if (!titleText || titleText.trim() === '') return;
+
+    // Typewriter animasyonunu sadece bir kez çalıştır
+    if (heroTitle.dataset.typewriterCompleted === 'true') {
+        heroTitle.style.opacity = '1';
+        return;
+    }
+
     heroTitle.textContent = '';
     heroTitle.style.opacity = '1';
 
     let i = 0;
-    const speed = 100; // Typing speed
+    const speed = 80; // Biraz daha hızlı
+    let timeoutId;
 
     function type() {
         if (i < titleText.length) {
             heroTitle.textContent += titleText.charAt(i);
             i++;
-            setTimeout(type, speed);
+            timeoutId = setTimeout(type, speed);
+        } else {
+            // Animasyon tamamlandı olarak işaretle
+            heroTitle.dataset.typewriterCompleted = 'true';
         }
     }
 
+    // Önceki timeout'ları temizle
+    if (timeoutId) {
+        clearTimeout(timeoutId);
+    }
+
     // Start typing after a delay
-    setTimeout(type, 1000);
+    setTimeout(type, 800);
 }
 
 // ===== FLOATING PARTICLES SYSTEM =====
