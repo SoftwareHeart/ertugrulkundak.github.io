@@ -1005,11 +1005,17 @@ section h2::after {
     user-select: none;
     white-space: nowrap;
     line-height: 1.2;
+    /* Add transform-origin to prevent flickering */
+    transform-origin: center;
+    /* Add will-change for better performance */
+    will-change: transform, background;
 }
 
 .tech-tag:hover {
     background: var(--accent-gradient);
-    transform: translateY(-2px) scale(1.05);
+    /* Remove all transform and shadow effects */
+    transform: none;
+    box-shadow: none;
 }
 
 /* === CONTACT SECTION === */
@@ -1965,6 +1971,9 @@ nav a:focus,
         background: var(--dark-accent-gradient);
         color: var(--white);
         border-color: transparent;
+        /* Disable hover transform in dark mode to prevent flickering */
+        transform: none;
+        box-shadow: none;
     }
 
     /* Project badges in dark mode - subtle styling */
