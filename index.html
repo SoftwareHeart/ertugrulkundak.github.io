@@ -320,295 +320,335 @@
         <div class="container">
             <h2 data-lang="section.projects">Projelerim</h2>
 
-            <!-- Profesyonel Projeler -->
-            <div class="project-category">
-                <h3 class="category-title">
-                    <i class="fas fa-briefcase"></i> <span data-lang="projects.professional">Profesyonel Projeler</span>
-                </h3>
-                <div class="project-grid">
-                    <!-- İyiGelir Portföy Optimizasyonu -->
-                    <article class="project-card loading featured">
-                        <header class="project-header">
-                            <h3><i class="fas fa-chart-line" aria-hidden="true"></i> <span
-                                    data-lang="proj.portfolio.title">İyiGelir Portföy Optimizasyonu</span></h3>
-                            <span class="project-badge" data-lang="proj.portfolio.badge">%80 Performance</span>
-                        </header>
-                        <div class="project-content">
-                            <p data-lang="proj.portfolio.desc">Portföy sayfası performansını %80 artıran kapsamlı
-                                optimizasyon çalışması. Database
-                                indexing, responsive design ve sayfa yükleme hızı iyileştirmeleri.</p>
-                            <div class="tech-stack">
-                                <span class="tech-tag">.net core api</span>
-                                <span class="tech-tag">performance optimization</span>
-                                <span class="tech-tag">database tuning</span>
-                                <span class="tech-tag">responsive design</span>
-                            </div>
-                            <a href="#contact" class="btn btn-primary">
-                                <i class="fas fa-trophy" aria-hidden="true"></i> <span
-                                    data-lang="proj.portfolio.btn">Full Stack Developer</span>
-                            </a>
-                        </div>
-                    </article>
+            <!-- Project Filters -->
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fas fa-th"></i> <span data-lang="projects.filter.all">Tümü</span>
+                </button>
+                <button class="filter-btn" data-filter="professional">
+                    <i class="fas fa-briefcase"></i> <span data-lang="projects.filter.professional">Profesyonel</span>
+                </button>
+                <button class="filter-btn" data-filter="personal">
+                    <i class="fas fa-code"></i> <span data-lang="projects.filter.personal">Kişisel</span>
+                </button>
+                <button class="filter-btn" data-filter="achievement">
+                    <i class="fas fa-trophy"></i> <span data-lang="projects.filter.achievement">Başarılar</span>
+                </button>
+            </div>
 
-                    <!-- KNN Fon Öneri Sistemi -->
-                    <article class="project-card loading featured">
-                        <header class="project-header">
-                            <h3><i class="fas fa-brain" aria-hidden="true"></i> <span data-lang="proj.knn.title">KNN Fon
-                                    Öneri Sistemi</span></h3>
-                            <span class="project-badge" data-lang="proj.knn.badge">Machine Learning</span>
-                        </header>
-                        <div class="project-content">
-                            <p data-lang="proj.knn.desc">KNN algoritması ile yapay zeka destekli fon öneri sistemi.
-                                Kullanıcı profiline göre en
-                                uygun yatırım fonlarını önerir ve risk analizi yapar.</p>
-                            <div class="tech-stack">
-                                <span class="tech-tag">c#</span>
-                                <span class="tech-tag">.net core</span>
-                                <span class="tech-tag">machine learning</span>
-                                <span class="tech-tag">knn algorithm</span>
+            <!-- Project Grid -->
+            <div class="project-grid">
+                <!-- İyiGelir Portföy Optimizasyonu -->
+                <article class="project-card loading featured" data-category="professional">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-actions">
+                                <button class="btn-details" onclick="openProjectModal('portfolio')">
+                                    <i class="fas fa-eye"></i> <span data-lang="projects.view.details">Detaylar</span>
+                                </button>
                             </div>
-                            <a href="#contact" class="btn btn-primary">
-                                <i class="fas fa-trophy" aria-hidden="true"></i> <span data-lang="proj.knn.btn">Full
-                                    Stack Developer</span>
-                            </a>
                         </div>
-                    </article>
-
-                    <!-- Fon Analiz Dashboard -->
-                    <article class="project-card loading">
+                        <div class="project-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
                         <header class="project-header">
-                            <h3><i class="fas fa-chart-area" aria-hidden="true"></i> <span
-                                    data-lang="proj.dashboard.title">Fon Analiz Dashboard</span></h3>
+                            <h3 data-lang="proj.portfolio.title">İyiGelir Portföy Optimizasyonu</h3>
+                            <span class="project-badge featured-badge" data-lang="proj.portfolio.badge">%80
+                                Performance</span>
+                        </header>
+                        <p data-lang="proj.portfolio.desc">Portföy sayfası performansını %80 artıran kapsamlı
+                            optimizasyon çalışması.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">.net core api</span>
+                            <span class="tech-tag">performance</span>
+                            <span class="tech-tag">database</span>
+                        </div>
+                        <div class="project-footer">
+                            <span class="project-role">
+                                <i class="fas fa-trophy"></i> <span data-lang="proj.portfolio.role">Full Stack
+                                    Developer</span>
+                            </span>
+                            <span class="project-date">2024</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- KNN Fon Öneri Sistemi -->
+                <article class="project-card loading featured" data-category="professional">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-actions">
+                                <button class="btn-details" onclick="openProjectModal('knn')">
+                                    <i class="fas fa-eye"></i> <span data-lang="projects.view.details">Detaylar</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="project-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <header class="project-header">
+                            <h3 data-lang="proj.knn.title">KNN Fon Öneri Sistemi</h3>
+                            <span class="project-badge ai-badge" data-lang="proj.knn.badge">Machine Learning</span>
+                        </header>
+                        <p data-lang="proj.knn.desc">KNN algoritması ile yapay zeka destekli fon öneri sistemi.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">c#</span>
+                            <span class="tech-tag">machine learning</span>
+                            <span class="tech-tag">knn</span>
+                        </div>
+                        <div class="project-footer">
+                            <span class="project-role">
+                                <i class="fas fa-trophy"></i> <span data-lang="proj.knn.role">Full Stack
+                                    Developer</span>
+                            </span>
+                            <span class="project-date">2024</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Fon Analiz Dashboard -->
+                <article class="project-card loading" data-category="professional">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-actions">
+                                <button class="btn-details" onclick="openProjectModal('dashboard')">
+                                    <i class="fas fa-eye"></i> <span data-lang="projects.view.details">Detaylar</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="project-icon">
+                            <i class="fas fa-chart-area"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <header class="project-header">
+                            <h3 data-lang="proj.dashboard.title">Fon Analiz Dashboard</h3>
                             <span class="project-badge" data-lang="proj.dashboard.badge">30 Grafik</span>
                         </header>
-                        <div class="project-content">
-                            <p data-lang="proj.dashboard.desc">30 grafik içeren fon detay analiz sistemi. Highcharts ile
-                                fon fiyat görselleştirme ve 10
-                                yıllık veri analizi. Kuyruk yönetimi ile optimize edilmiş yükleme (1-3 saniye).</p>
-                            <div class="tech-stack">
-                                <span class="tech-tag">highcharts</span>
-                                <span class="tech-tag">queue management</span>
-                                <span class="tech-tag">data visualization</span>
-                                <span class="tech-tag">performance</span>
-                            </div>
-                            <a href="#contact" class="btn">
-                                <i class="fas fa-trophy" aria-hidden="true"></i> <span
-                                    data-lang="proj.dashboard.btn">Full Stack Developer</span>
-                            </a>
+                        <p data-lang="proj.dashboard.desc">30 grafik içeren fon detay analiz sistemi. Highcharts ile
+                            görselleştirme.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">highcharts</span>
+                            <span class="tech-tag">queue</span>
+                            <span class="tech-tag">visualization</span>
                         </div>
-                    </article>
+                        <div class="project-footer">
+                            <span class="project-role">
+                                <i class="fas fa-trophy"></i> <span data-lang="proj.dashboard.role">Full Stack
+                                    Developer</span>
+                            </span>
+                            <span class="project-date">2024</span>
+                        </div>
+                    </div>
+                </article>
 
-                    <!-- Portföy Yönetim Sistemi -->
-                    <article class="project-card loading">
+                <!-- Portföy Yönetim Sistemi -->
+                <article class="project-card loading" data-category="professional">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-actions">
+                                <button class="btn-details" onclick="openProjectModal('management')">
+                                    <i class="fas fa-eye"></i> <span data-lang="projects.view.details">Detaylar</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="project-icon">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
                         <header class="project-header">
-                            <h3><i class="fas fa-layer-group" aria-hidden="true"></i> <span
-                                    data-lang="proj.management.title">Portföy Yönetim Sistemi</span></h3>
+                            <h3 data-lang="proj.management.title">Portföy Yönetim Sistemi</h3>
                             <span class="project-badge" data-lang="proj.management.badge">Multi-Currency</span>
                         </header>
-                        <div class="project-content">
-                            <p data-lang="proj.management.desc">Portföylerin toplu gösterim ve yönetim sistemi. Gelişmiş
-                                filtreleme, multi-currency
-                                desteği (USD/EUR/TL) ve database index optimizasyonu.</p>
-                            <div class="tech-stack">
-                                <span class="tech-tag">entity framework</span>
-                                <span class="tech-tag">database index</span>
-                                <span class="tech-tag">multi-currency</span>
-                                <span class="tech-tag">advanced filtering</span>
-                            </div>
-                            <a href="#contact" class="btn">
-                                <i class="fas fa-graduation-cap" aria-hidden="true"></i> <span
-                                    data-lang="proj.management.btn">Stajyer</span>
-                            </a>
+                        <p data-lang="proj.management.desc">Portföylerin toplu gösterim ve yönetim sistemi.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">entity framework</span>
+                            <span class="tech-tag">multi-currency</span>
+                            <span class="tech-tag">filtering</span>
                         </div>
-                    </article>
-
-                    <!-- Mobil & Web API -->
-                    <article class="project-card loading">
-                        <header class="project-header">
-                            <h3><i class="fas fa-mobile-alt" aria-hidden="true"></i> <span
-                                    data-lang="proj.api.title">Mobil & Web API</span></h3>
-                            <span class="project-badge" data-lang="proj.api.badge">RESTful API</span>
-                        </header>
-                        <div class="project-content">
-                            <p data-lang="proj.api.desc">Yeni mobil ve web uygulaması için API tasarımı ve kodlaması.
-                                RESTful servisler, clean
-                                architecture ve veritabanı entegrasyonu.</p>
-                            <div class="tech-stack">
-                                <span class="tech-tag">asp.net core</span>
-                                <span class="tech-tag">web api</span>
-                                <span class="tech-tag">mobile backend</span>
-                                <span class="tech-tag">clean architecture</span>
-                            </div>
-                            <a href="#contact" class="btn">
-                                <i class="fas fa-trophy" aria-hidden="true"></i> <span data-lang="proj.api.btn">Full
-                                    Stack Developer</span>
-                            </a>
+                        <div class="project-footer">
+                            <span class="project-role">
+                                <i class="fas fa-graduation-cap"></i> <span
+                                    data-lang="proj.management.role">Stajyer</span>
+                            </span>
+                            <span class="project-date">2024</span>
                         </div>
-                    </article>
+                    </div>
+                </article>
 
-                    <!-- Akademik Portal -->
-                    <article class="project-card loading">
-                        <header class="project-header">
-                            <h3><i class="fas fa-graduation-cap" aria-hidden="true"></i> <span
-                                    data-lang="proj.academic.title">Akademik Portal</span></h3>
-                            <span class="project-badge" data-lang="proj.academic.badge">Full Stack</span>
-                        </header>
-                        <div class="project-content">
-                            <p data-lang="proj.academic.desc">Akademik alan için tasarlanan kapsamlı portal. Backend API
-                                geliştirme, frontend tasarım
-                                ve tam stack entegrasyonu.</p>
-                            <div class="tech-stack">
-                                <span class="tech-tag">.net core</span>
-                                <span class="tech-tag">full stack</span>
-                                <span class="tech-tag">academic portal</span>
-                                <span class="tech-tag">system design</span>
+                <!-- Pomodoro Çalışması -->
+                <article class="project-card loading" data-category="personal">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-actions">
+                                <button class="btn-details" onclick="openProjectModal('pomodoro')">
+                                    <i class="fas fa-eye"></i> <span data-lang="projects.view.details">Detaylar</span>
+                                </button>
+                                <a href="https://github.com/SoftwareHeart/pomodoro-client" class="btn-github"
+                                    target="_blank" rel="noopener">
+                                    <i class="fab fa-github"></i> <span data-lang="projects.view.github">GitHub</span>
+                                </a>
                             </div>
-                            <a href="#contact" class="btn">
-                                <i class="fas fa-trophy" aria-hidden="true"></i> <span
-                                    data-lang="proj.academic.btn">Full Stack Developer</span>
-                            </a>
                         </div>
-                    </article>
-                </div>
-            </div>
-
-            <!-- Kişisel Projeler -->
-            <div class="project-category">
-                <h3 class="category-title">
-                    <i class="fas fa-code"></i> <span data-lang="projects.personal">Kişisel Projeler</span>
-                </h3>
-                <div class="project-grid">
-                    <!-- Pomodoro Çalışması -->
-                    <article class="project-card loading">
+                        <div class="project-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
                         <header class="project-header">
-                            <h3><i class="fas fa-clock" aria-hidden="true"></i> <span
-                                    data-lang="proj.pomodoro.title">Pomodoro Çalışması</span></h3>
+                            <h3 data-lang="proj.pomodoro.title">Pomodoro Çalışması</h3>
                             <span class="project-badge" data-lang="proj.pomodoro.badge">React + .NET</span>
                         </header>
-                        <div class="project-content">
-                            <p data-lang="proj.pomodoro.desc">Full stack Pomodoro tekniği uygulaması. Kullanıcılar
-                                görevlerini yönetebilir, çalışma
-                                sürelerini takip edebilir ve detaylı istatistikler görüntüleyebilir.</p>
-                            <div class="tech-stack">
-                                <span class="tech-tag">react.js</span>
-                                <span class="tech-tag">asp.net core</span>
-                                <span class="tech-tag">sql server</span>
-                                <span class="tech-tag">jwt auth</span>
-                            </div>
-                            <a href="https://github.com/SoftwareHeart/pomodoro-client" class="btn" target="_blank"
-                                rel="noopener">
-                                <i class="fab fa-github" aria-hidden="true"></i> GitHub
-                            </a>
+                        <p data-lang="proj.pomodoro.desc">Full stack Pomodoro tekniği uygulaması.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">react.js</span>
+                            <span class="tech-tag">asp.net core</span>
+                            <span class="tech-tag">jwt auth</span>
                         </div>
-                    </article>
+                        <div class="project-footer">
+                            <span class="project-role">
+                                <i class="fas fa-code"></i> <span data-lang="proj.pomodoro.role">Kişisel Proje</span>
+                            </span>
+                            <span class="project-date">2023</span>
+                        </div>
+                    </div>
+                </article>
 
-                    <!-- Kargo Şirketi Blog -->
-                    <article class="project-card loading">
+                <!-- Kargo Şirketi Blog -->
+                <article class="project-card loading" data-category="personal">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-actions">
+                                <button class="btn-details" onclick="openProjectModal('cargo')">
+                                    <i class="fas fa-eye"></i> <span data-lang="projects.view.details">Detaylar</span>
+                                </button>
+                                <a href="https://github.com/SoftwareHeart/KargoAdmin" class="btn-github" target="_blank"
+                                    rel="noopener">
+                                    <i class="fab fa-github"></i> <span data-lang="projects.view.github">GitHub</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
                         <header class="project-header">
-                            <h3><i class="fas fa-shipping-fast" aria-hidden="true"></i> <span
-                                    data-lang="proj.cargo.title">Kargo Şirketi Blog</span></h3>
+                            <h3 data-lang="proj.cargo.title">Kargo Şirketi Blog</h3>
                             <span class="project-badge" data-lang="proj.cargo.badge">Admin Panel</span>
                         </header>
-                        <div class="project-content">
-                            <p data-lang="proj.cargo.desc">Kargo şirketinin tanıtımı ve admin panelden yönetilebilir
-                                blog sistemi. Google SEO
-                                çalışması, blog CRUD işlemleri ve istatistiksel raporlama.</p>
-                            <div class="tech-stack">
-                                <span class="tech-tag">asp.net core mvc</span>
-                                <span class="tech-tag">entity framework</span>
-                                <span class="tech-tag">admin panel</span>
-                                <span class="tech-tag">seo</span>
-                            </div>
-                            <a href="https://github.com/SoftwareHeart/KargoAdmin" class="btn" target="_blank"
-                                rel="noopener">
-                                <i class="fab fa-github" aria-hidden="true"></i> GitHub
-                            </a>
+                        <p data-lang="proj.cargo.desc">Kargo şirketinin tanıtımı ve admin panelden yönetilebilir blog
+                            sistemi.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">asp.net core mvc</span>
+                            <span class="tech-tag">admin panel</span>
+                            <span class="tech-tag">seo</span>
                         </div>
-                    </article>
+                        <div class="project-footer">
+                            <span class="project-role">
+                                <i class="fas fa-code"></i> <span data-lang="proj.cargo.role">Kişisel Proje</span>
+                            </span>
+                            <span class="project-date">2023</span>
+                        </div>
+                    </div>
+                </article>
 
-                    <!-- AES Şifreleme -->
-                    <article class="project-card loading">
+                <!-- AES Şifreleme -->
+                <article class="project-card loading" data-category="personal">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-actions">
+                                <button class="btn-details" onclick="openProjectModal('aes')">
+                                    <i class="fas fa-eye"></i> <span data-lang="projects.view.details">Detaylar</span>
+                                </button>
+                                <a href="https://github.com/SoftwareHeart/Aes_Sifreleme" class="btn-github"
+                                    target="_blank" rel="noopener">
+                                    <i class="fab fa-github"></i> <span data-lang="projects.view.github">GitHub</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
                         <header class="project-header">
-                            <h3><i class="fas fa-shield-alt" aria-hidden="true"></i> <span
-                                    data-lang="proj.aes.title">AES Şifreleme Uygulaması</span></h3>
+                            <h3 data-lang="proj.aes.title">AES Şifreleme Uygulaması</h3>
                             <span class="project-badge" data-lang="proj.aes.badge">AES-256</span>
                         </header>
-                        <div class="project-content">
-                            <p data-lang="proj.aes.desc">AES-256 algoritması ile görüntü dosyalarının güvenli
-                                şifrelenmesi. Otomatik anahtar-IV
-                                oluşturma, Base64 encoding ve çoklu format desteği.</p>
-                            <div class="tech-stack">
-                                <span class="tech-tag">c# winforms</span>
-                                <span class="tech-tag">aes-256</span>
-                                <span class="tech-tag">cryptography</span>
-                                <span class="tech-tag">security</span>
-                            </div>
-                            <a href="https://github.com/SoftwareHeart/Aes_Sifreleme" class="btn" target="_blank"
-                                rel="noopener">
-                                <i class="fab fa-github" aria-hidden="true"></i> GitHub
-                            </a>
+                        <p data-lang="proj.aes.desc">AES-256 algoritması ile görüntü dosyalarının güvenli şifrelenmesi.
+                        </p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">c# winforms</span>
+                            <span class="tech-tag">aes-256</span>
+                            <span class="tech-tag">cryptography</span>
                         </div>
-                    </article>
-
-                    <!-- TreeSearchAnalyzer -->
-                    <article class="project-card loading">
-                        <header class="project-header">
-                            <h3><i class="fas fa-search" aria-hidden="true"></i> <span
-                                    data-lang="proj.tree.title">TreeSearchAnalyzer</span></h3>
-                            <span class="project-badge" data-lang="proj.tree.badge">C++ Algorithm</span>
-                        </header>
-                        <div class="project-content">
-                            <p data-lang="proj.tree.desc">Binary Search Tree arama algoritmalarının performans analizi.
-                                DFS ve BFS algoritmalarının
-                                karşılaştırması ve nanosaniye hassasiyetinde ölçüm.</p>
-                            <div class="tech-stack">
-                                <span class="tech-tag">c++</span>
-                                <span class="tech-tag">binary search tree</span>
-                                <span class="tech-tag">dfs/bfs</span>
-                                <span class="tech-tag">performance analysis</span>
-                            </div>
-                            <a href="https://github.com/SoftwareHeart/c---ile-veri-yapilari" class="btn" target="_blank"
-                                rel="noopener">
-                                <i class="fab fa-github" aria-hidden="true"></i> GitHub
-                            </a>
+                        <div class="project-footer">
+                            <span class="project-role">
+                                <i class="fas fa-code"></i> <span data-lang="proj.aes.role">Kişisel Proje</span>
+                            </span>
+                            <span class="project-date">2023</span>
                         </div>
-                    </article>
-                </div>
-            </div>
+                    </div>
+                </article>
 
-            <!-- Başarılar & Ödüller -->
-            <div class="project-category">
-                <h3 class="category-title">
-                    <i class="fas fa-trophy"></i> <span data-lang="projects.achievements">Başarılar & Ödüller</span>
-                </h3>
-                <div class="project-grid">
-                    <!-- Cyber Security Hackathon -->
-                    <article class="project-card loading achievement">
+                <!-- Cyber Security Hackathon -->
+                <article class="project-card loading achievement" data-category="achievement">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-actions">
+                                <button class="btn-details" onclick="openProjectModal('cybersec')">
+                                    <i class="fas fa-eye"></i> <span data-lang="projects.view.details">Detaylar</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="project-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
                         <header class="project-header">
-                            <h3><i class="fas fa-award" aria-hidden="true"></i> <span
-                                    data-lang="proj.cybersec.title">Cyber Security'22 Hackathon</span></h3>
+                            <h3 data-lang="proj.cybersec.title">Cyber Security'22 Hackathon</h3>
                             <span class="project-badge achievement-badge" data-lang="proj.cybersec.badge">2. Sıra</span>
                         </header>
-                        <div class="project-content">
-                            <p data-lang="proj.cybersec.desc">32 takım arasından 2. olarak 5000₺ ödül kazandığım siber
-                                güvenlik hackathonu. Güvenlik
-                                açıklarını tespit etme ve çözüm geliştirme konularında takım liderliği.</p>
-                            <div class="tech-stack">
-                                <span class="tech-tag">cyber security</span>
-                                <span class="tech-tag">penetration testing</span>
-                                <span class="tech-tag">team leadership</span>
-                                <span class="tech-tag">problem solving</span>
-                            </div>
-                            <a href="#contact" class="btn btn-achievement">
-                                <i class="fas fa-medal" aria-hidden="true"></i> <span
-                                    data-lang="proj.cybersec.btn">5000₺ Ödül Kazandım</span>
-                            </a>
+                        <p data-lang="proj.cybersec.desc">32 takım arasından 2. olarak 5000₺ ödül kazandığım siber
+                            güvenlik hackathonu.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">cyber security</span>
+                            <span class="tech-tag">penetration testing</span>
+                            <span class="tech-tag">team leadership</span>
                         </div>
-                    </article>
-                </div>
+                        <div class="project-footer">
+                            <span class="project-role">
+                                <i class="fas fa-trophy"></i> <span data-lang="proj.cybersec.role">Takım Lideri</span>
+                            </span>
+                            <span class="project-date">2022</span>
+                        </div>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle"></h3>
+                <button class="modal-close" onclick="closeProjectModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="modalContent"></div>
+            </div>
+        </div>
+    </div>
 
     <!-- Contact Section -->
     <section id="contact">

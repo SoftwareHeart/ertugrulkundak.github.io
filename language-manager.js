@@ -124,6 +124,40 @@ class CompleteLanguageManager {
                 'projects.personal': 'Kişisel Projeler',
                 'projects.achievements': 'Başarılar & Ödüller',
 
+                // Project Filters
+                'projects.filter.all': 'Tümü',
+                'projects.filter.professional': 'Profesyonel',
+                'projects.filter.personal': 'Kişisel',
+                'projects.filter.achievement': 'Başarılar',
+
+                // Project View Actions
+                'projects.view.details': 'Detaylar',
+                'projects.view.github': 'GitHub',
+
+                // Project Roles
+                'proj.portfolio.role': 'Full Stack Developer',
+                'proj.knn.role': 'Full Stack Developer',
+                'proj.dashboard.role': 'Full Stack Developer',
+                'proj.management.role': 'Stajyer',
+                'proj.pomodoro.role': 'Kişisel Proje',
+                'proj.cargo.role': 'Kişisel Proje',
+                'proj.aes.role': 'Kişisel Proje',
+                'proj.cybersec.role': 'Takım Lideri',
+
+                // Modal Content
+                'modal.project.description': 'Proje Açıklaması',
+                'modal.project.details': 'Teknik Detaylar',
+                'modal.project.technologies': 'Kullanılan Teknolojiler',
+                'modal.project.role': 'Rol',
+                'modal.project.duration': 'Süre',
+                'modal.project.impact': 'Etki',
+                'modal.project.github': 'GitHub',
+                'modal.project.view.github': 'Projeyi İncele',
+
+                // No Results Message
+                'projects.no-results.title': 'Sonuç Bulunamadı',
+                'projects.no-results.desc': 'Seçilen kategoride proje bulunmamaktadır.',
+
                 // Professional Projects
                 'proj.portfolio.title': 'İyiGelir Portföy Optimizasyonu',
                 'proj.portfolio.badge': '%80 Performance',
@@ -272,6 +306,40 @@ class CompleteLanguageManager {
                 'projects.professional': 'Professional Projects',
                 'projects.personal': 'Personal Projects',
                 'projects.achievements': 'Achievements & Awards',
+
+                // Project Filters
+                'projects.filter.all': 'All',
+                'projects.filter.professional': 'Professional',
+                'projects.filter.personal': 'Personal',
+                'projects.filter.achievement': 'Achievements',
+
+                // Project View Actions
+                'projects.view.details': 'Details',
+                'projects.view.github': 'GitHub',
+
+                // Project Roles
+                'proj.portfolio.role': 'Full Stack Developer',
+                'proj.knn.role': 'Full Stack Developer',
+                'proj.dashboard.role': 'Full Stack Developer',
+                'proj.management.role': 'Intern',
+                'proj.pomodoro.role': 'Personal Project',
+                'proj.cargo.role': 'Personal Project',
+                'proj.aes.role': 'Personal Project',
+                'proj.cybersec.role': 'Team Leader',
+
+                // Modal Content
+                'modal.project.description': 'Project Description',
+                'modal.project.details': 'Technical Details',
+                'modal.project.technologies': 'Used Technologies',
+                'modal.project.role': 'Role',
+                'modal.project.duration': 'Duration',
+                'modal.project.impact': 'Impact',
+                'modal.project.github': 'GitHub',
+                'modal.project.view.github': 'View Project',
+
+                // No Results Message
+                'projects.no-results.title': 'No Results Found',
+                'projects.no-results.desc': 'No project found in the selected category.',
 
                 // Professional Projects
                 'proj.portfolio.title': 'İyiGelir Portfolio Optimization',
@@ -426,6 +494,11 @@ class CompleteLanguageManager {
             // İçeriği güncelle
             await this.updateAllContentSmoothly();
             this.updateLanguageSwitcher();
+
+            // Modal güncellemesi (eğer açıksa)
+            if (typeof updateModalContent === 'function') {
+                updateModalContent();
+            }
 
             // Dil değişikliği event'ini tetikle
             document.dispatchEvent(new CustomEvent('languageChanged', {
