@@ -1034,6 +1034,22 @@ const projectData = {
             role: 'Takım Lideri',
             duration: '2022',
             impact: '32 takım arasından 2. sıra ve 5000₺ ödül'
+        },
+        api: {
+            title: 'Mobil & Web API',
+            description: 'Yeni mobil ve web uygulaması için yenilenmiş API projesi. Loglama, JWT Authentication ve middleware ile güvenli ve ölçeklenebilir mimari.',
+            details: [
+                'API Design: RESTful mimaride yeni API tasarımı ve kodlama',
+                'Logging: Serilog ile kapsamlı loglama altyapısı',
+                'JWT Authentication: Güvenli kullanıcı kimlik doğrulama ve oturum yönetimi',
+                'Middleware: .NET Core ile özel middleware çözümleri',
+                'API Security: Yetkilendirme ve güvenlik önlemleri',
+                'Performance: Yüksek performans ve ölçeklenebilirlik için optimizasyonlar'
+            ],
+            technologies: ['.NET Core API', 'JWT', 'Middleware', 'Serilog', 'RESTful', 'API Security'],
+            role: 'Full Stack Developer',
+            duration: '2024',
+            impact: 'Güvenli ve ölçeklenebilir yeni API mimarisi'
         }
     },
     en: {
@@ -1139,7 +1155,7 @@ const projectData = {
             title: 'AES Encryption Application',
             description: 'AES-256 algorithm for secure encryption of image files. Automatic key-IV generation, Base64 encoding and multi-format support.',
             details: [
-                'Cryptography: Secure encryption with AES-256 algorithm',
+                'Cryptography: AES-256 algorithm for secure encryption',
                 'File Processing: Encryption and decryption of image files',
                 'Key Management: Automatic key-IV generation system',
                 'Base64 Encoding: Storage of encrypted data in Base64 format',
@@ -1167,6 +1183,22 @@ const projectData = {
             role: 'Team Leader',
             duration: '2022',
             impact: '2nd place among 32 teams and 5000₺ prize'
+        },
+        api: {
+            title: 'Mobile & Web API',
+            description: 'Renewed API project for new mobile and web application. Secure and scalable architecture with logging, JWT Authentication and middleware.',
+            details: [
+                'API Design: Designed and coded new RESTful API',
+                'Logging: Comprehensive logging infrastructure with Serilog',
+                'JWT Authentication: Secure user authentication and session management',
+                'Middleware: Custom middleware solutions with .NET Core',
+                'API Security: Authorization and security measures',
+                'Performance: Optimizations for high performance and scalability'
+            ],
+            technologies: ['.NET Core API', 'JWT', 'Middleware', 'Serilog', 'RESTful', 'API Security'],
+            role: 'Full Stack Developer',
+            duration: '2024',
+            impact: 'Secure and scalable new API architecture'
         }
     }
 };

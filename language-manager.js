@@ -92,6 +92,9 @@ class CompleteLanguageManager {
                 'exp.fullstack.item8': '<strong>Queue Management:</strong> 30 grafiği 5\'er 5\'er kuyruk yapısında yükleyerek optimize ettim',
                 'exp.fullstack.item9': '<strong>Multi-Currency:</strong> Dolar-Euro-TL bazlı dinamik sayfa açılımları geliştirdim',
                 'exp.fullstack.item10': '<strong>Academic Portal:</strong> Akademik alan tasarımı ve backend-frontend entegrasyonu',
+                'exp.fullstack.item11': '<strong>Middleware Development:</strong> .NET Core ile özel middleware çözümleri geliştirdim',
+                'exp.fullstack.item12': '<strong>JWT Authentication:</strong> JWT tabanlı kullanıcı kimlik doğrulama ve oturum yönetimi uyguladım',
+                'exp.fullstack.item13': '<strong>API Security:</strong> API güvenliği için yetkilendirme ve güvenlik önlemleri entegre ettim',
 
                 'exp.intern1.title': 'Stajyer',
                 'exp.intern1.company': 'İyiGelir',
@@ -181,8 +184,8 @@ class CompleteLanguageManager {
 
                 'proj.api.title': 'Mobil & Web API',
                 'proj.api.badge': 'RESTful API',
-                'proj.api.desc': 'Yeni mobil ve web uygulaması için API tasarımı ve kodlaması. RESTful servisler, clean architecture ve veritabanı entegrasyonu.',
-                'proj.api.btn': 'Full Stack Developer',
+                'proj.api.desc': 'Yeni mobil ve web uygulaması için yenilenmiş API projesi. Loglama, JWT Authentication ve middleware ile güvenli ve ölçeklenebilir mimari.',
+                'proj.api.role': 'Full Stack Developer',
 
                 'proj.academic.title': 'Akademik Portal',
                 'proj.academic.badge': 'Full Stack',
@@ -275,6 +278,9 @@ class CompleteLanguageManager {
                 'exp.fullstack.item8': '<strong>Queue Management:</strong> Optimized by loading 30 charts in queue structure of 5 by 5',
                 'exp.fullstack.item9': '<strong>Multi-Currency:</strong> Developed dynamic page expansions based on Dollar-Euro-TL',
                 'exp.fullstack.item10': '<strong>Academic Portal:</strong> Academic area design and backend-frontend integration',
+                'exp.fullstack.item11': '<strong>Middleware Development:</strong> Developed custom middleware solutions with .NET Core',
+                'exp.fullstack.item12': '<strong>JWT Authentication:</strong> Implemented JWT-based user authentication and session management',
+                'exp.fullstack.item13': '<strong>API Security:</strong> Integrated authorization and security measures for API protection',
 
                 'exp.intern1.title': 'Intern',
                 'exp.intern1.company': 'İyiGelir',
@@ -364,8 +370,8 @@ class CompleteLanguageManager {
 
                 'proj.api.title': 'Mobile & Web API',
                 'proj.api.badge': 'RESTful API',
-                'proj.api.desc': 'API design and coding for new mobile and web applications. RESTful services, clean architecture and database integration.',
-                'proj.api.btn': 'Full Stack Developer',
+                'proj.api.desc': 'Renewed API project for new mobile and web application. Secure and scalable architecture with logging, JWT Authentication and middleware.',
+                'proj.api.role': 'Full Stack Developer',
 
                 'proj.academic.title': 'Academic Portal',
                 'proj.academic.badge': 'Full Stack',
