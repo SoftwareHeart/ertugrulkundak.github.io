@@ -99,7 +99,7 @@ class CompleteLanguageManager {
                 'exp.intern1.title': 'Stajyer',
                 'exp.intern1.company': 'İyiGelir',
                 'exp.intern1.date': 'Şubat 2024 - Mayıs 2024',
-                'exp.intern1.desc': '75 iş günü boyunca .NET Core MVC projelerinde geliştirme yaaptım. Entity Framework ve database optimizasyonu konularında deneyim kazandım.',
+                'exp.intern1.desc': '75 iş günü boyunca .NET Core MVC projelerinde geliştirme yaptım. Entity Framework ve database optimizasyonu konularında deneyim kazandım.',
                 'exp.intern1.item1': '<strong>Entity Framework:</strong> Code First yaklaşımı ile veritabanı modellemesi',
                 'exp.intern1.item2': '<strong>Performance Tuning:</strong> Mevcut sistemde performans optimizasyonları gerçekleştirdim',
                 'exp.intern1.item3': '<strong>Portfolio Management:</strong> Portföylerin toplu gösterim sayfasını tasarladım ve kodladım',
