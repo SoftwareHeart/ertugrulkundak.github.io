@@ -194,8 +194,9 @@ const statsObserver = new IntersectionObserver((entries) => {
             const originalText = numberElement.textContent;
 
             // Sayısal değeri çıkar (rakamlar ve nokta)
-            const numberMatch = originalText.match(/[\d.]+/);
-            const number = numberMatch ? parseFloat(numberMatch[0]) : 0;
+            const numberMatch = originalText.match(/[\d.,]+/);
+            const cleanNumber = numberMatch ? numberMatch[0].replace(/[.,]/g, '') : '0';
+            const number = parseInt(cleanNumber) || 0;
 
             // Animasyonu başlat
             numberElement.textContent = '0';
