@@ -3130,8 +3130,4 @@ nav a:focus,
         color: #fff !important;
         border-color: #fff8 !important;
     }
-
-    .btn-secondary:hover {
-        color: #1a1a2e !important;
-    }
 }
