@@ -426,13 +426,11 @@ nav a.active {
     box-shadow: var(--shadow-lg);
     position: relative;
     overflow: hidden;
-    transition: all var(--transition-smooth);
-    /* Fixed: Smoother transition */
+    transition: box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), filter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     border: none;
     cursor: pointer;
     text-transform: capitalize;
     user-select: none;
-    /* Fixed: Prevent layout shift */
     will-change: transform;
     transform: translateZ(0);
 }
@@ -446,17 +444,19 @@ nav a.active {
     height: 100%;
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
     transition: left var(--transition-slow);
+    pointer-events: none;
 }
 
 .btn:hover::before {
     left: 100%;
+    pointer-events: none;
 }
 
 .btn:hover {
     transform: translateY(-3px) scale(1.01);
-    /* Fixed: Reduced scale to prevent flickering */
     box-shadow: var(--shadow-xl), var(--shadow-glow-orange);
     filter: brightness(1.1);
+    transition: box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), filter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn:active {
@@ -1229,6 +1229,7 @@ section h2::after {
     opacity: 0;
     transition: opacity var(--transition-normal);
     z-index: 3;
+    pointer-events: none;
 }
 
 .project-card:hover .project-overlay {
@@ -1239,6 +1240,7 @@ section h2::after {
     display: flex;
     gap: var(--spacing-sm);
     flex-direction: column;
+    pointer-events: auto;
 }
 
 .btn-details,
@@ -1250,7 +1252,7 @@ section h2::after {
     border-radius: var(--radius-md);
     font-weight: 600;
     cursor: pointer;
-    transition: all var(--transition-normal);
+    transition: box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1), background 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -1264,6 +1266,7 @@ section h2::after {
     background: var(--primary-blue);
     color: var(--white);
     transform: translateY(-2px);
+    transition: box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1), background 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Project Content */
