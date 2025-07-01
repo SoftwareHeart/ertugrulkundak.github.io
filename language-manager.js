@@ -420,8 +420,12 @@ class CompleteLanguageManager {
             existingSwitcher.remove();
         }
 
+        // Ekran genişliğine göre class belirle
+        const isMobile = window.innerWidth <= 768;
+        const switcherClass = isMobile ? 'language-switcher' : 'language-switcher small';
+
         const languageSwitcher = document.createElement('div');
-        languageSwitcher.className = 'language-switcher';
+        languageSwitcher.className = switcherClass;
         languageSwitcher.innerHTML = `
             <button class="language-toggle" onclick="languageManager.toggleLanguage()" 
                     aria-label="Switch Language" title="Change Language"
@@ -438,7 +442,17 @@ class CompleteLanguageManager {
             toggle.setAttribute('title', `Switch to ${nextLang}`);
         });
 
-        document.body.appendChild(languageSwitcher);
+        if (isMobile) {
+            document.body.appendChild(languageSwitcher);
+        } else {
+            const navLangContainer = document.getElementById('nav-language-switcher');
+            if (navLangContainer) {
+                navLangContainer.innerHTML = '';
+                navLangContainer.appendChild(languageSwitcher);
+            } else {
+                document.body.appendChild(languageSwitcher);
+            }
+        }
     }
 
     getLanguageDisplayName(lang) {
@@ -670,3 +684,10 @@ if (document.readyState === 'loading') {
 } else {
     initCompleteLanguageManager();
 }
+
+// Dil değiştiriciyi pencere boyutu değişince yeniden yerleştir
+window.addEventListener('resize', () => {
+    if (window.languageManager && typeof window.languageManager.createLanguageSwitcher === 'function') {
+        window.languageManager.createLanguageSwitcher();
+    }
+});

@@ -315,7 +315,6 @@ nav a::before {
 }
 
 nav a:hover {
-    color: var(--white);
     background: rgba(255, 255, 255, 0.1);
     transform: translateY(-2px);
 }
@@ -3898,10 +3897,6 @@ nav a:focus,
     .btn-secondary {
         color: #fff !important;
         border-color: #fff8 !important;
-    }
-
-    .btn-secondary:hover {
-        color: #1a1a2e !important;
     }
 }
 

@@ -350,3 +350,37 @@
 .language-switcher.loading .language-toggle {
     opacity: 0.7;
 }
+
+/* Küçük navbar içi dil değiştirici */
+.language-switcher.small {
+    position: static !important;
+    top: unset !important;
+    right: unset !important;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    z-index: auto;
+    display: flex;
+    align-items: center;
+}
+
+.language-switcher.small .language-toggle {
+    padding: 2px 8px;
+    font-size: var(--text-xs);
+    min-width: 0;
+    background: none;
+    box-shadow: none;
+}
+
+.language-switcher.small .language-flag {
+    width: 16px;
+    height: 12px;
+    box-shadow: none;
+}
+
+.language-switcher.small .language-toggle:hover {
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--primary-blue);
+    transform: none;
+}
