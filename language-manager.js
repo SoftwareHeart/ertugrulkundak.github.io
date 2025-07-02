@@ -203,7 +203,7 @@ class CompleteLanguageManager {
 
                 'proj.aes.title': 'AES Şifreleme Uygulaması',
                 'proj.aes.badge': 'AES-256',
-                'proj.aes.desc': 'AES-256 algoritması ile görüntü dosyalarının güvenli şifrelenmesi. Otomatik anahtar-IV oluşturma, Base64 encoding ve çoklu format desteği.',
+                'proj.aes.desc': 'Secure encryption of image files with the AES-256 algorithm. Automatic key-IV generation, Base64 encoding, and multi-format support.',
 
                 'proj.tree.title': 'TreeSearchAnalyzer',
                 'proj.tree.badge': 'C++ Algorithm',
@@ -389,7 +389,7 @@ class CompleteLanguageManager {
 
                 'proj.aes.title': 'AES Encryption Application',
                 'proj.aes.badge': 'AES-256',
-                'proj.aes.desc': 'AES-256 algorithm ile görüntü dosyalarının güvenli şifrelenmesi. Otomatik anahtar-IV oluşturma, Base64 encoding ve çoklu format desteği.',
+                'proj.aes.desc': 'Secure encryption of image files with the AES-256 algorithm. Automatic key-IV generation, Base64 encoding, and multi-format support.',
 
                 'proj.tree.title': 'TreeSearchAnalyzer',
                 'proj.tree.badge': 'C++ Algorithm',
