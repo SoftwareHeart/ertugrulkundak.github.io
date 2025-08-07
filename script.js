@@ -131,6 +131,15 @@ function handleScroll() {
         requestAnimationFrame(() => {
             updateActiveNavigation();
             handleNavbarScroll();
+            // Show/hide scroll-down only on first screen
+            const scrollDown = document.querySelector('.scroll-down');
+            if (scrollDown) {
+                if (window.scrollY < 50) {
+                    scrollDown.style.display = 'flex';
+                } else {
+                    scrollDown.style.display = 'none';
+                }
+            }
             ticking = false;
         });
         ticking = true;
@@ -1335,3 +1344,16 @@ function initProjectCardAnimations() {
         cardObserver.observe(card);
     });
 }
+
+// ===== SCROLL DOWN BUTTON =====
+document.addEventListener('DOMContentLoaded', function () {
+    var scrollDown = document.querySelector('.scroll-down');
+    if (scrollDown) {
+        scrollDown.addEventListener('click', function () {
+            var aboutSection = document.getElementById('about');
+            if (aboutSection) {
+                aboutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    }
+});
