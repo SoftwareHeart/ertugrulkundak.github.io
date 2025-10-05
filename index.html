@@ -1,747 +1,482 @@
 <!DOCTYPE html>
 <html lang="tr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ertuğrul Kundak - Full Stack Developer</title>
-    <meta name="description"
-        content="Full Stack Yazılım Geliştirici. .NET Core, C#, JavaScript uzmanı. İstanbul'da yazılım geliştirme hizmetleri.">
-    <meta name="keywords"
-        content="Ertuğrul Kundak, Full Stack Developer, .NET Core, C#, JavaScript, İstanbul, Yazılım Geliştirici">
-    <meta name="author" content="Ertuğrul Kundak">
-
-    <!-- External CSS -->
+    <title>Portfolyo - Masaüstü</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="language-switcher.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
-
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Ertuğrul Kundak - Full Stack Developer">
-    <meta property="og:description"
-        content="Clean Architecture ve SOLID prensiplerine bağlı kalarak ölçeklenebilir çözümler üretiyorum.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ertugrulkundak.github.io">
-
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Ertuğrul Kundak",
-        "jobTitle": "Full Stack Yazılım Geliştirici",
-        "email": "ertugrulkundak@hotmail.com",
-        "telephone": "+90-530-475-02-98",
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "İstanbul",
-            "addressCountry": "TR"
-        },
-        "alumniOf": {
-            "@type": "University",
-            "name": "Manisa Celal Bayar Üniversitesi"
-        },
-        "knowsAbout": ["C#", ".NET Core", "JavaScript", "SQL Server", "Web Development"]
-    }
-    </script>
 </head>
-
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo">Ertuğrul Kundak</div>
-
-            <!-- Mobile hamburger menu button -->
-            <button class="mobile-menu-toggle" aria-label="Menüyü aç/kapat" aria-expanded="false">
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-            </button>
-
-            <ul>
-                <li><a href="#about" data-lang="nav.about">Hakkımda</a></li>
-                <li><a href="#experience" data-lang="nav.experience">Deneyim</a></li>
-                <li><a href="#skills" data-lang="nav.skills">Yetenekler</a></li>
-                <li><a href="#projects" data-lang="nav.projects">Projeler</a></li>
-                <li><a href="#contact" data-lang="nav.contact">İletişim</a></li>
-                <li class="nav-item-theme">
-                    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Theme"
-                        title="Dark/Light Mode">
-                        <i class="fas fa-sun theme-icon-light"></i>
-                        <i class="fas fa-moon theme-icon-dark"></i>
-                    </button>
-                </li>
-                <li id="nav-language-switcher"></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="hero">
-        <div class="hero-content">
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="windows-logo">
+                <i class="fab fa-windows"></i>
+            </div>
             <h1>Ertuğrul Kundak</h1>
-            <p class="hero-subtitle" data-lang="hero.subtitle">Full Stack Yazılım Geliştirici</p>
-            <p class="hero-description" data-lang="hero.description">
-                Clean Architecture ve SOLID prensiplerine bağlı kalarak ölçeklenebilir çözümler üretiyorum.
-                Frontend'de veri görselleştirme, Backend'de .NET Core API geliştirme konularında deneyim sahibiyim.
-            </p>
-            <div class="hero-buttons">
-                <a href="#projects" class="btn">
-                    <i class="fas fa-code"></i> <span data-lang="hero.btn.projects">Projelerimi İncele</span>
-                </a>
-                <a href="portfolyo.pdf" class="btn btn-secondary" target="_blank">
-                    <i class="fas fa-download"></i> <span data-lang="hero.btn.portfolio">Portfolyo İndir</span>
-                </a>
-                <a href="cv.pdf" class="btn btn-secondary" target="_blank">
-                    <i class="fas fa-file-alt"></i> <span data-lang="hero.btn.cv">CV İndir</span>
-                </a>
+            <p>Full Stack Yazılım Mühendisi</p>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
             </div>
+            <p class="loading-text">Yükleniyor...</p>
         </div>
-    </section>
+    </div>
 
-    <!-- Stats Section -->
-    <section class="stats-section">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item loading">
-                    <div class="stat-number">2+</div>
-                    <div class="stat-label" data-lang="stats.experience">Yıl Deneyim</div>
-                    <div class="stat-description" data-lang="stats.experience.desc">2 şirkette çalıştım</div>
-                </div>
-                <div class="stat-item loading">
-                    <div class="stat-number">2</div>
-                    <div class="stat-label" data-lang="stats.ranking">Hackathon Sıralaması</div>
-                    <div class="stat-description" data-lang="stats.ranking.desc">32 takım arasından</div>
-                </div>
-                <div class="stat-item loading">
-                    <div class="stat-number">5000₺</div>
-                    <div class="stat-label" data-lang="stats.award">Hackathon Ödülü</div>
-                    <div class="stat-description" data-lang="stats.award.desc">Cyber Security'22</div>
-                </div>
+    <!-- Desktop Area -->
+    <div class="desktop" id="desktop">
+        <!-- Desktop Icons -->
+        <div class="desktop-icon" data-window="projects-window">
+            <i class="fas fa-folder"></i>
+            <span>Projelerim</span>
+        </div>
+        <div class="desktop-icon" data-window="cv-window">
+            <i class="fas fa-file-pdf"></i>
+            <span>CV.pdf</span>
+        </div>
+        <div class="desktop-icon" data-window="about-window">
+            <i class="fas fa-file-alt"></i>
+            <span>Hakkimda.txt</span>
+        </div>
+        <div class="desktop-icon" data-window="contact-window">
+            <i class="fas fa-address-book"></i>
+            <span>Iletisim</span>
+        </div>
+        <div class="desktop-icon" data-window="timeline-window">
+            <i class="fas fa-timeline"></i>
+            <span>Kariyer</span>
+        </div>
+    </div>
+
+    <!-- Context Menu -->
+    <div class="context-menu" id="contextMenu">
+        <div class="context-item" onclick="refreshDesktop()">
+            <i class="fas fa-sync"></i> Yenile
+        </div>
+    </div>
+
+    <!-- Windows -->
+
+    <!-- Projects Window -->
+    <div class="window" id="projects-window">
+        <div class="window-header">
+            <div class="window-title">
+                <i class="fas fa-folder"></i>
+                <span>Projelerim</span>
             </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <h2 data-lang="section.about">Hakkımda</h2>
-            <div class="about-content">
-                <div class="about-image">
-                    <img src="https://softwareheart.github.io/ertugrulkundak.github.io/ben.jpg" alt="Ertuğrul Kundak"
-                        class="profile-img">
-                </div>
-                <div class="about-text">
-                    <p data-lang="about.text1">
-                        <span class="highlight">Full Stack Yazılım Geliştirici</span> olarak Frontend'de veri
-                        görselleştirme,
-                        Backend'de .NET Core API geliştirme konularında deneyim sahibiyim. Clean Architecture ve SOLID
-                        prensiplerine bağlı kalarak, ölçeklenebilir çözümler üretiyorum.
-                    </p>
-                    <p data-lang="about.text2">
-                        <span class="highlight">Portföy optimizasyonu</span> ile %80 performans artışı sağladım ve
-                        <span class="highlight">KNN algoritması</span> ile yapay zeka destekli fon öneri sistemi
-                        geliştirdim.
-                        Cyber Security'22 Hackathon'da <span class="highlight">32 takım arasından 2. olarak</span> 5000
-                        TL ödül kazandım.
-                    </p>
-                    <p data-lang="about.text3">
-                        Analitik düşünme ve çabuk öğrenme yeteneği ile öne çıkan bir profilim var. Matematik ve tarih
-                        alanlarında güçlü akademik altyapıya sahibim. <strong>B1 seviyesinde İngilizce</strong> bilgim
-                        bulunmaktadır.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience">
-        <div class="container">
-            <h2 data-lang="section.experience">Kariyer Deneyimim</h2>
-            <div class="experience-timeline">
-                <article class="timeline-item loading">
-                    <div class="timeline-date" data-lang="exp.fullstack.date">Haziran 2024 - Mart 2025</div>
-                    <h3 class="timeline-title" data-lang="exp.fullstack.title">Full Stack Developer</h3>
-                    <div class="timeline-company" data-lang="exp.fullstack.company">İyiGelir</div>
-                    <p data-lang="exp.fullstack.desc">Yeni mobil ve web uygulaması için API tasarımı, kodlama ve
-                        frontend geliştirme süreçlerinde aktif
-                        rol aldım. Sistem performansı ve kullanıcı deneyimi odaklı çözümler geliştirdim.</p>
-                    <ul>
-                        <li data-lang="exp.fullstack.item1"><strong>Performance Optimization:</strong> Portföy sayfası
-                            yükleme hızını %80 oranında
-                            artırdım</li>
-                        <li data-lang="exp.fullstack.item2"><strong>AI Integration:</strong> KNN algoritması ile yapay
-                            zeka destekli fon öneri sistemi
-                            geliştirdim</li>
-                        <li data-lang="exp.fullstack.item3"><strong>Bug Fixing & Support:</strong> Destek alanında
-                            kritik bugları çözdüm ve sistem
-                            kararlılığını artırdım</li>
-                        <li data-lang="exp.fullstack.item4"><strong>Database Optimization:</strong> Veritabanı
-                            tablolarına index ekleyerek sorgu
-                            performansını optimize ettim</li>
-                        <li data-lang="exp.fullstack.item11"><strong>Middleware Development:</strong> .NET Core ile özel
-                            middleware çözümleri geliştirdim</li>
-                        <li data-lang="exp.fullstack.item12"><strong>JWT Authentication:</strong> JWT tabanlı kullanıcı
-                            kimlik doğrulama ve oturum yönetimi uyguladım</li>
-                        <li data-lang="exp.fullstack.item13"><strong>API Security:</strong> API güvenliği için
-                            yetkilendirme ve güvenlik önlemleri entegre ettim</li>
-                        <li data-lang="exp.fullstack.item5"><strong>Responsive Design:</strong> Yeni portföy sayfasında
-                            tam responsive tasarım uyguladım
-                        </li>
-                        <li data-lang="exp.fullstack.item6"><strong>Data Visualization:</strong> Highcharts kullanarak
-                            fon fiyat grafiklerini
-                            görselleştirdim</li>
-                        <li data-lang="exp.fullstack.item7"><strong>Analytics Dashboard:</strong> 30 grafik içeren fon
-                            detay analiz sayfasını tasarladım
-                            (1-3 saniye yükleme)</li>
-                        <li data-lang="exp.fullstack.item8"><strong>Queue Management:</strong> 30 grafiği 5'er 5'er
-                            kuyruk yapısında yükleyerek optimize
-                            ettim</li>
-                        <li data-lang="exp.fullstack.item9"><strong>Multi-Currency:</strong> Dolar-Euro-TL bazlı dinamik
-                            sayfa açılımları geliştirdim
-                        </li>
-                        <li data-lang="exp.fullstack.item10"><strong>Academic Portal:</strong> Akademik alan tasarımı ve
-                            backend-frontend entegrasyonu
-                        </li>
-                    </ul>
-                </article>
-
-                <article class="timeline-item loading">
-                    <div class="timeline-date" data-lang="exp.intern1.date">Şubat 2024 - Mayıs 2024</div>
-                    <h3 class="timeline-title" data-lang="exp.intern1.title">Stajyer</h3>
-                    <div class="timeline-company" data-lang="exp.intern1.company">İyiGelir</div>
-                    <p data-lang="exp.intern1.desc">75 iş günü boyunca .NET Core MVC projelerinde geliştirme yaptım.
-                        Entity Framework ve database
-                        optimizasyonu konularında deneyim kazandım.</p>
-                    <ul>
-                        <li data-lang="exp.intern1.item1"><strong>Entity Framework:</strong> Code First yaklaşımı ile
-                            veritabanı modellemesi</li>
-                        <li data-lang="exp.intern1.item2"><strong>Performance Tuning:</strong> Mevcut sistemde
-                            performans optimizasyonları
-                            gerçekleştirdim</li>
-                        <li data-lang="exp.intern1.item3"><strong>Portfolio Management:</strong> Portföylerin toplu
-                            gösterim sayfasını tasarladım ve
-                            kodladım</li>
-                        <li data-lang="exp.intern1.item4"><strong>Advanced Filtering:</strong> Gelişmiş filtreleme
-                            sistemleri geliştirdim</li>
-                        <li data-lang="exp.intern1.item5"><strong>Database Design:</strong> İlişkisel veritabanı
-                            yapısında iyileştirmeler yaptım</li>
-                    </ul>
-                </article>
-
-                <article class="timeline-item loading">
-                    <div class="timeline-date" data-lang="exp.hackathon.date">Aralık 2022</div>
-                    <h3 class="timeline-title" data-lang="exp.hackathon.title">Katılımcı</h3>
-                    <div class="timeline-company" data-lang="exp.hackathon.company">Cyber Security'22 Hackathon</div>
-                    <p data-lang="exp.hackathon.desc">Ekip arkadaşlarımla birlikte 32 takım içerisinden savunan takım
-                        birincisi, genel yarışma ikincisi
-                        olarak <strong>5000 TL'lik ödülü</strong> kazandık.</p>
-                </article>
-
-                <article class="timeline-item loading">
-                    <div class="timeline-date" data-lang="exp.intern2.date">Temmuz 2023 - Eylül 2023</div>
-                    <h3 class="timeline-title" data-lang="exp.intern2.title">Stajyer</h3>
-                    <div class="timeline-company" data-lang="exp.intern2.company">PenDC</div>
-                    <p data-lang="exp.intern2.desc">Zorunlu yaz stajımı 40 iş günü boyunca yaptım. Staj sürecim boyunca
-                        HTML/CSS, JavaScript
-                        kullanarak blog sitesi yaptım.</p>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills">
-        <div class="container">
-            <h2 data-lang="section.skills">Teknik Yeteneklerim</h2>
-            <div class="skills-grid">
-                <article class="skill-card loading">
-                    <div class="skill-icon">
-                        <i class="fas fa-server" aria-hidden="true"></i>
-                    </div>
-                    <h3 data-lang="skills.backend">Backend Geliştirme</h3>
-                    <ul>
-                        <li>C# & .NET Core</li>
-                        <li>ASP.NET Core Web API</li>
-                        <li>Entity Framework Core</li>
-                        <li>RESTful API tasarımı</li>
-                        <li>SOLID Prensipleri</li>
-                        <li>Clean Architecture</li>
-                        <li>Repository Pattern</li>
-                        <li>Dependency Injection</li>
-                        <li>Queue Management</li>
-                        <li>Middleware Development</li>
-                        <li>JWT Authentication</li>
-                        <li>API Security</li>
-                        <li>Unit Testing (xUnit)</li>
-                        <li>Docker Containerization</li>
-                    </ul>
-                </article>
-
-                <article class="skill-card loading">
-                    <div class="skill-icon">
-                        <i class="fas fa-desktop" aria-hidden="true"></i>
-                    </div>
-                    <h3 data-lang="skills.frontend">Frontend Geliştirme</h3>
-                    <ul>
-                        <li>JavaScript (ES6+)</li>
-                        <li>HTML5 & CSS3</li>
-                        <li>Responsive Design</li>
-                        <li>Data Visualization</li>
-                        <li>Highcharts Integration</li>
-                        <li>Performance Optimization</li>
-                        <li>Cross-browser Compatibility</li>
-                    </ul>
-                </article>
-
-                <article class="skill-card loading">
-                    <div class="skill-icon">
-                        <i class="fas fa-database" aria-hidden="true"></i>
-                    </div>
-                    <h3 data-lang="skills.database">Veritabanı & Performance</h3>
-                    <ul>
-                        <li>Microsoft SQL Server</li>
-                        <li>Entity Framework Core</li>
-                        <li>Database Indexing</li>
-                        <li>Query Optimization</li>
-                        <li>Performance Tuning</li>
-                        <li>LINQ Advanced Queries</li>
-                        <li>Stored Procedures</li>
-                    </ul>
-                </article>
-
-                <article class="skill-card loading">
-                    <div class="skill-icon">
-                        <i class="fas fa-chart-bar" aria-hidden="true"></i>
-                    </div>
-                    <h3 data-lang="skills.ai">Data Analysis & AI</h3>
-                    <ul>
-                        <li>Machine Learning (KNN)</li>
-                        <li>Data Visualization</li>
-                        <li>Financial Data Analysis</li>
-                        <li>Multi-Currency Systems</li>
-                        <li>Statistical Analysis</li>
-                        <li>Algorithm Optimization</li>
-                    </ul>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects">
-        <div class="container">
-            <h2 data-lang="section.projects">Projelerim</h2>
-
-            <!-- Project Filters -->
-            <div class="project-filters">
-                <button class="filter-btn active" data-filter="all">
-                    <i class="fas fa-th"></i> <span data-lang="projects.filter.all">Tümü</span>
+            <div class="window-controls">
+                <button class="minimize-btn" onclick="minimizeWindow('projects-window')">
+                    <i class="fas fa-minus"></i>
                 </button>
-                <button class="filter-btn" data-filter="professional">
-                    <i class="fas fa-briefcase"></i> <span data-lang="projects.filter.professional">Profesyonel</span>
+                <button class="maximize-btn" onclick="maximizeWindow('projects-window')">
+                    <i class="far fa-square"></i>
                 </button>
-                <button class="filter-btn" data-filter="personal">
-                    <i class="fas fa-code"></i> <span data-lang="projects.filter.personal">Kişisel</span>
-                </button>
-                <button class="filter-btn" data-filter="achievement">
-                    <i class="fas fa-trophy"></i> <span data-lang="projects.filter.achievement">Başarılar</span>
-                </button>
-            </div>
-
-            <!-- Project Grid -->
-            <div class="project-grid">
-                <!-- İyiGelir Portföy Optimizasyonu -->
-                <article class="project-card loading featured" data-category="professional">
-                    <div class="project-image">
-                        <div class="project-overlay">
-                            <div class="project-actions">
-                                <button class="btn-details" onclick="openProjectModal('portfolio')">
-                                    <i class="fas fa-eye"></i> <span data-lang="projects.view.details">Detaylar</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="project-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <header class="project-header">
-                            <h3 data-lang="proj.portfolio.title">İyiGelir Portföy Optimizasyonu</h3>
-                        </header>
-                        <p data-lang="proj.portfolio.desc">Portföy sayfası performansını %80 artıran kapsamlı
-                            optimizasyon çalışması.</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">.net core api</span>
-                            <span class="tech-tag">performance</span>
-                            <span class="tech-tag">database</span>
-                        </div>
-                        <div class="project-footer">
-                            <span class="project-role">
-                                <i class="fas fa-trophy"></i> <span data-lang="proj.portfolio.role">Full Stack
-                                    Developer</span>
-                            </span>
-                            <span class="project-date">2024</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Mobil & Yeni API Projesi -->
-                <article class="project-card loading featured" data-category="professional">
-                    <div class="project-image">
-                        <div class="project-overlay">
-                            <div class="project-actions">
-                                <button class="btn-details" onclick="openProjectModal('api')">
-                                    <i class="fas fa-eye"></i> <span data-lang="projects.view.details">Detaylar</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="project-icon">
-                            <i class="fas fa-network-wired"></i>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <header class="project-header">
-                            <h3 data-lang="proj.api.title">Mobil & Web API</h3>
-                        </header>
-                        <p data-lang="proj.api.desc">Yeni mobil ve web uygulaması için yenilenmiş API projesi. Loglama,
-                            JWT Authentication ve middleware ile güvenli ve ölçeklenebilir mimari.</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">.net core api</span>
-                            <span class="tech-tag">jwt</span>
-                            <span class="tech-tag">middleware</span>
-                            <span class="tech-tag">logging</span>
-                        </div>
-                        <div class="project-footer">
-                            <span class="project-role">
-                                <i class="fas fa-trophy"></i> <span data-lang="proj.api.role">Full Stack
-                                    Developer</span>
-                            </span>
-                            <span class="project-date">2024</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- KNN Fon Öneri Sistemi -->
-                <article class="project-card loading featured" data-category="professional">
-                    <div class="project-image">
-                        <div class="project-overlay">
-                            <div class="project-actions">
-                                <button class="btn-details" onclick="openProjectModal('knn')">
-                                    <i class="fas fa-eye"></i> <span data-lang="projects.view.details">Detaylar</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="project-icon">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <header class="project-header">
-                            <h3 data-lang="proj.knn.title">KNN Fon Öneri Sistemi</h3>
-                        </header>
-                        <p data-lang="proj.knn.desc">KNN algoritması ile yapay zeka destekli fon öneri sistemi.</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">c#</span>
-                            <span class="tech-tag">machine learning</span>
-                            <span class="tech-tag">knn</span>
-                        </div>
-                        <div class="project-footer">
-                            <span class="project-role">
-                                <i class="fas fa-trophy"></i> <span data-lang="proj.knn.role">Full Stack
-                                    Developer</span>
-                            </span>
-                            <span class="project-date">2024</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Fon Analiz Dashboard -->
-                <article class="project-card loading" data-category="professional">
-                    <div class="project-image">
-                        <div class="project-overlay">
-                            <div class="project-actions">
-                                <button class="btn-details" onclick="openProjectModal('dashboard')">
-                                    <i class="fas fa-eye"></i> <span data-lang="projects.view.details">Detaylar</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="project-icon">
-                            <i class="fas fa-chart-area"></i>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <header class="project-header">
-                            <h3 data-lang="proj.dashboard.title">Fon Analiz Dashboard</h3>
-                        </header>
-                        <p data-lang="proj.dashboard.desc">30 grafik içeren fon detay analiz sistemi. Highcharts ile
-                            görselleştirme.</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">highcharts</span>
-                            <span class="tech-tag">queue</span>
-                            <span class="tech-tag">visualization</span>
-                        </div>
-                        <div class="project-footer">
-                            <span class="project-role">
-                                <i class="fas fa-trophy"></i> <span data-lang="proj.dashboard.role">Full Stack
-                                    Developer</span>
-                            </span>
-                            <span class="project-date">2024</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Portföy Yönetim Sistemi -->
-                <article class="project-card loading" data-category="professional">
-                    <div class="project-image">
-                        <div class="project-overlay">
-                            <div class="project-actions">
-                                <button class="btn-details" onclick="openProjectModal('management')">
-                                    <i class="fas fa-eye"></i> <span data-lang="projects.view.details">Detaylar</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="project-icon">
-                            <i class="fas fa-layer-group"></i>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <header class="project-header">
-                            <h3 data-lang="proj.management.title">Portföy Yönetim Sistemi</h3>
-                        </header>
-                        <p data-lang="proj.management.desc">Portföylerin toplu gösterim ve yönetim sistemi.</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">entity framework</span>
-                            <span class="tech-tag">multi-currency</span>
-                            <span class="tech-tag">filtering</span>
-                        </div>
-                        <div class="project-footer">
-                            <span class="project-role">
-                                <i class="fas fa-graduation-cap"></i> <span
-                                    data-lang="proj.management.role">Stajyer</span>
-                            </span>
-                            <span class="project-date">2024</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Pomodoro Çalışması -->
-                <article class="project-card loading" data-category="personal">
-                    <div class="project-image">
-                        <div class="project-overlay">
-                            <div class="project-actions">
-                                <button class="btn-details" onclick="openProjectModal('pomodoro')">
-                                    <i class="fas fa-eye"></i> <span data-lang="projects.view.details">Detaylar</span>
-                                </button>
-                                <a href="https://github.com/SoftwareHeart/pomodoro-client" class="btn-github"
-                                    target="_blank" rel="noopener">
-                                    <i class="fab fa-github"></i> <span data-lang="projects.view.github">GitHub</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="project-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <header class="project-header">
-                            <h3 data-lang="proj.pomodoro.title">Pomodoro Çalışması</h3>
-                        </header>
-                        <p data-lang="proj.pomodoro.desc">Full stack Pomodoro tekniği uygulaması.</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">react.js</span>
-                            <span class="tech-tag">asp.net core</span>
-                            <span class="tech-tag">jwt auth</span>
-                        </div>
-                        <div class="project-footer">
-                            <span class="project-role">
-                                <i class="fas fa-code"></i> <span data-lang="proj.pomodoro.role">Kişisel Proje</span>
-                            </span>
-                            <span class="project-date">2023</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Kargo Şirketi Blog -->
-                <article class="project-card loading" data-category="personal">
-                    <div class="project-image">
-                        <div class="project-overlay">
-                            <div class="project-actions">
-                                <button class="btn-details" onclick="openProjectModal('cargo')">
-                                    <i class="fas fa-eye"></i> <span data-lang="projects.view.details">Detaylar</span>
-                                </button>
-                                <a href="https://github.com/SoftwareHeart/KargoAdmin" class="btn-github" target="_blank"
-                                    rel="noopener">
-                                    <i class="fab fa-github"></i> <span data-lang="projects.view.github">GitHub</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="project-icon">
-                            <i class="fas fa-shipping-fast"></i>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <header class="project-header">
-                            <h3 data-lang="proj.cargo.title">Kargo Şirketi Blog</h3>
-                        </header>
-                        <p data-lang="proj.cargo.desc">Kargo şirketinin tanıtımı ve admin panelden yönetilebilir blog
-                            sistemi.</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">asp.net core mvc</span>
-                            <span class="tech-tag">admin panel</span>
-                            <span class="tech-tag">seo</span>
-                        </div>
-                        <div class="project-footer">
-                            <span class="project-role">
-                                <i class="fas fa-code"></i> <span data-lang="proj.cargo.role">Kişisel Proje</span>
-                            </span>
-                            <span class="project-date">2023</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- AES Şifreleme -->
-                <article class="project-card loading" data-category="personal">
-                    <div class="project-image">
-                        <div class="project-overlay">
-                            <div class="project-actions">
-                                <button class="btn-details" onclick="openProjectModal('aes')">
-                                    <i class="fas fa-eye"></i> <span data-lang="projects.view.details">Detaylar</span>
-                                </button>
-                                <a href="https://github.com/SoftwareHeart/Aes_Sifreleme" class="btn-github"
-                                    target="_blank" rel="noopener">
-                                    <i class="fab fa-github"></i> <span data-lang="projects.view.github">GitHub</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="project-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <header class="project-header">
-                            <h3 data-lang="proj.aes.title">AES Şifreleme Uygulaması</h3>
-                        </header>
-                        <p data-lang="proj.aes.desc">AES-256 algoritması ile görüntü dosyalarının güvenli şifrelenmesi.
-                        </p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">c# winforms</span>
-                            <span class="tech-tag">aes-256</span>
-                            <span class="tech-tag">cryptography</span>
-                        </div>
-                        <div class="project-footer">
-                            <span class="project-role">
-                                <i class="fas fa-code"></i> <span data-lang="proj.aes.role">Kişisel Proje</span>
-                            </span>
-                            <span class="project-date">2023</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Cyber Security Hackathon -->
-                <article class="project-card loading achievement" data-category="achievement">
-                    <div class="project-image">
-                        <div class="project-overlay">
-                            <div class="project-actions">
-                                <button class="btn-details" onclick="openProjectModal('cybersec')">
-                                    <i class="fas fa-eye"></i> <span data-lang="projects.view.details">Detaylar</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="project-icon">
-                            <i class="fas fa-award"></i>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <header class="project-header">
-                            <h3 data-lang="proj.cybersec.title">Cyber Security'22 Hackathon</h3>
-                        </header>
-                        <p data-lang="proj.cybersec.desc">32 takım arasından 2. olarak 5000₺ ödül kazandığım siber
-                            güvenlik hackathonu.</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">cyber security</span>
-                            <span class="tech-tag">penetration testing</span>
-                            <span class="tech-tag">team leadership</span>
-                        </div>
-                        <div class="project-footer">
-                            <span class="project-role">
-                                <i class="fas fa-trophy"></i> <span data-lang="proj.cybersec.role">Takım Lideri</span>
-                            </span>
-                            <span class="project-date">2022</span>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Project Modal -->
-    <div id="projectModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="modalTitle"></h3>
-                <button class="modal-close" onclick="closeProjectModal()">
+                <button class="close-btn" onclick="closeWindow('projects-window')">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            <div class="modal-body">
-                <div id="modalContent"></div>
+        </div>
+        <div class="window-content">
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Financial Analytics Dashboard</h3>
+                    <div class="tech-tags">
+                        <span class="tag">C#</span>
+                        <span class="tag">ASP.NET Core</span>
+                        <span class="tag">Highcharts</span>
+                        <span class="tag">JWT</span>
+                    </div>
+                    <p>30 grafik içeren fon detay analiz sayfası. Queue management sistemi ile %30 performans optimizasyonu. Multi-currency dinamik sayfa ve JWT güvenliği.</p>
+                </div>
+                <div class="project-card">
+                    <h3>AI-Powered Investment Recommendation</h3>
+                    <div class="tech-tags">
+                        <span class="tag">C#</span>
+                        <span class="tag">KNN Algorithm</span>
+                        <span class="tag">Machine Learning</span>
+                    </div>
+                    <p>KNN algoritması ile yapay zeka destekli fon önerisi. Kullanıcı davranış analizi ve makine öğrenmesi tabanlı öneri sistemi.</p>
+                </div>
+                <div class="project-card">
+                    <h3>Multi-Currency Fund Portfolio System</h3>
+                    <div class="tech-tags">
+                        <span class="tag">C#</span>
+                        <span class="tag">ASP.NET Core</span>
+                        <span class="tag">Entity Framework</span>
+                    </div>
+                    <p>Dolar, Euro ve TL destekli dinamik currency conversion. Real-time fon performans tracking ve RESTful API mimarisi.</p>
+                </div>
+                <div class="project-card">
+                    <h3>Pomodoro Zamanlayıcı Uygulaması</h3>
+                    <div class="tech-tags">
+                        <span class="tag">React</span>
+                        <span class="tag">C#</span>
+                        <span class="tag">Web API</span>
+                    </div>
+                    <p>React ile modern responsive arayüz. C# Web API ile RESTful servisler. Real-time özellikler ve oturum yönetimi.</p>
+                </div>
+                <div class="project-card">
+                    <h3>Aleris Global Logistics</h3>
+                    <div class="tech-tags">
+                        <span class="tag">ASP.NET MVC</span>
+                        <span class="tag">C#</span>
+                        <span class="tag">HTML5</span>
+                        <span class="tag">CSS3</span>
+                    </div>
+                    <p>Kurumsal lojistik web sitesi. İngilizce-Türkçe dil desteği, dinamik içerik yönetimi ve responsive tasarım.</p>
+                    <a href="https://alerisglobal.com" target="_blank" class="project-link">
+                        <i class="fas fa-globe"></i> Canlı Siteyi Görüntüle
+                    </a>
+                </div>
+                <div class="project-card">
+                    <h3>Hackathon Katılımı - 2. Sıra</h3>
+                    <div class="tech-tags">
+                        <span class="tag">Problem Solving</span>
+                        <span class="tag">Team Work</span>
+                        <span class="tag">Innovation</span>
+                    </div>
+                    <p>32 takımın katıldığı hackathonda 2. sıra. Sınırlı zaman diliminde ekip arkadaşlarımla yaratıcı çözümler geliştirme.</p>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="container">
-            <h2 data-lang="section.contact">İletişim</h2>
-            <div class="contact-info">
-                <div class="contact-item loading">
-                    <i class="fas fa-envelope" aria-hidden="true"></i>
-                    <h3 data-lang="contact.email">E-posta</h3>
-                    <p><a href="mailto:ertugrulkundak@hotmail.com">ertugrulkundak@hotmail.com</a></p>
+    <!-- CV Window -->
+    <div class="window" id="cv-window">
+        <div class="window-header">
+            <div class="window-title">
+                <i class="fas fa-file-pdf"></i>
+                <span>CV.pdf</span>
+            </div>
+            <div class="window-controls">
+                <button class="minimize-btn" onclick="minimizeWindow('cv-window')">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button class="maximize-btn" onclick="maximizeWindow('cv-window')">
+                    <i class="far fa-square"></i>
+                </button>
+                <button class="close-btn" onclick="closeWindow('cv-window')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="window-content cv-content">
+            <div class="cv-section">
+                <h2><i class="fas fa-user"></i> Kişisel Bilgiler</h2>
+                <p><strong>Ad Soyad:</strong> Ertuğrul Kundak</p>
+                <p><strong>Meslek:</strong> Full Stack Yazılım Mühendisi</p>
+                <p><strong>Konum:</strong> İstanbul, Türkiye</p>
+            </div>
+
+            <div class="cv-section">
+                <h2><i class="fas fa-briefcase"></i> İş Deneyimi</h2>
+                <div class="cv-item">
+                    <h3>Yazılım Mühendisi</h3>
+                    <p class="cv-company">İYİGELİR - İstanbul | Mayıs 2024 - Mart 2025</p>
+                    <ul>
+                        <li>Mobil ve web uygulamaları için RESTful API tasarımı ve geliştirme</li>
+                        <li>Portföy sayfası yükleme hızını %40 oranında artırarak performans optimizasyonu</li>
+                        <li>KNN algoritması kullanarak yapay zeka destekli fon öneri sistemi geliştirme</li>
+                        <li>Highcharts ile 30+ grafik içeren finansal analytics dashboard geliştirme (1-3 saniye yükleme)</li>
+                        <li>JWT tabanlı kimlik doğrulama ve API güvenlik önlemleri entegrasyonu</li>
+                        <li>Queue management sistemi ve multi-currency (Dolar-Euro-TL) dinamik sayfa yapıları</li>
+                    </ul>
                 </div>
-                <div class="contact-item loading">
-                    <i class="fab fa-linkedin" aria-hidden="true"></i>
-                    <h3 data-lang="contact.linkedin">LinkedIn</h3>
-                    <p><a href="https://www.linkedin.com/in/ertuğrul-kundak" target="_blank"
-                            rel="noopener">linkedin.com/in/ertuğrul-kundak</a></p>
+                <div class="cv-item">
+                    <h3>Yazılım Stajyeri</h3>
+                    <p class="cv-company">İYİGELİR - İstanbul | Şubat 2024 - Mayıs 2024</p>
+                    <ul>
+                        <li>.NET Core MVC mimarisiyle geliştirilmiş projelerde görev alma</li>
+                        <li>RESTful API'lerin güncellenmesi ve modüler hale getirilmesi</li>
+                        <li>Kod analizleri, bug fix işlemleri ve performans iyileştirmeleri</li>
+                        <li>Git ve GitHub üzerinden versiyon kontrol süreçlerine dahil olma</li>
+                    </ul>
                 </div>
-                <div class="contact-item loading">
-                    <i class="fab fa-github" aria-hidden="true"></i>
-                    <h3 data-lang="contact.github">GitHub</h3>
-                    <p><a href="https://github.com/SoftwareHeart" target="_blank"
-                            rel="noopener">github.com/SoftwareHeart</a></p>
+                <div class="cv-item">
+                    <h3>Yazılım Stajyeri</h3>
+                    <p class="cv-company">PENDC - Bursa | Temmuz 2023 - Ağustos 2023</p>
+                    <ul>
+                        <li>HTML, CSS ve JavaScript ile blog sitesi geliştirme</li>
+                        <li>UI/UX tasarım ve kullanıcı arayüzü fonksiyonları oluşturma</li>
+                        <li>Temel web geliştirme süreçlerini pratikte deneyimleme</li>
+                    </ul>
                 </div>
-                <div class="contact-item loading">
-                    <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-                    <h3 data-lang="contact.location">Konum</h3>
-                    <p data-lang="contact.address">Kaptanpaşa Mah, Beyoğlu/İstanbul</p>
+            </div>
+
+            <div class="cv-section">
+                <h2><i class="fas fa-graduation-cap"></i> Eğitim</h2>
+                <div class="cv-item">
+                    <h3>Yazılım Mühendisliği, Lisans</h3>
+                    <p class="cv-company">Celal Bayar Üniversitesi | 2020 - 2024</p>
                 </div>
-                <div class="contact-item loading">
-                    <i class="fas fa-phone" aria-hidden="true"></i>
-                    <h3 data-lang="contact.phone">Telefon</h3>
-                    <p><a href="tel:+905304750298">0530 475 02 98</a></p>
+            </div>
+
+            <div class="cv-section">
+                <h2><i class="fas fa-language"></i> Diller</h2>
+                <ul>
+                    <li>İngilizce - B1</li>
+                </ul>
+            </div>
+
+            <div class="cv-download-section">
+                <a href="ErtugrulKundakCvBackendDeveloper.pdf" download="Ertugrul_Kundak_CV.pdf" class="cv-download-btn">
+                    <i class="fas fa-download"></i>
+                    <span>CV'yi PDF Olarak İndir</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Window -->
+    <div class="window" id="about-window">
+        <div class="window-header">
+            <div class="window-title">
+                <i class="fas fa-file-alt"></i>
+                <span>Hakkimda.txt</span>
+            </div>
+            <div class="window-controls">
+                <button class="minimize-btn" onclick="minimizeWindow('about-window')">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button class="maximize-btn" onclick="maximizeWindow('about-window')">
+                    <i class="far fa-square"></i>
+                </button>
+                <button class="close-btn" onclick="closeWindow('about-window')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="window-content notepad-content">
+            <pre>=========================================
+           HAKKIMDA
+=========================================
+
+Merhaba! Ben Ertuğrul Kundak, Full Stack Yazılım Mühendisiyim.
+
+Finansal teknoloji sektöründe 2+ yıl deneyime sahip olarak
+modern teknolojiler kullanarak ölçeklenebilir ve performanslı
+çözümler geliştiriyorum.
+
+ASP.NET Core, Entity Framework ve React teknolojileri ile
+mobil ve web uygulamaları için güvenli RESTful API'ler
+tasarlıyorum.
+
+Portföy sayfası performansını %40 artırdım ve 30+ grafik içeren
+finansal analytics dashboard'ları geliştirdim.
+
+KNN algoritması ile yapay zeka destekli fon öneri sistemi
+tasarladım. JWT tabanlı kimlik doğrulama, middleware geliştirme
+ve real-time data visualization konularında deneyim sahibiyim.
+
+Uzmanlık Alanlarım:
+- ASP.NET Core & .NET Framework
+- RESTful API Geliştirme
+- Machine Learning & KNN Algorithm
+- Financial Data Analytics
+- Performance Optimization
+- Database Design & Optimization
+
+32 takımın katıldığı hackathonda 2. sıra elde ettim.
+
+"Performanslı kod yazmak, kullanıcı deneyimini mükemmelleştirmektir."
+
+=========================================</pre>
+        </div>
+    </div>
+
+    <!-- Contact Window -->
+    <div class="window" id="contact-window">
+        <div class="window-header">
+            <div class="window-title">
+                <i class="fas fa-address-book"></i>
+                <span>İletişim</span>
+            </div>
+            <div class="window-controls">
+                <button class="minimize-btn" onclick="minimizeWindow('contact-window')">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button class="maximize-btn" onclick="maximizeWindow('contact-window')">
+                    <i class="far fa-square"></i>
+                </button>
+                <button class="close-btn" onclick="closeWindow('contact-window')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="window-content contact-content">
+            <h2>Benimle İletişime Geçin</h2>
+            <p class="contact-intro">Projeleriniz için benimle iletişime geçmekten çekinmeyin!</p>
+
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:ertugrulkundak@hotmail.com">ertugrulkundak@hotmail.com</a>
+            </div>
+
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <a href="tel:+905304750298">+90 530 475 0298</a>
+            </div>
+
+            <div class="contact-item">
+                <i class="fab fa-github"></i>
+                <a href="https://github.com/SoftwareHeart" target="_blank">github.com/SoftwareHeart</a>
+            </div>
+
+            <div class="contact-item">
+                <i class="fab fa-linkedin"></i>
+                <a href="https://www.linkedin.com/in/ertugrul-kundak/" target="_blank">linkedin.com/in/ertugrul-kundak</a>
+            </div>
+
+            <div class="contact-item">
+                <i class="fas fa-globe"></i>
+                <a href="https://softwareheart.github.io/ertugrulkundak.github.io" target="_blank">Portfolio Website</a>
+            </div>
+
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>İstanbul, Türkiye</span>
+            </div>
+
+            <div class="contact-cta">
+                <p>Birlikte harika projeler geliştirelim!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Timeline Window -->
+    <div class="window" id="timeline-window">
+        <div class="window-header">
+            <div class="window-title">
+                <i class="fas fa-timeline"></i>
+                <span>Kariyer Yolculuğum</span>
+            </div>
+            <div class="window-controls">
+                <button class="minimize-btn" onclick="minimizeWindow('timeline-window')">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button class="maximize-btn" onclick="maximizeWindow('timeline-window')">
+                    <i class="far fa-square"></i>
+                </button>
+                <button class="close-btn" onclick="closeWindow('timeline-window')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="window-content timeline-content">
+            <h2>Kariyer Timeline</h2>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content-box">
+                        <div class="timeline-date">Mayıs 2024 - Mart 2025</div>
+                        <h3>Yazılım Mühendisi</h3>
+                        <p class="timeline-company">İYİGELİR - İstanbul</p>
+                        <ul>
+                            <li>KNN algoritması ile AI destekli fon öneri sistemi geliştirme</li>
+                            <li>%40 performans iyileştirmesi</li>
+                            <li>30+ grafik içeren analytics dashboard</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="contact-item loading">
-                    <i class="fas fa-graduation-cap" aria-hidden="true"></i>
-                    <h3 data-lang="contact.education">Eğitim</h3>
-                    <p data-lang="contact.university">Manisa Celal Bayar Üniversitesi<br>Yazılım Mühendisliği (3.31
-                        GANO)</p>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content-box">
+                        <div class="timeline-date">Şubat 2024 - Mayıs 2024</div>
+                        <h3>Yazılım Stajyeri</h3>
+                        <p class="timeline-company">İYİGELİR - İstanbul</p>
+                        <ul>
+                            <li>.NET Core MVC projeleri</li>
+                            <li>RESTful API geliştirme</li>
+                            <li>Performans optimizasyonu</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content-box">
+                        <div class="timeline-date">Temmuz 2023 - Ağustos 2023</div>
+                        <h3>Yazılım Stajyeri</h3>
+                        <p class="timeline-company">PENDC - Bursa</p>
+                        <ul>
+                            <li>Frontend geliştirme (HTML, CSS, JavaScript)</li>
+                            <li>Blog sitesi projeleri</li>
+                            <li>UI/UX tasarım</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker education"></div>
+                    <div class="timeline-content-box">
+                        <div class="timeline-date">2020 - 2024</div>
+                        <h3>Yazılım Mühendisliği, Lisans</h3>
+                        <p class="timeline-company">Celal Bayar Üniversitesi</p>
+                        <ul>
+                            <li>Yazılım Mühendisliği Eğitimi</li>
+                            <li>32 takımlı hackathonda 2. sıra</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- JavaScript -->
-    <script src="language-manager.js"></script>
+    <!-- Start Menu -->
+    <div class="start-menu" id="startMenu">
+        <div class="start-menu-header">
+            <div class="user-info">
+                <i class="fas fa-user-circle"></i>
+                <span>Ertuğrul Kundak</span>
+            </div>
+        </div>
+        <div class="start-menu-items">
+            <div class="start-menu-item" data-window="projects-window">
+                <i class="fas fa-folder"></i>
+                <span>Projelerim</span>
+            </div>
+            <div class="start-menu-item" data-window="cv-window">
+                <i class="fas fa-file-pdf"></i>
+                <span>CV</span>
+            </div>
+            <div class="start-menu-item" data-window="about-window">
+                <i class="fas fa-file-alt"></i>
+                <span>Hakkımda</span>
+            </div>
+            <div class="start-menu-item" data-window="contact-window">
+                <i class="fas fa-address-book"></i>
+                <span>İletişim</span>
+            </div>
+            <div class="start-menu-item" data-window="timeline-window">
+                <i class="fas fa-timeline"></i>
+                <span>Kariyer Yolculuğum</span>
+            </div>
+        </div>
+        <div class="start-menu-footer">
+            <div class="start-menu-power">
+                <i class="fas fa-power-off"></i>
+                <span>Kapat</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Taskbar -->
+    <div class="taskbar">
+        <div class="taskbar-start">
+            <button class="start-btn">
+                <i class="fab fa-windows"></i>
+            </button>
+        </div>
+        <div class="taskbar-items" id="taskbarItems">
+            <!-- Open windows will appear here -->
+        </div>
+        <div class="taskbar-tray">
+            <div class="clock" id="clock">00:00</div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
-    <div class="scroll-down"></div>
 </body>
-
 </html>

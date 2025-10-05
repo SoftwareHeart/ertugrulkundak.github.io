@@ -1,1359 +1,457 @@
-// ===== MOBILE MENU TOGGLE - Simplified and working =====
-function initMobileMenu() {
-    const mobileToggle = document.querySelector('.mobile-menu-toggle');
-    const navMenu = document.querySelector('nav ul');
-    const navLinks = document.querySelectorAll('nav a');
+// Global Variables
+let zIndexCounter = 1000;
+let activeWindow = null;
+let isDragging = false;
+let currentX;
+let currentY;
+let initialX;
+let initialY;
+let dragElement = null;
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+    // Show loading screen, then hide after 2.5 seconds
+    const loadingScreen = document.getElementById('loadingScreen');
 
-    if (!mobileToggle || !navMenu) {
-        console.log('❌ Mobile menu elements not found');
-        return;
-    }
-
-    // Simple toggle function
-    mobileToggle.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-
-        // Simple toggle
-        if (navMenu.classList.contains('mobile-menu-open')) {
-            // Close menu
-            navMenu.classList.remove('mobile-menu-open');
-            mobileToggle.classList.remove('active');
-            document.body.style.overflow = '';
-            mobileToggle.setAttribute('aria-expanded', 'false');
-        } else {
-            // Open menu
-            navMenu.classList.add('mobile-menu-open');
-            mobileToggle.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            mobileToggle.setAttribute('aria-expanded', 'true');
-        }
-    });
-
-    // Close menu when clicking nav links
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            navMenu.classList.remove('mobile-menu-open');
-            mobileToggle.classList.remove('active');
-            document.body.style.overflow = '';
-            mobileToggle.setAttribute('aria-expanded', 'false');
-        });
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', function (e) {
-        if (!mobileToggle.contains(e.target) &&
-            !navMenu.contains(e.target) &&
-            navMenu.classList.contains('mobile-menu-open')) {
-            navMenu.classList.remove('mobile-menu-open');
-            mobileToggle.classList.remove('active');
-            document.body.style.overflow = '';
-            mobileToggle.setAttribute('aria-expanded', 'false');
-        }
-    });
-
-    // Close menu on escape key
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && navMenu.classList.contains('mobile-menu-open')) {
-            navMenu.classList.remove('mobile-menu-open');
-            mobileToggle.classList.remove('active');
-            document.body.style.overflow = '';
-            mobileToggle.setAttribute('aria-expanded', 'false');
-        }
-    });
-
-    // Close menu on window resize
-    window.addEventListener('resize', function () {
-        if (window.innerWidth > 768) {
-            navMenu.classList.remove('mobile-menu-open');
-            mobileToggle.classList.remove('active');
-            document.body.style.overflow = '';
-            mobileToggle.setAttribute('aria-expanded', 'false');
-        }
-    });
-
-    console.log('✅ Mobile menu initialized successfully');
-}
-
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-// ===== ACTIVE NAVIGATION ON SCROLL =====
-function updateActiveNavigation() {
-    let current = '';
-    const sections = document.querySelectorAll('section');
-    const scrollPosition = window.pageYOffset;
-
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - 120; // Nav height offset
-        const sectionHeight = section.clientHeight;
-
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-            current = section.getAttribute('id');
-        }
-    });
-
-    // Update navigation links
-    document.querySelectorAll('nav a').forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href').slice(1) === current) {
-            link.classList.add('active');
-        }
-    });
-}
-
-// ===== NAVBAR SCROLL EFFECT =====
-function handleNavbarScroll() {
-    const nav = document.querySelector('nav');
-    if (window.scrollY > 50) {
-        nav.classList.add('scrolled');
-    } else {
-        nav.classList.remove('scrolled');
-    }
-}
-
-// ===== OPTIMIZED SCROLL LISTENER =====
-let ticking = false;
-
-function handleScroll() {
-    if (!ticking) {
-        requestAnimationFrame(() => {
-            updateActiveNavigation();
-            handleNavbarScroll();
-            // Show/hide scroll-down only on first screen
-            const scrollDown = document.querySelector('.scroll-down');
-            if (scrollDown) {
-                if (window.scrollY < 50) {
-                    scrollDown.style.display = 'flex';
-                } else {
-                    scrollDown.style.display = 'none';
-                }
-            }
-            ticking = false;
-        });
-        ticking = true;
-    }
-}
-
-window.addEventListener('scroll', handleScroll, { passive: true });
-
-// ===== INTERSECTION OBSERVER FOR ANIMATIONS =====
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const animationObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.animationDelay = '0.1s';
-            entry.target.style.animationFillMode = 'forwards';
-            entry.target.classList.add('animate-in');
-        }
-    });
-}, observerOptions);
-
-// ===== ENHANCED COUNTER ANIMATION =====
-function animateCounter(element, target, originalText) {
-    let current = 0;
-    const increment = target / 100;
-    const duration = 2000; // 2 saniye
-    const stepTime = duration / 100;
-
-    const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-            current = target;
-            clearInterval(timer);
-        }
-
-        // Orijinal format bilgisini koruyarak güncelle
-        if (originalText.includes('%')) {
-            element.textContent = Math.round(current) + '%';
-        } else if (originalText.includes('₺')) {
-            element.textContent = Math.round(current).toLocaleString('tr-TR') + '₺';
-        } else if (originalText.includes('.') && !originalText.includes('₺')) {
-            element.textContent = current.toFixed(2);
-        } else if (originalText.includes('+')) {
-            element.textContent = Math.round(current) + '+';
-        } else {
-            element.textContent = Math.round(current).toLocaleString('tr-TR');
-        }
-    }, stepTime);
-}
-
-// ===== STATS COUNTER OBSERVER =====
-const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const numberElement = entry.target.querySelector('.stat-number');
-            if (!numberElement || numberElement.dataset.animated) return;
-
-            const originalText = numberElement.textContent;
-
-            // Sayısal değeri çıkar (rakamlar ve nokta)
-            const numberMatch = originalText.match(/[\d.,]+/);
-            const cleanNumber = numberMatch ? numberMatch[0].replace(/[.,]/g, '') : '0';
-            const number = parseInt(cleanNumber) || 0;
-
-            // Animasyonu başlat
-            numberElement.textContent = '0';
-            numberElement.dataset.animated = 'true';
-
-            // Küçük gecikme ile daha smooth görünüm
-            setTimeout(() => {
-                animateCounter(numberElement, number, originalText);
-            }, 200);
-
-            // Bir kez çalışsın
-            statsObserver.unobserve(entry.target);
-        }
-    });
-}, {
-    threshold: 0.3,
-    rootMargin: '0px 0px -100px 0px'
-});
-
-// ===== TYPEWRITER EFFECT FOR HERO TITLE =====
-function typeWriter() {
-    const heroTitle = document.querySelector('.hero-content h1');
-    if (!heroTitle) return;
-
-    // Mobil cihazlarda typewriter animasyonunu devre dışı bırak
-    if (window.innerWidth <= 768) {
-        heroTitle.style.opacity = '1';
-        return;
-    }
-
-    const titleText = heroTitle.getAttribute('data-lang') ?
-        (window.languageManager ? window.languageManager.getTranslation(heroTitle.getAttribute('data-lang')) : heroTitle.textContent) :
-        heroTitle.textContent;
-
-    if (!titleText || titleText.trim() === '') return;
-
-    // Typewriter animasyonunu sadece bir kez çalıştır
-    if (heroTitle.dataset.typewriterCompleted === 'true') {
-        heroTitle.style.opacity = '1';
-        return;
-    }
-
-    heroTitle.textContent = '';
-    heroTitle.style.opacity = '1';
-
-    let i = 0;
-    const speed = 80; // Biraz daha hızlı
-    let timeoutId;
-
-    function type() {
-        if (i < titleText.length) {
-            heroTitle.textContent += titleText.charAt(i);
-            i++;
-            timeoutId = setTimeout(type, speed);
-        } else {
-            // Animasyon tamamlandı olarak işaretle
-            heroTitle.dataset.typewriterCompleted = 'true';
-        }
-    }
-
-    // Önceki timeout'ları temizle
-    if (timeoutId) {
-        clearTimeout(timeoutId);
-    }
-
-    // Start typing after a delay
-    setTimeout(type, 800);
-}
-
-// ===== FLOATING PARTICLES SYSTEM =====
-class ParticleSystem {
-    constructor() {
-        this.particles = [];
-        this.heroSection = document.querySelector('#hero');
-        this.isRunning = false;
-        this.maxParticles = window.innerWidth > 768 ? 15 : 8;
-    }
-
-    createParticle() {
-        if (!this.heroSection || this.particles.length >= this.maxParticles) return;
-
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-
-        const size = Math.random() * 4 + 2; // 2-6px
-        const opacity = Math.random() * 0.5 + 0.3; // 0.3-0.8
-
-        particle.style.cssText = `
-            position: absolute;
-            width: ${size}px;
-            height: ${size}px;
-            background: rgba(255, 255, 255, ${opacity});
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 1;
-        `;
-
-        const x = Math.random() * this.heroSection.offsetWidth;
-        const y = Math.random() * this.heroSection.offsetHeight;
-
-        particle.style.left = x + 'px';
-        particle.style.top = y + 'px';
-
-        this.heroSection.appendChild(particle);
-        this.particles.push(particle);
-
-        this.animateParticle(particle);
-    }
-
-    animateParticle(particle) {
-        let opacity = parseFloat(particle.style.opacity || 0.5);
-        let size = parseFloat(particle.style.width);
-        let posY = parseFloat(particle.style.top);
-
-        const animate = () => {
-            opacity -= 0.005;
-            size += 0.05;
-            posY -= 0.5;
-
-            particle.style.opacity = opacity;
-            particle.style.width = size + 'px';
-            particle.style.height = size + 'px';
-            particle.style.top = posY + 'px';
-
-            if (opacity > 0 && posY > -20) {
-                requestAnimationFrame(animate);
-            } else {
-                this.removeParticle(particle);
-            }
-        };
-
-        requestAnimationFrame(animate);
-    }
-
-    removeParticle(particle) {
-        const index = this.particles.indexOf(particle);
-        if (index > -1) {
-            this.particles.splice(index, 1);
-            particle.remove();
-        }
-    }
-
-    start() {
-        if (this.isRunning) return;
-        this.isRunning = true;
-
-        const createInterval = setInterval(() => {
-            if (this.heroSection && this.isRunning) {
-                this.createParticle();
-            } else {
-                clearInterval(createInterval);
-            }
-        }, 500);
-    }
-
-    stop() {
-        this.isRunning = false;
-        this.particles.forEach(particle => particle.remove());
-        this.particles = [];
-    }
-}
-
-// ===== LAZY LOADING FOR IMAGES =====
-function initLazyLoading() {
-    if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    if (img.dataset.src) {
-                        img.src = img.dataset.src;
-                        img.classList.remove('lazy');
-                        imageObserver.unobserve(img);
-                    }
-                }
-            });
-        });
-
-        document.querySelectorAll('img[data-src]').forEach(img => {
-            imageObserver.observe(img);
-        });
-    }
-}
-
-// ===== KEYBOARD NAVIGATION SUPPORT =====
-function initKeyboardNavigation() {
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Tab') {
-            document.body.classList.add('keyboard-navigation');
-        }
-    });
-
-    document.addEventListener('mousedown', function () {
-        document.body.classList.remove('keyboard-navigation');
-    });
-}
-
-// ===== ERROR HANDLING FOR IMAGES =====
-function initImageErrorHandling() {
-    window.addEventListener('error', function (e) {
-        if (e.target.tagName === 'IMG') {
-            e.target.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 250"><rect width="250" height="250" fill="%23ddd"/><text x="50%" y="50%" text-anchor="middle" dy="0.3em" font-family="Arial" font-size="16" fill="%23999">Resim yüklenemedi</text></svg>';
-        }
-    }, true);
-}
-
-// ===== DARK MODE SUPPORT =====
-function initDarkMode() {
-    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-
-    function handleColorSchemeChange(e) {
-        if (e.matches) {
-            document.body.classList.add('dark-mode');
-        } else {
-            document.body.classList.remove('dark-mode');
-        }
-    }
-
-    prefersDarkScheme.addListener(handleColorSchemeChange);
-    handleColorSchemeChange(prefersDarkScheme);
-}
-
-// ===== MAIN INITIALIZATION FUNCTION =====
-let portfolioInitialized = false; // Prevent double initialization
-
-function initializePortfolio() {
-    if (portfolioInitialized) {
-        console.log('⚠️ Portfolio already initialized, skipping...');
-        return;
-    }
-
-    console.log('🚀 Portfolio initialization started...');
-    portfolioInitialized = true;
-
-    // Initialize all components
-    initMobileMenu();
-    initLazyLoading();
-    initKeyboardNavigation();
-    initImageErrorHandling();
-    initDarkMode();
-    initProjectFilters();
-    initProjectCardAnimations();
-
-    initLanguageManager();
-    // Start typewriter effect
-    typeWriter();
-
-    // Initialize particle system
-    const particleSystem = new ParticleSystem();
-    particleSystem.start();
-
-    // Observe elements for animations
-    document.querySelectorAll('.loading').forEach(el => {
-        animationObserver.observe(el);
-    });
-
-    // Initialize stats counter with proper timing
     setTimeout(() => {
-        document.querySelectorAll('.stat-item').forEach(item => {
-            statsObserver.observe(item);
+        loadingScreen.classList.add('hidden');
+    }, 2500);
+
+    initializeDesktopIcons();
+    initializeClock();
+    initializeContextMenu();
+    initializeWindows();
+    initializeStartMenu();
+});
+
+// Desktop Icons - Click Handler
+function initializeDesktopIcons() {
+    const icons = document.querySelectorAll('.desktop-icon');
+
+    icons.forEach(icon => {
+        // Single click to open window (more intuitive for web)
+        icon.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const windowId = this.getAttribute('data-window');
+            openWindow(windowId);
         });
+
+        // Also support double click
+        icon.addEventListener('dblclick', function(e) {
+            e.stopPropagation();
+            const windowId = this.getAttribute('data-window');
+            openWindow(windowId);
+        });
+    });
+
+    // Deselect icons when clicking on desktop
+    document.getElementById('desktop').addEventListener('click', function(e) {
+        if (e.target === this) {
+            deselectAllIcons();
+        }
+    });
+}
+
+// Select/Deselect Icons
+function selectIcon(icon) {
+    deselectAllIcons();
+    icon.classList.add('selected');
+}
+
+function deselectAllIcons() {
+    const icons = document.querySelectorAll('.desktop-icon');
+    icons.forEach(icon => icon.classList.remove('selected'));
+}
+
+// Clock Update
+function initializeClock() {
+    updateClock();
+    setInterval(updateClock, 1000);
+}
+
+function updateClock() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    document.getElementById('clock').textContent = `${hours}:${minutes}`;
+}
+
+// Context Menu
+function initializeContextMenu() {
+    const contextMenu = document.getElementById('contextMenu');
+    const desktop = document.getElementById('desktop');
+
+    desktop.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+
+        // Position context menu
+        contextMenu.style.left = e.clientX + 'px';
+        contextMenu.style.top = e.clientY + 'px';
+        contextMenu.classList.add('active');
+    });
+
+    // Close context menu on click outside
+    document.addEventListener('click', function(e) {
+        if (!contextMenu.contains(e.target)) {
+            contextMenu.classList.remove('active');
+        }
+    });
+}
+
+function refreshDesktop() {
+    // Refresh animation
+    const desktop = document.getElementById('desktop');
+    desktop.style.opacity = '0.5';
+    setTimeout(() => {
+        desktop.style.opacity = '1';
+    }, 200);
+
+    // Close context menu
+    document.getElementById('contextMenu').classList.remove('active');
+}
+
+// Start Menu
+function initializeStartMenu() {
+    const startBtn = document.querySelector('.start-btn');
+    const startMenu = document.getElementById('startMenu');
+    const menuItems = document.querySelectorAll('.start-menu-item');
+
+    // Toggle start menu
+    startBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        startMenu.classList.toggle('active');
+    });
+
+    // Open windows from start menu
+    menuItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const windowId = this.getAttribute('data-window');
+            openWindow(windowId);
+            startMenu.classList.remove('active');
+        });
+    });
+
+    // Close start menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!startMenu.contains(e.target) && !startBtn.contains(e.target)) {
+            startMenu.classList.remove('active');
+        }
+    });
+
+    // Power button (optional - just closes menu for now)
+    const powerBtn = document.querySelector('.start-menu-power');
+    if (powerBtn) {
+        powerBtn.addEventListener('click', function() {
+            startMenu.classList.remove('active');
+            // You can add additional functionality here
+        });
+    }
+}
+
+// Window Management
+function initializeWindows() {
+    const windows = document.querySelectorAll('.window');
+
+    windows.forEach(window => {
+        const header = window.querySelector('.window-header');
+
+        // Make window draggable
+        header.addEventListener('mousedown', function(e) {
+            if (e.target.tagName === 'BUTTON' || e.target.tagName === 'I') {
+                return; // Don't drag if clicking on buttons
+            }
+
+            startDragging(e, window);
+        });
+
+        // Bring window to front on click
+        window.addEventListener('mousedown', function() {
+            bringToFront(window.id);
+        });
+    });
+}
+
+// Open Window
+function openWindow(windowId) {
+    const window = document.getElementById(windowId);
+    if (!window) return;
+
+    // Check if already open
+    if (window.classList.contains('active')) {
+        bringToFront(windowId);
+        return;
+    }
+
+    // Position window (centered with slight offset for multiple windows)
+    const offsetX = (zIndexCounter - 1000) * 30;
+    const offsetY = (zIndexCounter - 1000) * 30;
+
+    window.style.left = `${150 + (offsetX % 200)}px`;
+    window.style.top = `${100 + (offsetY % 150)}px`;
+
+    // Show window with animation
+    window.classList.add('active', 'opening');
+    window.classList.remove('minimized');
+
+    setTimeout(() => {
+        window.classList.remove('opening');
     }, 300);
 
-    console.log('✅ Portfolio initialized successfully!');
+    // Add to taskbar
+    addToTaskbar(windowId);
+
+    // Bring to front
+    bringToFront(windowId);
 }
 
-// Language Manager entegrasyonu - CompleteLanguageManager ile uyumlu
-function initLanguageManager() {
-    // CompleteLanguageManager'ın yüklenmesini bekle
-    if (window.languageManager && window.languageManager.isReady()) {
-        console.log('🌐 Complete Language Manager already ready');
+// Close Window
+function closeWindow(windowId) {
+    const window = document.getElementById(windowId);
+    if (!window) return;
 
-        // Dil yöneticisi hazır olduğunda callback'leri ekle
-        if (window.languageManager) {
-            const originalSwitchLanguage = window.languageManager.switchLanguage;
-            window.languageManager.switchLanguage = function (lang, animate = true) {
-                const result = originalSwitchLanguage.call(this, lang, animate);
+    // Close animation
+    window.classList.add('closing');
 
-                // Dil değişikliği sonrası yeniden initialization
-                setTimeout(() => {
-                    reinitializeAfterLanguageChange();
-                }, 600);
-
-                return result;
-            };
-        }
-
-        return;
-    }
-
-    // Language Manager henüz yüklenmemişse bekle
-    setTimeout(initLanguageManager, 100);
-}
-
-// Dil değiştiğinde smooth scroll'u güncelle
-function updateSmoothScrolling() {
-    // Yeniden smooth scrolling listener'ları ekle
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        // Eski listener'ları temizle
-        anchor.replaceWith(anchor.cloneNode(true));
-    });
-
-    // Yeni listener'ları ekle
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-}
-
-// Dil değişikliği sonrası yeniden initialization
-function reinitializeAfterLanguageChange() {
-    // Stats counter'ları yeniden başlat
-    document.querySelectorAll('.stat-item').forEach(item => {
-        const numberElement = item.querySelector('.stat-number');
-        if (numberElement) {
-            numberElement.dataset.animated = '';
-        }
-    });
-
-    // Animation observer'ları yeniden başlat
     setTimeout(() => {
-        document.querySelectorAll('.stat-item').forEach(item => {
-            statsObserver.observe(item);
-        });
-    }, 500);
-
-    // Smooth scrolling'i güncelle
-    updateSmoothScrolling();
+        window.classList.remove('active', 'closing');
+        removeFromTaskbar(windowId);
+    }, 300);
 }
 
-// SEO ve Meta tag güncellemeleri
-function updateSEOForLanguage(lang) {
-    // Meta tags güncelle
-    const metaTags = {
-        tr: {
-            title: 'Ertuğrul Kundak - Full Stack Yazılım Geliştirici',
-            description: 'Full Stack Yazılım Geliştirici. .NET Core, C#, JavaScript uzmanı. İstanbul\'da yazılım geliştirme hizmetleri.',
-            keywords: 'Ertuğrul Kundak, Full Stack Developer, .NET Core, C#, JavaScript, İstanbul, Yazılım Geliştirici',
-            ogTitle: 'Ertuğrul Kundak - Full Stack Yazılım Geliştirici',
-            ogDescription: 'Clean Architecture ve SOLID prensiplerine bağlı kalarak ölçeklenebilir çözümler üretiyorum.'
-        },
-        en: {
-            title: 'Ertuğrul Kundak - Full Stack Software Developer',
-            description: 'Full Stack Software Developer. .NET Core, C#, JavaScript expert. Software development services in Istanbul.',
-            keywords: 'Ertuğrul Kundak, Full Stack Developer, .NET Core, C#, JavaScript, Istanbul, Software Developer',
-            ogTitle: 'Ertuğrul Kundak - Full Stack Software Developer',
-            ogDescription: 'I develop scalable solutions by adhering to Clean Architecture and SOLID principles.'
+// Minimize Window
+function minimizeWindow(windowId) {
+    const window = document.getElementById(windowId);
+    if (!window) return;
+
+    // Add minimizing animation
+    window.classList.add('minimizing');
+
+    setTimeout(() => {
+        window.classList.add('minimized');
+        window.classList.remove('active', 'minimizing');
+    }, 300);
+
+    // Update taskbar item
+    const taskbarItem = document.querySelector(`[data-window-id="${windowId}"]`);
+    if (taskbarItem) {
+        taskbarItem.classList.remove('active');
+    }
+}
+
+// Maximize Window
+function maximizeWindow(windowId) {
+    const window = document.getElementById(windowId);
+    if (!window) return;
+
+    if (window.classList.contains('maximized')) {
+        // Restore
+        window.classList.remove('maximized');
+    } else {
+        // Maximize
+        window.classList.add('maximized');
+    }
+}
+
+// Bring Window to Front
+function bringToFront(windowId) {
+    const window = document.getElementById(windowId);
+    if (!window) return;
+
+    zIndexCounter++;
+    window.style.zIndex = zIndexCounter;
+    activeWindow = windowId;
+
+    // Update taskbar active state
+    const taskbarItems = document.querySelectorAll('.taskbar-item');
+    taskbarItems.forEach(item => {
+        if (item.getAttribute('data-window-id') === windowId) {
+            item.classList.add('active');
+        } else {
+            item.classList.remove('active');
         }
-    };
-
-    const tags = metaTags[lang] || metaTags.tr;
-
-    // Update title
-    document.title = tags.title;
-
-    // Update meta description
-    let metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-        metaDesc.setAttribute('content', tags.description);
-    }
-
-    // Update meta keywords
-    let metaKeywords = document.querySelector('meta[name="keywords"]');
-    if (metaKeywords) {
-        metaKeywords.setAttribute('content', tags.keywords);
-    }
-
-    // Update Open Graph tags
-    let ogTitle = document.querySelector('meta[property="og:title"]');
-    if (ogTitle) {
-        ogTitle.setAttribute('content', tags.ogTitle);
-    }
-
-    let ogDescription = document.querySelector('meta[property="og:description"]');
-    if (ogDescription) {
-        ogDescription.setAttribute('content', tags.ogDescription);
-    }
-}
-
-// URL güncelleme (opsiyonel - SEO için)
-function updateURLForLanguage(lang) {
-    if (history.pushState) {
-        const newURL = window.location.pathname + (lang === 'en' ? '?lang=en' : '');
-        history.pushState({ language: lang }, '', newURL);
-    }
-}
-
-// URL'den dil algılama (opsiyonel)
-function getLanguageFromURL() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const langParam = urlParams.get('lang');
-    return langParam && ['tr', 'en'].includes(langParam) ? langParam : null;
-}
-
-// Gelişmiş hata yakalama
-window.addEventListener('error', function (e) {
-    if (e.target.tagName === 'SCRIPT' && e.target.src.includes('language')) {
-        console.warn('Language script loading failed, falling back to default language');
-        // Fallback: Varsayılan dili kullan
-        document.documentElement.lang = 'tr';
-    }
-});
-
-// Performance monitoring
-const languagePerformance = {
-    start: Date.now(),
-
-    measure(step) {
-        const elapsed = Date.now() - this.start;
-        console.log(`🚀 Language ${step}: ${elapsed}ms`);
-    }
-};
-
-// CompleteLanguageManager yükleme tamamlandığında
-document.addEventListener('languageManagerReady', function () {
-    languagePerformance.measure('Manager Ready');
-
-    // URL'den dil kontrolü
-    const urlLang = getLanguageFromURL();
-    if (urlLang && window.languageManager) {
-        window.languageManager.switchLanguage(urlLang, false);
-    }
-
-    // SEO güncellemesi
-    if (window.languageManager) {
-        updateSEOForLanguage(window.languageManager.getCurrentLanguage());
-    }
-});
-
-// Dil değişikliği event'i
-document.addEventListener('languageChanged', function (event) {
-    const newLang = event.detail.language;
-
-    // SEO güncellemesi
-    updateSEOForLanguage(newLang);
-
-    // URL güncellemesi (opsiyonel)
-    updateURLForLanguage(newLang);
-
-    languagePerformance.measure(`Changed to ${newLang}`);
-});
-
-// Browser back/forward button desteği
-window.addEventListener('popstate', function (event) {
-    if (event.state && event.state.language && window.languageManager) {
-        window.languageManager.switchLanguage(event.state.language, false);
-    }
-});
-
-// Klavye kısayolu: Alt + L ile dil değiştirme
-document.addEventListener('keydown', function (e) {
-    if (e.altKey && e.key.toLowerCase() === 'l' && window.languageManager) {
-        e.preventDefault();
-        window.languageManager.toggleLanguage();
-    }
-});
-
-console.log('🌐 Language integration loaded successfully');
-
-// ===== START EVERYTHING - Fixed double initialization =====
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializePortfolio);
-} else {
-    // DOM is already ready
-    initializePortfolio();
-}
-
-// Remove backup initialization to prevent double loading
-// window.addEventListener('load', function () {
-//     if (!document.querySelector('.stat-item[data-initialized]')) {
-//         console.log('🔄 Running backup initialization...');
-//         setTimeout(initializePortfolio, 200);
-//     }
-// });
-
-// ===== UTILITY FUNCTIONS =====
-
-// Debounce function for performance
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Throttle function for scroll events
-function throttle(func, limit) {
-    let inThrottle;
-    return function () {
-        const args = arguments;
-        const context = this;
-        if (!inThrottle) {
-            func.apply(context, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
-    }
-}
-
-// ===== EASTER EGG =====
-if (portfolioInitialized) {
-    console.log(`
-🎉 Ertuğrul Kundak Portfolio
-🚀 Made with ❤️ and modern JavaScript
-📱 Responsive & Accessible Design
-⚡ Optimized for Performance
-
-📧 ertugrulkundak@hotmail.com
-🔗 linkedin.com/in/ertuğrul-kundak
-👨‍💻 github.com/SoftwareHeart
-`);
-}
-
-// ===== PROJECT FILTERING SYSTEM =====
-function initProjectFilters() {
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card');
-
-    if (!filterButtons.length || !projectCards.length) {
-        console.log('❌ Project filter elements not found');
-        return;
-    }
-
-    // Add touch support for mobile
-    let touchStartX = 0;
-    let touchEndX = 0;
-    const filtersContainer = document.querySelector('.project-filters');
-
-    // Touch events for mobile swipe
-    if (filtersContainer) {
-        filtersContainer.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
-
-        filtersContainer.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        }, { passive: true });
-    }
-
-    function handleSwipe() {
-        const swipeThreshold = 50;
-        const diff = touchStartX - touchEndX;
-
-        if (Math.abs(diff) > swipeThreshold) {
-            const currentActive = document.querySelector('.filter-btn.active');
-            const currentIndex = Array.from(filterButtons).indexOf(currentActive);
-
-            if (diff > 0) {
-                // Swipe left - next filter
-                const nextIndex = (currentIndex + 1) % filterButtons.length;
-                filterButtons[nextIndex].click();
-            } else {
-                // Swipe right - previous filter
-                const prevIndex = currentIndex === 0 ? filterButtons.length - 1 : currentIndex - 1;
-                filterButtons[prevIndex].click();
-            }
-        }
-    }
-
-    filterButtons.forEach((button, index) => {
-        // Click event
-        button.addEventListener('click', () => {
-            const filter = button.getAttribute('data-filter');
-
-            // Update active button with animation
-            filterButtons.forEach(btn => {
-                btn.classList.remove('active');
-                btn.style.transform = 'scale(1)';
-            });
-
-            button.classList.add('active');
-            button.style.transform = 'scale(1.05)';
-
-            // Reset transform after animation
-            setTimeout(() => {
-                button.style.transform = '';
-            }, 200);
-
-            // Filter projects with smooth animation
-            filterProjects(filter);
-        });
-
-        // Touch feedback for mobile
-        button.addEventListener('touchstart', () => {
-            button.style.transform = 'scale(0.95)';
-        }, { passive: true });
-
-        button.addEventListener('touchend', () => {
-            button.style.transform = '';
-        }, { passive: true });
-
-        // Keyboard navigation
-        button.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                button.click();
-            }
-        });
     });
-
-    // Auto-scroll to active filter on mobile
-    function scrollToActiveFilter() {
-        const activeButton = document.querySelector('.filter-btn.active');
-        if (activeButton && window.innerWidth <= 768) {
-            activeButton.scrollIntoView({
-                behavior: 'smooth',
-                block: 'nearest',
-                inline: 'center'
-            });
-        }
-    }
-
-    // Filter projects function
-    function filterProjects(filter) {
-        const cards = document.querySelectorAll('.project-card');
-        let visibleCount = 0;
-
-        cards.forEach((card, index) => {
-            const category = card.getAttribute('data-category');
-            const shouldShow = filter === 'all' || category === filter;
-
-            if (shouldShow) {
-                card.style.display = 'block';
-                card.style.animation = `fadeInUp 0.6s ease forwards ${index * 0.1}s`;
-                visibleCount++;
-            } else {
-                card.style.display = 'none';
-            }
-        });
-
-        // Show no results message if needed
-        showNoResultsMessage(visibleCount === 0);
-
-        // Scroll to active filter
-        scrollToActiveFilter();
-
-        // Update URL hash for bookmarking
-        updateFilterHash(filter);
-    }
-
-    // Show/hide no results message
-    function showNoResultsMessage(show) {
-        let noResults = document.querySelector('.no-results-message');
-
-        if (show) {
-            if (!noResults) {
-                noResults = document.createElement('div');
-                noResults.className = 'no-results-message';
-                noResults.innerHTML = `
-                    <div class="no-results-content">
-                        <i class="fas fa-search"></i>
-                        <h3 data-lang="projects.no-results.title">Sonuç Bulunamadı</h3>
-                        <p data-lang="projects.no-results.desc">Seçilen kategoride proje bulunmamaktadır.</p>
-                    </div>
-                `;
-                document.querySelector('.project-grid').appendChild(noResults);
-            }
-            noResults.style.display = 'block';
-        } else if (noResults) {
-            noResults.style.display = 'none';
-        }
-    }
-
-    // Update URL hash for filter bookmarking
-    function updateFilterHash(filter) {
-        if (history.pushState) {
-            const newHash = filter === 'all' ? '' : `#filter=${filter}`;
-            history.pushState(null, null, newHash);
-        }
-    }
-
-    // Load filter from URL hash on page load
-    function loadFilterFromHash() {
-        const hash = window.location.hash;
-        const match = hash.match(/#filter=(\w+)/);
-
-        if (match) {
-            const filter = match[1];
-            const button = document.querySelector(`[data-filter="${filter}"]`);
-            if (button) {
-                button.click();
-            }
-        }
-    }
-
-    // Initialize filter from URL hash
-    loadFilterFromHash();
-
-    console.log('✅ Project filters initialized successfully');
 }
 
-// ===== PROJECT MODAL SYSTEM =====
-const projectData = {
-    tr: {
-        portfolio: {
-            title: 'İyiGelir Portföy Optimizasyonu',
-            description: 'Portföy sayfası performansını %80 artıran kapsamlı optimizasyon çalışması. Database indexing, responsive design ve sayfa yükleme hızı iyileştirmeleri.',
-            details: [
-                'Performance Optimization: Portföy sayfası yükleme hızını %80 oranında artırdım',
-                'Database Indexing: Veritabanı tablolarına index ekleyerek sorgu performansını optimize ettim',
-                'Responsive Design: Yeni portföy sayfasında tam responsive tasarım uyguladım',
-                'Data Visualization: Highcharts kullanarak fon fiyat grafiklerini görselleştirdim',
-                'Analytics Dashboard: 30 grafik içeren fon detay analiz sayfasını tasarladım (1-3 saniye yükleme)',
-                'Queue Management: 30 grafiği 5\'er 5\'er kuyruk yapısında yükleyerek optimize ettim',
-                'Multi-Currency: Dolar-Euro-TL bazlı dinamik sayfa açılımları geliştirdim'
-            ],
-            technologies: ['.NET Core API', 'Performance Optimization', 'Database Tuning', 'Responsive Design', 'Highcharts', 'Queue Management'],
-            role: 'Full Stack Developer',
-            duration: '2024',
-            impact: 'Portföy sayfası yükleme hızı %80 artış'
-        },
-        knn: {
-            title: 'KNN Fon Öneri Sistemi',
-            description: 'KNN algoritması ile yapay zeka destekli fon öneri sistemi. Kullanıcı profiline göre en uygun yatırım fonlarını önerir ve risk analizi yapar.',
-            details: [
-                'Machine Learning Integration: KNN algoritması ile yapay zeka destekli fon öneri sistemi geliştirdim',
-                'User Profile Analysis: Kullanıcı risk toleransı ve yatırım hedeflerine göre öneri sistemi',
-                'Risk Assessment: Fon risk analizi ve karşılaştırma algoritmaları',
-                'Performance Optimization: Algoritma performansını optimize ederek hızlı öneri sistemi',
-                'Data Processing: Büyük veri setlerinde etkili işleme ve analiz'
-            ],
-            technologies: ['C#', '.NET Core', 'Machine Learning', 'KNN Algorithm', 'Data Analysis', 'Risk Assessment'],
-            role: 'Full Stack Developer',
-            duration: '2024',
-            impact: 'Yapay zeka destekli fon öneri sistemi'
-        },
-        dashboard: {
-            title: 'Fon Analiz Dashboard',
-            description: '30 grafik içeren fon detay analiz sistemi. Highcharts ile fon fiyat görselleştirme ve 10 yıllık veri analizi. Kuyruk yönetimi ile optimize edilmiş yükleme (1-3 saniye).',
-            details: [
-                'Data Visualization: 30 farklı grafik ile kapsamlı fon analizi',
-                'Highcharts Integration: Gelişmiş grafik kütüphanesi entegrasyonu',
-                'Queue Management: 30 grafiği 5\'er 5\'er kuyruk yapısında yükleyerek optimize ettim',
-                'Performance Optimization: 1-3 saniye yükleme süresi ile hızlı erişim',
-                'Historical Data: 10 yıllık fon verisi analizi ve görselleştirme',
-                'Interactive Charts: Kullanıcı etkileşimli grafik ve filtreleme sistemi'
-            ],
-            technologies: ['Highcharts', 'Queue Management', 'Data Visualization', 'Performance', 'JavaScript', 'API Integration'],
-            role: 'Full Stack Developer',
-            duration: '2024',
-            impact: '30 grafik ile kapsamlı analiz dashboard'
-        },
-        management: {
-            title: 'Portföy Yönetim Sistemi',
-            description: 'Portföylerin toplu gösterim ve yönetim sistemi. Gelişmiş filtreleme, multi-currency desteği (USD/EUR/TL) ve database index optimizasyonu.',
-            details: [
-                'Portfolio Management: Portföylerin toplu gösterim sayfasını tasarladım ve kodladım',
-                'Advanced Filtering: Gelişmiş filtreleme sistemleri geliştirdim',
-                'Multi-Currency Support: USD/EUR/TL bazlı dinamik para birimi desteği',
-                'Database Optimization: İlişkisel veritabanı yapısında iyileştirmeler yaptım',
-                'Entity Framework: Code First yaklaşımı ile veritabanı modellemesi',
-                'Performance Tuning: Mevcut sistemde performans optimizasyonları gerçekleştirdim'
-            ],
-            technologies: ['Entity Framework', 'Database Index', 'Multi-Currency', 'Advanced Filtering', 'ASP.NET Core MVC'],
-            role: 'Stajyer',
-            duration: '2024',
-            impact: 'Gelişmiş portföy yönetim sistemi'
-        },
-        pomodoro: {
-            title: 'Pomodoro Çalışması',
-            description: 'Full stack Pomodoro tekniği uygulaması. Kullanıcılar görevlerini yönetebilir, çalışma sürelerini takip edebilir ve detaylı istatistikler görüntüleyebilir.',
-            details: [
-                'Full Stack Development: React frontend ve .NET Core backend entegrasyonu',
-                'User Authentication: JWT tabanlı güvenli kullanıcı kimlik doğrulama',
-                'Task Management: Görev oluşturma, düzenleme ve silme işlemleri',
-                'Time Tracking: Pomodoro tekniği ile çalışma süresi takibi',
-                'Statistics Dashboard: Detaylı çalışma istatistikleri ve raporlama',
-                'Responsive Design: Mobil uyumlu modern arayüz tasarımı'
-            ],
-            technologies: ['React.js', 'ASP.NET Core', 'SQL Server', 'JWT Auth', 'RESTful API', 'Responsive Design'],
-            role: 'Kişisel Proje',
-            duration: '2023',
-            impact: 'Tam özellikli Pomodoro uygulaması',
-            github: 'https://github.com/SoftwareHeart/pomodoro-client'
-        },
-        cargo: {
-            title: 'Kargo Şirketi Blog',
-            description: 'Kargo şirketinin tanıtımı ve admin panelden yönetilebilir blog sistemi. Google SEO çalışması, blog CRUD işlemleri ve istatistiksel raporlama.',
-            details: [
-                'Admin Panel: Yönetim paneli ile blog içerik yönetimi',
-                'SEO Optimization: Google SEO çalışması ve meta tag optimizasyonu',
-                'CRUD Operations: Blog yazıları için tam CRUD işlemleri',
-                'Content Management: Zengin metin editörü ile içerik yönetimi',
-                'Statistics Dashboard: Blog istatistikleri ve raporlama sistemi',
-                'Responsive Design: Mobil uyumlu modern tasarım'
-            ],
-            technologies: ['ASP.NET Core MVC', 'Entity Framework', 'Admin Panel', 'SEO', 'CRUD Operations', 'Bootstrap'],
-            role: 'Kişisel Proje',
-            duration: '2023',
-            impact: 'SEO optimizasyonlu blog sistemi',
-            github: 'https://github.com/SoftwareHeart/KargoAdmin'
-        },
-        aes: {
-            title: 'AES Şifreleme Uygulaması',
-            description: 'AES-256 algoritması ile görüntü dosyalarının güvenli şifrelenmesi. Otomatik anahtar-IV oluşturma, Base64 encoding ve çoklu format desteği.',
-            details: [
-                'Cryptography: AES-256 algoritması ile güvenli şifreleme',
-                'File Processing: Görüntü dosyalarının şifrelenmesi ve çözülmesi',
-                'Key Management: Otomatik anahtar-IV oluşturma sistemi',
-                'Base64 Encoding: Şifrelenmiş verilerin Base64 formatında saklanması',
-                'Multi-Format Support: Çoklu görüntü formatı desteği',
-                'User Interface: Kullanıcı dostu Windows Forms arayüzü'
-            ],
-            technologies: ['C# WinForms', 'AES-256', 'Cryptography', 'File Processing', 'Base64 Encoding', 'Security'],
-            role: 'Kişisel Proje',
-            duration: '2023',
-            impact: 'Güvenli dosya şifreleme sistemi',
-            github: 'https://github.com/SoftwareHeart/Aes_Sifreleme'
-        },
-        cybersec: {
-            title: 'Cyber Security\'22 Hackathon',
-            description: '32 takım arasından 2. olarak 5000₺ ödül kazandığım siber güvenlik hackathonu. Güvenlik açıklarını tespit etme ve çözüm geliştirme konularında takım liderliği.',
-            details: [
-                'Team Leadership: 4 kişilik takımda liderlik ve koordinasyon',
-                'Penetration Testing: Güvenlik açıklarını tespit etme ve analiz',
-                'Problem Solving: Karmaşık güvenlik problemlerine çözüm geliştirme',
-                'Competition Strategy: 32 takım arasından 2. sıraya yükselme',
-                'Security Analysis: Sistem güvenlik analizi ve raporlama',
-                'Award Achievement: 5000₺ ödül kazanma başarısı'
-            ],
-            technologies: ['Cyber Security', 'Penetration Testing', 'Team Leadership', 'Problem Solving', 'Security Analysis'],
-            role: 'Takım Lideri',
-            duration: '2022',
-            impact: '32 takım arasından 2. sıra ve 5000₺ ödül'
-        },
-        api: {
-            title: 'Mobil & Web API',
-            description: 'Yeni mobil ve web uygulaması için yenilenmiş API projesi. Loglama, JWT Authentication ve middleware ile güvenli ve ölçeklenebilir mimari.',
-            details: [
-                'API Design: RESTful mimaride yeni API tasarımı ve kodlama',
-                'Logging: Serilog ile kapsamlı loglama altyapısı',
-                'JWT Authentication: Güvenli kullanıcı kimlik doğrulama ve oturum yönetimi',
-                'Middleware: .NET Core ile özel middleware çözümleri',
-                'API Security: Yetkilendirme ve güvenlik önlemleri',
-                'Performance: Yüksek performans ve ölçeklenebilirlik için optimizasyonlar'
-            ],
-            technologies: ['.NET Core API', 'JWT', 'Middleware', 'Serilog', 'RESTful', 'API Security'],
-            role: 'Full Stack Developer',
-            duration: '2024',
-            impact: 'Güvenli ve ölçeklenebilir yeni API mimarisi'
-        }
-    },
-    en: {
-        portfolio: {
-            title: 'İyiGelir Portfolio Optimization',
-            description: 'Comprehensive optimization work that increased portfolio page performance by 80%. Database indexing, responsive design and page loading speed improvements.',
-            details: [
-                'Performance Optimization: Increased portfolio page loading speed by 80%',
-                'Database Indexing: Optimized query performance by adding indexes to database tables',
-                'Responsive Design: Implemented fully responsive design in new portfolio page',
-                'Data Visualization: Visualized fund price charts using Highcharts',
-                'Analytics Dashboard: Designed fund detail analysis page with 30 charts (1-3 second loading)',
-                'Queue Management: Optimized by loading 30 charts in groups of 5 using queue structure',
-                'Multi-Currency: Developed dynamic page openings based on USD-EUR-TL'
-            ],
-            technologies: ['.NET Core API', 'Performance Optimization', 'Database Tuning', 'Responsive Design', 'Highcharts', 'Queue Management'],
-            role: 'Full Stack Developer',
-            duration: '2024',
-            impact: '80% increase in portfolio page loading speed'
-        },
-        knn: {
-            title: 'KNN Fund Recommendation System',
-            description: 'AI-powered fund recommendation system using KNN algorithm. Recommends the most suitable investment funds based on user profile and performs risk analysis.',
-            details: [
-                'Machine Learning Integration: Developed AI-powered fund recommendation system using KNN algorithm',
-                'User Profile Analysis: Recommendation system based on user risk tolerance and investment goals',
-                'Risk Assessment: Fund risk analysis and comparison algorithms',
-                'Performance Optimization: Fast recommendation system by optimizing algorithm performance',
-                'Data Processing: Effective processing and analysis of large datasets'
-            ],
-            technologies: ['C#', '.NET Core', 'Machine Learning', 'KNN Algorithm', 'Data Analysis', 'Risk Assessment'],
-            role: 'Full Stack Developer',
-            duration: '2024',
-            impact: 'AI-powered fund recommendation system'
-        },
-        dashboard: {
-            title: 'Fund Analysis Dashboard',
-            description: 'Fund detail analysis system with 30 charts. Fund price visualization with Highcharts and 10-year data analysis. Optimized loading with queue management (1-3 seconds).',
-            details: [
-                'Data Visualization: Comprehensive fund analysis with 30 different charts',
-                'Highcharts Integration: Advanced chart library integration',
-                'Queue Management: Optimized by loading 30 charts in groups of 5 using queue structure',
-                'Performance Optimization: Fast access with 1-3 second loading time',
-                'Historical Data: Analysis and visualization of 10-year fund data',
-                'Interactive Charts: User-interactive charts and filtering system'
-            ],
-            technologies: ['Highcharts', 'Queue Management', 'Data Visualization', 'Performance', 'JavaScript', 'API Integration'],
-            role: 'Full Stack Developer',
-            duration: '2024',
-            impact: 'Comprehensive analysis dashboard with 30 charts'
-        },
-        management: {
-            title: 'Portfolio Management System',
-            description: 'Bulk display and management system for portfolios. Advanced filtering, multi-currency support (USD/EUR/TL) and database index optimization.',
-            details: [
-                'Portfolio Management: Designed and coded bulk display page for portfolios',
-                'Advanced Filtering: Developed advanced filtering systems',
-                'Multi-Currency Support: Dynamic currency support based on USD/EUR/TL',
-                'Database Optimization: Improvements in relational database structure',
-                'Entity Framework: Database modeling with Code First approach',
-                'Performance Tuning: Performance optimizations in existing system'
-            ],
-            technologies: ['Entity Framework', 'Database Index', 'Multi-Currency', 'Advanced Filtering', 'ASP.NET Core MVC'],
-            role: 'Intern',
-            duration: '2024',
-            impact: 'Advanced portfolio management system'
-        },
-        pomodoro: {
-            title: 'Pomodoro Study App',
-            description: 'Full stack Pomodoro technique application. Users can manage their tasks, track study times and view detailed statistics.',
-            details: [
-                'Full Stack Development: React frontend and .NET Core backend integration',
-                'User Authentication: Secure user authentication with JWT',
-                'Task Management: Task creation, editing and deletion operations',
-                'Time Tracking: Study time tracking with Pomodoro technique',
-                'Statistics Dashboard: Detailed study statistics and reporting',
-                'Responsive Design: Mobile-compatible modern interface design'
-            ],
-            technologies: ['React.js', 'ASP.NET Core', 'SQL Server', 'JWT Auth', 'RESTful API', 'Responsive Design'],
-            role: 'Personal Project',
-            duration: '2023',
-            impact: 'Full-featured Pomodoro application',
-            github: 'https://github.com/SoftwareHeart/pomodoro-client'
-        },
-        cargo: {
-            title: 'Cargo Company Blog',
-            description: 'Cargo company introduction and blog system manageable from admin panel. Google SEO work, blog CRUD operations and statistical reporting.',
-            details: [
-                'Admin Panel: Blog content management with admin panel',
-                'SEO Optimization: Google SEO work and meta tag optimization',
-                'CRUD Operations: Full CRUD operations for blog posts',
-                'Content Management: Content management with rich text editor',
-                'Statistics Dashboard: Blog statistics and reporting system',
-                'Responsive Design: Mobile-compatible modern design'
-            ],
-            technologies: ['ASP.NET Core MVC', 'Entity Framework', 'Admin Panel', 'SEO', 'CRUD Operations', 'Bootstrap'],
-            role: 'Personal Project',
-            duration: '2023',
-            impact: 'SEO optimized blog system',
-            github: 'https://github.com/SoftwareHeart/KargoAdmin'
-        },
-        aes: {
-            title: 'AES Encryption Application',
-            description: 'AES-256 algorithm for secure encryption of image files. Automatic key-IV generation, Base64 encoding and multi-format support.',
-            details: [
-                'Cryptography: AES-256 algorithm for secure encryption',
-                'File Processing: Encryption and decryption of image files',
-                'Key Management: Automatic key-IV generation system',
-                'Base64 Encoding: Storage of encrypted data in Base64 format',
-                'Multi-Format Support: Multi-image format support',
-                'User Interface: User-friendly Windows Forms interface'
-            ],
-            technologies: ['C# WinForms', 'AES-256', 'Cryptography', 'File Processing', 'Base64 Encoding', 'Security'],
-            role: 'Personal Project',
-            duration: '2023',
-            impact: 'Secure file encryption system',
-            github: 'https://github.com/SoftwareHeart/Aes_Sifreleme'
-        },
-        cybersec: {
-            title: 'Cyber Security\'22 Hackathon',
-            description: 'Cybersecurity hackathon where I won 5000₺ prize as 2nd place among 32 teams. Team leadership in detecting security vulnerabilities and developing solutions.',
-            details: [
-                'Team Leadership: Leadership and coordination in 4-person team',
-                'Penetration Testing: Detection and analysis of security vulnerabilities',
-                'Problem Solving: Developing solutions to complex security problems',
-                'Competition Strategy: Rising to 2nd place among 32 teams',
-                'Security Analysis: System security analysis and reporting',
-                'Award Achievement: Success in winning 5000₺ prize'
-            ],
-            technologies: ['Cyber Security', 'Penetration Testing', 'Team Leadership', 'Problem Solving', 'Security Analysis'],
-            role: 'Team Leader',
-            duration: '2022',
-            impact: '2nd place among 32 teams and 5000₺ prize'
-        },
-        api: {
-            title: 'Mobile & Web API',
-            description: 'Renewed API project for new mobile and web application. Secure and scalable architecture with logging, JWT Authentication and middleware.',
-            details: [
-                'API Design: Designed and coded new RESTful API',
-                'Logging: Comprehensive logging infrastructure with Serilog',
-                'JWT Authentication: Secure user authentication and session management',
-                'Middleware: Custom middleware solutions with .NET Core',
-                'API Security: Authorization and security measures',
-                'Performance: Optimizations for high performance and scalability'
-            ],
-            technologies: ['.NET Core API', 'JWT', 'Middleware', 'Serilog', 'RESTful', 'API Security'],
-            role: 'Full Stack Developer',
-            duration: '2024',
-            impact: 'Secure and scalable new API architecture'
-        }
-    }
-};
+// Drag Window Functions
+function startDragging(e, window) {
+    // Don't drag if maximized
+    if (window.classList.contains('maximized')) return;
 
-// Global variable to track current open modal
-let currentOpenModal = null;
+    isDragging = true;
+    dragElement = window;
 
-function openProjectModal(projectId) {
-    const modal = document.getElementById('projectModal');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalContent = document.getElementById('modalContent');
+    initialX = e.clientX - window.offsetLeft;
+    initialY = e.clientY - window.offsetTop;
 
-    // Get current language
-    const currentLang = window.languageManager ? window.languageManager.getCurrentLanguage() : 'tr';
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('mouseup', stopDragging);
+}
 
-    // Get project data for current language
-    const project = projectData[currentLang] ? projectData[currentLang][projectId] : projectData.tr[projectId];
-    if (!project) {
-        console.error('Project data not found:', projectId, 'for language:', currentLang);
+function drag(e) {
+    if (!isDragging) return;
+
+    e.preventDefault();
+
+    currentX = e.clientX - initialX;
+    currentY = e.clientY - initialY;
+
+    // Boundary checks
+    const maxX = window.innerWidth - dragElement.offsetWidth;
+    const maxY = window.innerHeight - 50 - dragElement.offsetHeight; // 50px for taskbar
+
+    currentX = Math.max(0, Math.min(currentX, maxX));
+    currentY = Math.max(0, Math.min(currentY, maxY));
+
+    dragElement.style.left = currentX + 'px';
+    dragElement.style.top = currentY + 'px';
+}
+
+function stopDragging() {
+    isDragging = false;
+    dragElement = null;
+
+    document.removeEventListener('mousemove', drag);
+    document.removeEventListener('mouseup', stopDragging);
+}
+
+// Taskbar Management
+function addToTaskbar(windowId) {
+    // Check if already in taskbar
+    const existingItem = document.querySelector(`[data-window-id="${windowId}"]`);
+    if (existingItem) {
+        existingItem.classList.add('active');
         return;
     }
 
-    // Store current modal info for language updates
-    currentOpenModal = projectId;
+    const window = document.getElementById(windowId);
+    const title = window.querySelector('.window-title span').textContent;
+    const icon = window.querySelector('.window-title i').className;
 
-    // Set modal title
-    modalTitle.textContent = project.title;
+    const taskbarItems = document.getElementById('taskbarItems');
 
-    // Build modal content with language support
-    let content = `
-        <div class="modal-project-info">
-            <div class="project-description">
-                <h4 data-lang="modal.project.description">Proje Açıklaması</h4>
-                <p>${project.description}</p>
-            </div>
-            
-            <div class="project-details">
-                <h4 data-lang="modal.project.details">Teknik Detaylar</h4>
-                <ul>
-                    ${project.details.map(detail => `<li>${detail}</li>`).join('')}
-                </ul>
-            </div>
-            
-            <div class="project-tech">
-                <h4 data-lang="modal.project.technologies">Kullanılan Teknolojiler</h4>
-                <div class="tech-tags">
-                    ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
-                </div>
-            </div>
-            
-            <div class="project-meta">
-                <div class="meta-item">
-                    <strong data-lang="modal.project.role">Rol:</strong> ${project.role}
-                </div>
-                <div class="meta-item">
-                    <strong data-lang="modal.project.duration">Süre:</strong> ${project.duration}
-                </div>
-                <div class="meta-item">
-                    <strong data-lang="modal.project.impact">Etki:</strong> ${project.impact}
-                </div>
-                ${project.github ? `
-                <div class="meta-item">
-                    <strong data-lang="modal.project.github">GitHub:</strong> 
-                    <a href="${project.github}" target="_blank" rel="noopener">
-                        <i class="fab fa-github"></i> <span data-lang="modal.project.view.github">Projeyi İncele</span>
-                    </a>
-                </div>
-                ` : ''}
-            </div>
-        </div>
+    const taskbarItem = document.createElement('button');
+    taskbarItem.className = 'taskbar-item active';
+    taskbarItem.setAttribute('data-window-id', windowId);
+
+    taskbarItem.innerHTML = `
+        <i class="${icon}"></i>
+        <span>${title}</span>
     `;
 
-    modalContent.innerHTML = content;
-    modal.style.display = 'block';
+    taskbarItem.addEventListener('click', function() {
+        toggleWindowFromTaskbar(windowId);
+    });
 
-    // Update modal content with current language
-    if (window.languageManager) {
-        window.languageManager.updateAllContent();
+    taskbarItems.appendChild(taskbarItem);
+}
+
+function removeFromTaskbar(windowId) {
+    const taskbarItem = document.querySelector(`[data-window-id="${windowId}"]`);
+    if (taskbarItem) {
+        taskbarItem.remove();
     }
+}
 
-    // Prevent body scroll
-    document.body.style.overflow = 'hidden';
+function toggleWindowFromTaskbar(windowId) {
+    const window = document.getElementById(windowId);
 
-    // Add escape key listener
-    const escapeHandler = (e) => {
-        if (e.key === 'Escape') {
-            closeProjectModal();
-            document.removeEventListener('keydown', escapeHandler);
+    if (window.classList.contains('minimized')) {
+        // Restore window
+        window.classList.remove('minimized');
+        window.classList.add('active');
+        bringToFront(windowId);
+    } else if (window.classList.contains('active') && activeWindow === windowId) {
+        // Minimize if already active
+        minimizeWindow(windowId);
+    } else {
+        // Bring to front
+        window.classList.add('active');
+        bringToFront(windowId);
+    }
+}
+
+// Keyboard Shortcuts
+document.addEventListener('keydown', function(e) {
+    // Alt + F4 to close active window
+    if (e.altKey && e.key === 'F4') {
+        e.preventDefault();
+        if (activeWindow) {
+            closeWindow(activeWindow);
         }
-    };
-    document.addEventListener('keydown', escapeHandler);
-}
-
-function closeProjectModal() {
-    const modal = document.getElementById('projectModal');
-    modal.style.display = 'none';
-    document.body.style.overflow = '';
-    currentOpenModal = null;
-}
-
-// Function to update modal content when language changes
-function updateModalContent() {
-    if (currentOpenModal) {
-        openProjectModal(currentOpenModal);
     }
-}
 
-// Close modal when clicking outside
-document.addEventListener('click', (e) => {
-    const modal = document.getElementById('projectModal');
-    if (e.target === modal) {
-        closeProjectModal();
+    // Escape to close context menu
+    if (e.key === 'Escape') {
+        document.getElementById('contextMenu').classList.remove('active');
     }
 });
 
-// ===== ENHANCED PROJECT CARD ANIMATIONS =====
-function initProjectCardAnimations() {
-    const projectCards = document.querySelectorAll('.project-card');
-
-    const cardObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in');
-                entry.target.style.animationDelay = `${Math.random() * 0.3}s`;
-            }
-        });
-    }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    });
-
-    projectCards.forEach(card => {
-        cardObserver.observe(card);
-    });
-}
-
-// ===== SCROLL DOWN BUTTON =====
-document.addEventListener('DOMContentLoaded', function () {
-    var scrollDown = document.querySelector('.scroll-down');
-    if (scrollDown) {
-        scrollDown.addEventListener('click', function () {
-            var aboutSection = document.getElementById('about');
-            if (aboutSection) {
-                aboutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        });
+// Prevent text selection while dragging
+document.addEventListener('selectstart', function(e) {
+    if (isDragging) {
+        e.preventDefault();
     }
 });
+
+// Window resize observer for responsive behavior
+window.addEventListener('resize', function() {
+    const windows = document.querySelectorAll('.window.active');
+
+    windows.forEach(window => {
+        if (!window.classList.contains('maximized')) {
+            // Ensure windows stay within viewport
+            const rect = window.getBoundingClientRect();
+
+            if (rect.right > window.innerWidth) {
+                window.style.left = (window.innerWidth - rect.width - 20) + 'px';
+            }
+
+            if (rect.bottom > window.innerHeight - 50) {
+                window.style.top = (window.innerHeight - 50 - rect.height - 20) + 'px';
+            }
+        }
+    });
+});
+
+// Touch support for mobile
+let touchStartX = 0;
+let touchStartY = 0;
+let touchElement = null;
+
+document.addEventListener('touchstart', function(e) {
+    const target = e.target.closest('.window-header');
+    if (!target) return;
+
+    const window = target.closest('.window');
+    if (window.classList.contains('maximized')) return;
+
+    touchElement = window;
+    touchStartX = e.touches[0].clientX - window.offsetLeft;
+    touchStartY = e.touches[0].clientY - window.offsetTop;
+}, { passive: true });
+
+document.addEventListener('touchmove', function(e) {
+    if (!touchElement) return;
+
+    const currentX = e.touches[0].clientX - touchStartX;
+    const currentY = e.touches[0].clientY - touchStartY;
+
+    // Boundary checks
+    const maxX = window.innerWidth - touchElement.offsetWidth;
+    const maxY = window.innerHeight - 50 - touchElement.offsetHeight;
+
+    const boundedX = Math.max(0, Math.min(currentX, maxX));
+    const boundedY = Math.max(0, Math.min(currentY, maxY));
+
+    touchElement.style.left = boundedX + 'px';
+    touchElement.style.top = boundedY + 'px';
+}, { passive: true });
+
+document.addEventListener('touchend', function() {
+    touchElement = null;
+}, { passive: true });
+
+// Console welcome message
+console.log('%c🖥️ Windows Desktop Portfolio', 'font-size: 20px; font-weight: bold; color: #0078d4;');
+console.log('%cWelcome to my interactive portfolio! Feel free to explore.', 'font-size: 14px; color: #666;');
+console.log('%cBuilt with vanilla JavaScript, HTML & CSS', 'font-size: 12px; color: #999;');
