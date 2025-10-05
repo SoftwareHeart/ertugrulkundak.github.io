@@ -1240,3 +1240,520 @@ body {
 .window.minimizing {
     animation: minimizeToTaskbar 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* ===============================================
+   SKILL TREE - RETRO RPG GAME STYLE
+   =============================================== */
+
+/* Game Header */
+.skills-content {
+    background: linear-gradient(180deg, #1a1a2e 0%, #0f0f1e 100%);
+    color: #fff;
+    padding: 0;
+    overflow-y: auto;
+    font-family: 'Courier New', monospace;
+}
+
+.game-header {
+    background: linear-gradient(90deg, #16213e 0%, #0f3460 100%);
+    padding: 20px;
+    border-bottom: 3px solid #e94560;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
+}
+
+.player-stats {
+    display: flex;
+    gap: 20px;
+}
+
+.stat-box {
+    background: rgba(0, 0, 0, 0.4);
+    border: 2px solid #00d9ff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+    animation: statPulse 2s infinite;
+}
+
+@keyframes statPulse {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(0, 217, 255, 0.8);
+    }
+}
+
+.stat-label {
+    display: block;
+    font-size: 10px;
+    color: #00d9ff;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    display: block;
+    font-size: 20px;
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.achievement-badge {
+    background: linear-gradient(135deg, #ffd700 0%, #ffaa00 100%);
+    color: #000;
+    padding: 10px 20px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+    animation: badgeFloat 3s ease-in-out infinite;
+}
+
+@keyframes badgeFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.achievement-badge i {
+    font-size: 20px;
+    animation: trophySpin 4s linear infinite;
+}
+
+@keyframes trophySpin {
+    0%, 90% {
+        transform: rotate(0deg);
+    }
+    95% {
+        transform: rotate(15deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+/* Skill Tree Container */
+.skill-tree-container {
+    padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+}
+
+/* Skill Branch */
+.skill-branch {
+    background: rgba(22, 33, 62, 0.6);
+    border: 2px solid;
+    border-radius: 15px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.skill-branch::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+    animation: scanline 8s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes scanline {
+    0% {
+        transform: translateY(-50%);
+    }
+    100% {
+        transform: translateY(50%);
+    }
+}
+
+.backend-branch {
+    border-color: #00d9ff;
+    box-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+}
+
+.frontend-branch {
+    border-color: #e94560;
+    box-shadow: 0 0 20px rgba(233, 69, 96, 0.3);
+}
+
+.database-branch {
+    border-color: #ffd700;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.ai-branch {
+    border-color: #9d4edd;
+    box-shadow: 0 0 20px rgba(157, 78, 221, 0.3);
+}
+
+.tools-branch {
+    border-color: #06ffa5;
+    box-shadow: 0 0 20px rgba(6, 255, 165, 0.3);
+}
+
+.skill-branch:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Branch Title */
+.branch-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+}
+
+.branch-title i {
+    font-size: 28px;
+    color: inherit;
+    filter: drop-shadow(0 0 10px currentColor);
+}
+
+.backend-branch .branch-title i {
+    color: #00d9ff;
+}
+
+.frontend-branch .branch-title i {
+    color: #e94560;
+}
+
+.database-branch .branch-title i {
+    color: #ffd700;
+}
+
+.ai-branch .branch-title i {
+    color: #9d4edd;
+}
+
+.tools-branch .branch-title i {
+    color: #06ffa5;
+}
+
+.branch-title h3 {
+    font-size: 20px;
+    font-weight: bold;
+    flex: 1;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.level-badge {
+    background: rgba(0, 0, 0, 0.6);
+    color: #ffd700;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border: 2px solid #ffd700;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    letter-spacing: 1px;
+}
+
+/* Skill Nodes */
+.skill-nodes {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.skill-node {
+    background: rgba(0, 0, 0, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-node::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.skill-node:hover::before {
+    left: 100%;
+}
+
+.skill-node.unlocked {
+    border-color: #00ff00;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+}
+
+.skill-node:hover {
+    transform: translateX(10px);
+    border-color: #fff;
+    box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+}
+
+.node-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.skill-node.unlocked .node-icon {
+    background: linear-gradient(135deg, rgba(0, 255, 0, 0.2), rgba(0, 255, 0, 0.1));
+    border-color: #00ff00;
+    animation: nodeGlow 2s ease-in-out infinite;
+}
+
+@keyframes nodeGlow {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(0, 255, 0, 0.8);
+    }
+}
+
+.node-icon i {
+    color: #fff;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+}
+
+.node-info {
+    flex: 1;
+}
+
+.skill-name {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #fff;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+/* Skill Progress Bar */
+.skill-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.skill-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #00ff00, #00aa00);
+    border-radius: 4px;
+    position: relative;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    animation: progressShine 2s ease-in-out infinite;
+}
+
+@keyframes progressShine {
+    0%, 100% {
+        filter: brightness(1);
+    }
+    50% {
+        filter: brightness(1.2);
+    }
+}
+
+.skill-level {
+    font-size: 12px;
+    color: #00ff00;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+/* Achievements Section */
+.achievements-section {
+    padding: 30px;
+    background: rgba(15, 15, 30, 0.8);
+    border-top: 3px solid #e94560;
+}
+
+.achievements-section h3 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 25px;
+    color: #ffd700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+.achievements-section h3 i {
+    color: #ffd700;
+    margin-right: 10px;
+    animation: trophyBounce 1s ease-in-out infinite;
+}
+
+@keyframes trophyBounce {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-5px) scale(1.1);
+    }
+}
+
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.achievement-card {
+    background: linear-gradient(135deg, rgba(22, 33, 62, 0.8), rgba(15, 52, 96, 0.8));
+    border: 2px solid #00d9ff;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.achievement-card::after {
+    content: '✓';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    background: #00ff00;
+    color: #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
+}
+
+.achievement-card:hover {
+    transform: scale(1.05) rotate(2deg);
+    box-shadow: 0 10px 30px rgba(0, 217, 255, 0.5);
+    border-color: #ffd700;
+}
+
+.achievement-card i {
+    font-size: 40px;
+    color: #ffd700;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+    transition: transform 0.3s ease;
+}
+
+.achievement-card:hover i {
+    transform: scale(1.2) rotate(10deg);
+}
+
+.achievement-card span {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.achievement-card p {
+    font-size: 12px;
+    color: #00d9ff;
+    margin: 0;
+}
+
+/* Retro Footer */
+.retro-footer {
+    background: #000;
+    padding: 20px;
+    text-align: center;
+    border-top: 2px solid #00ff00;
+}
+
+.retro-footer p {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #00ff00;
+    letter-spacing: 2px;
+}
+
+.blink-text {
+    animation: blink 1s linear infinite;
+    color: #ffd700 !important;
+    font-weight: bold;
+    font-size: 16px !important;
+}
+
+@keyframes blink {
+    0%, 49% {
+        opacity: 1;
+    }
+    50%, 100% {
+        opacity: 0;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .skill-tree-container {
+        grid-template-columns: 1fr;
+        padding: 15px;
+    }
+
+    .game-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .player-stats {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .achievements-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+}
