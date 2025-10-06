@@ -138,12 +138,12 @@ function initializeStartMenu() {
         }
     });
 
-    // Power button (optional - just closes menu for now)
+    // Power button - closes browser tab with animation
     const powerBtn = document.querySelector('.start-menu-power');
     if (powerBtn) {
         powerBtn.addEventListener('click', function() {
             startMenu.classList.remove('active');
-            // You can add additional functionality here
+            shutdownComputer();
         });
     }
 }
@@ -450,6 +450,56 @@ document.addEventListener('touchmove', function(e) {
 document.addEventListener('touchend', function() {
     touchElement = null;
 }, { passive: true });
+
+// Shutdown Computer Function
+function shutdownComputer() {
+    const loadingScreen = document.getElementById('loadingScreen');
+
+    // Show loading screen again with shutdown text
+    const loadingText = loadingScreen.querySelector('.loading-text');
+    const mainTitle = loadingScreen.querySelector('h1');
+    const subtitle = loadingScreen.querySelector('p:not(.loading-text)');
+    const windowsLogo = loadingScreen.querySelector('.windows-logo');
+    const loadingBar = loadingScreen.querySelector('.loading-bar');
+
+    // Change text and hide elements
+    loadingText.textContent = 'Kapatılıyor...';
+    mainTitle.textContent = 'Güle güle';
+    subtitle.textContent = 'Sistem kapatılıyor';
+
+    // Hide loading bar
+    loadingBar.style.opacity = '0';
+
+    // Show the loading screen with shutdown animation
+    loadingScreen.classList.remove('hidden');
+    loadingScreen.classList.add('shutdown');
+
+    // Add spinning animation to Windows logo
+    windowsLogo.style.animation = 'shutdownSpin 2s ease-out forwards';
+
+    // Wait for animation to complete, then close the tab
+    setTimeout(() => {
+        // Try to close the window/tab
+        window.close();
+
+        // If window.close() doesn't work (browser security), show a message
+        setTimeout(() => {
+            loadingScreen.style.background = '#000';
+            loadingText.textContent = 'Bu sekme otomatik kapatılamıyor';
+            loadingText.style.fontSize = '14px';
+            mainTitle.style.display = 'none';
+            subtitle.style.display = 'none';
+            windowsLogo.style.display = 'none';
+
+            const closeMessage = document.createElement('p');
+            closeMessage.textContent = 'Lütfen sekmeyi manuel olarak kapatın (Ctrl+W)';
+            closeMessage.style.fontSize = '12px';
+            closeMessage.style.marginTop = '10px';
+            closeMessage.style.opacity = '0.7';
+            loadingScreen.querySelector('.loading-content').appendChild(closeMessage);
+        }, 500);
+    }, 2500);
+}
 
 // Console welcome message
 console.log('%c🖥️ Windows Desktop Portfolio', 'font-size: 20px; font-weight: bold; color: #0078d4;');
