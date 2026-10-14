@@ -395,22 +395,10 @@ document.addEventListener('selectstart', function(e) {
 
 // Window resize observer for responsive behavior
 window.addEventListener('resize', function() {
-    const windows = document.querySelectorAll('.window.active');
+    const openWindows = document.querySelectorAll('.window.active');
 
-    windows.forEach(window => {
-        if (!window.classList.contains('maximized')) {
-            // Ensure windows stay within viewport
-            const rect = window.getBoundingClientRect();
-
-            if (rect.right > window.innerWidth) {
-                window.style.left = (window.innerWidth - rect.width - 20) + 'px';
-            }
-
-            if (rect.bottom > window.innerHeight - 50) {
-                window.style.top = (window.innerHeight - 50 - rect.height - 20) + 'px';
-            }
-        }
-    });
+    // Pencereler ekran dışında kalmasın
+    openWindows.forEach(win => keepWindowInViewport(win));
 });
 
 // Touch support for mobile
@@ -505,3 +493,195 @@ function shutdownComputer() {
 console.log('%c🖥️ Windows Desktop Portfolio', 'font-size: 20px; font-weight: bold; color: #0078d4;');
 console.log('%cWelcome to my interactive portfolio! Feel free to explore.', 'font-size: 14px; color: #666;');
 console.log('%cBuilt with vanilla JavaScript, HTML & CSS', 'font-size: 12px; color: #999;');
+
+/* ===============================================
+   2026 REFRESH — widget / görev çubuğu kısayolları,
+   kopyalama, tarih, klavye ve konumlandırma
+   =============================================== */
+
+// Pencere konumunu görünür alanın içinde tut (açılışta taşmayı engeller)
+function keepWindowInViewport(win) {
+    if (!win || win.classList.contains('maximized')) return;
+
+    const taskbarHeight = 50;
+    const maxLeft = Math.max(8, window.innerWidth - win.offsetWidth - 8);
+    const maxTop = Math.max(8, window.innerHeight - taskbarHeight - win.offsetHeight - 8);
+
+    const left = Math.min(parseInt(win.style.left, 10) || 0, maxLeft);
+    const top = Math.min(parseInt(win.style.top, 10) || 0, maxTop);
+
+    win.style.left = Math.max(8, left) + 'px';
+    win.style.top = Math.max(8, top) + 'px';
+}
+
+// Mevcut openWindow davranışını koruyup üzerine konum düzeltmesi ekliyoruz
+const baseOpenWindow = openWindow;
+openWindow = function (windowId) {
+    baseOpenWindow(windowId);
+    const win = document.getElementById(windowId);
+    if (win) {
+        // Küçük ekranlarda pencereyi ortala
+        if (window.innerWidth <= 768) {
+            win.style.left = '2.5vw';
+            win.style.top = '12px';
+        }
+        keepWindowInViewport(win);
+    }
+};
+
+// Widget, görev çubuğu ve sağ tık menüsündeki kısayollar
+function initializeShortcuts() {
+    const shortcuts = document.querySelectorAll(
+        '.widget-btn[data-window], .quick-btn[data-window], .context-item[data-window]'
+    );
+
+    shortcuts.forEach(el => {
+        el.addEventListener('click', function () {
+            openWindow(this.getAttribute('data-window'));
+            document.getElementById('contextMenu').classList.remove('active');
+        });
+    });
+}
+
+// Masaüstü simgeleri için klavye desteği
+function initializeIconKeyboard() {
+    document.querySelectorAll('.desktop-icon').forEach(icon => {
+        icon.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openWindow(this.getAttribute('data-window'));
+            }
+        });
+    });
+}
+
+// Başlık çubuğuna çift tıklayarak büyüt / küçült
+function initializeHeaderDoubleClick() {
+    document.querySelectorAll('.window').forEach(win => {
+        const header = win.querySelector('.window-header');
+        if (!header) return;
+
+        header.addEventListener('dblclick', function (e) {
+            if (e.target.closest('.window-controls')) return;
+            maximizeWindow(win.id);
+        });
+    });
+}
+
+// Kısa bildirim (toast)
+let toastTimer = null;
+
+function showToast(message) {
+    const toast = document.getElementById('toast');
+    if (!toast) return;
+
+    toast.textContent = message;
+    toast.classList.add('show');
+
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2000);
+}
+
+// İletişim bilgilerini kopyala
+function initializeCopyButtons() {
+    document.querySelectorAll('.copy-btn[data-copy]').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            const value = this.getAttribute('data-copy');
+            const icon = this.querySelector('i');
+
+            const done = () => {
+                showToast('Kopyalandı: ' + value);
+                if (icon) {
+                    icon.className = 'fas fa-check';
+                    setTimeout(() => (icon.className = 'fas fa-copy'), 1500);
+                }
+            };
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(value).then(done).catch(() => fallbackCopy(value, done));
+            } else {
+                fallbackCopy(value, done);
+            }
+        });
+    });
+}
+
+function fallbackCopy(value, done) {
+    const area = document.createElement('textarea');
+    area.value = value;
+    area.setAttribute('readonly', '');
+    area.style.position = 'fixed';
+    area.style.opacity = '0';
+    document.body.appendChild(area);
+    area.select();
+
+    try {
+        document.execCommand('copy');
+        done();
+    } catch (err) {
+        showToast('Kopyalanamadı, elle kopyalayabilirsiniz');
+    }
+
+    document.body.removeChild(area);
+}
+
+// Saatin altında tarih
+function initializeClockDate() {
+    const dateEl = document.getElementById('clockDate');
+    if (!dateEl) return;
+
+    const render = () => {
+        dateEl.textContent = new Date().toLocaleDateString('tr-TR', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+        });
+    };
+
+    render();
+    setInterval(render, 60000);
+}
+
+// Escape ile başlat menüsünü de kapat
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+        const startMenu = document.getElementById('startMenu');
+        if (startMenu) startMenu.classList.remove('active');
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    initializeShortcuts();
+    initializeIconKeyboard();
+    initializeHeaderDoubleClick();
+    initializeCopyButtons();
+    initializeClockDate();
+});
+
+// Bağlantıyla doğrudan pencere açma (ör. ?open=projeler) ve geniş ekranda
+// açılışta CV'yi gösterme — ziyaretçi boş bir masaüstü ile karşılaşmasın
+const WINDOW_ALIASES = {
+    projects: 'projects-window',
+    projeler: 'projects-window',
+    cv: 'cv-window',
+    about: 'about-window',
+    hakkimda: 'about-window',
+    contact: 'contact-window',
+    iletisim: 'contact-window',
+    timeline: 'timeline-window',
+    kariyer: 'timeline-window',
+    skills: 'skills-window',
+    yetenekler: 'skills-window'
+};
+
+document.addEventListener('DOMContentLoaded', function () {
+    const requested = new URLSearchParams(window.location.search).get('open');
+    const targetId = requested
+        ? (WINDOW_ALIASES[requested.toLowerCase()] || requested)
+        : (window.innerWidth >= 1024 ? 'cv-window' : null);
+
+    if (!targetId || !document.getElementById(targetId)) return;
+
+    setTimeout(() => openWindow(targetId), 2800);
+});
