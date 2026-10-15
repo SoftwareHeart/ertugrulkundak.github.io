@@ -1,0 +1,423 @@
+/* ===============================================
+   MOBİL KATMAN — telefon ana ekranı, alt dock,
+   tam ekran "sheet" pencereler (≤ 768px)
+   style.css'ten SONRA yüklenmelidir.
+   =============================================== */
+
+@keyframes sheetUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+@keyframes sheetDown {
+    from { transform: translateY(var(--sheet-dy, 0px)); }
+    to { transform: translateY(100%); }
+}
+
+@keyframes iconIn {
+    from { opacity: 0; transform: translateY(10px) scale(0.96); }
+    to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 768px) {
+    html, body {
+        height: 100%;
+        height: 100dvh;
+    }
+
+    body {
+        background-attachment: scroll, scroll, scroll;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* --- Açılış ekranı --- */
+    .loading-content { padding: 0 28px; }
+    .windows-logo { font-size: 64px; margin-bottom: 24px; }
+    .loading-content h1 { font-size: 26px; }
+    .loading-content p { font-size: 14px; margin-bottom: 32px; }
+    .loading-bar { width: min(240px, 70vw); }
+
+    /* --- Ana ekran --- */
+    .desktop {
+        height: 100%;
+        height: 100dvh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-auto-rows: auto;
+        grid-auto-flow: row;
+        align-content: start;
+        gap: 16px 6px;
+        padding: calc(env(safe-area-inset-top, 0px) + 16px) 14px calc(env(safe-area-inset-bottom, 0px) + 112px);
+    }
+
+    .desktop::before {
+        content: 'Uygulamalar';
+        grid-column: 1 / -1;
+        order: -1;
+        margin: 6px 4px -4px;
+        font-size: 11.5px;
+        font-weight: 700;
+        letter-spacing: 1.1px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.78);
+        text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+    }
+
+    .desktop-widget {
+        display: flex;
+        position: static;
+        width: auto;
+        grid-column: 1 / -1;
+        order: -2;
+        padding: 18px;
+        gap: 14px;
+        border-radius: 22px;
+        background: rgba(12, 18, 30, 0.62);
+    }
+
+    .widget-id h2 { font-size: 18px; }
+    .widget-id p { font-size: 12.5px; }
+
+    .widget-stats {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 6px;
+    }
+
+    .widget-stat {
+        padding: 10px 8px;
+        border-radius: 12px;
+        align-items: flex-start;
+    }
+
+    .widget-stat strong { font-size: 17px; line-height: 1.1; }
+    .widget-stat span { font-size: 10.5px; line-height: 1.25; }
+
+    .widget-actions { gap: 8px; flex-wrap: nowrap; }
+
+    .widget-btn {
+        min-height: 44px;
+        justify-content: center;
+        font-size: 13px;
+        border-radius: 12px;
+    }
+
+    .widget-btn[data-window] { flex: 1 1 0; padding: 0 10px; }
+    .widget-btn.icon-only { flex: 0 0 44px; padding: 0; }
+
+    .desktop-icon {
+        width: auto;
+        height: auto;
+        padding: 6px 0;
+        gap: 8px;
+        border-radius: 16px;
+        border: none;
+        animation: iconIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    }
+
+    .desktop-icon:nth-child(2) { animation-delay: 40ms; }
+    .desktop-icon:nth-child(3) { animation-delay: 80ms; }
+    .desktop-icon:nth-child(4) { animation-delay: 120ms; }
+    .desktop-icon:nth-child(5) { animation-delay: 160ms; }
+    .desktop-icon:nth-child(6) { animation-delay: 200ms; }
+
+    .desktop-icon .icon-tile {
+        width: 60px;
+        height: 60px;
+        border-radius: 18px;
+    }
+
+    .desktop-icon .icon-tile i { font-size: 25px; }
+
+    .desktop-icon .icon-label {
+        font-size: 11.5px;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .context-menu { display: none !important; }
+
+    /* --- Alt dock (görev çubuğu) --- */
+    .taskbar {
+        left: 12px;
+        right: 12px;
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 12px);
+        width: auto;
+        height: 70px;
+        padding: 0 6px;
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(14, 18, 28, 0.72);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+        justify-content: space-around;
+        transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.25s ease;
+    }
+
+    .taskbar-start,
+    .taskbar-quick {
+        flex: 1 1 0;
+        display: flex;
+        justify-content: space-around;
+        padding: 0;
+        margin: 0;
+        border: none;
+    }
+
+    .taskbar-start { flex: 0 0 25%; }
+    .taskbar-items,
+    .taskbar-tray { display: none; }
+
+    .start-btn,
+    .quick-btn {
+        width: 66px;
+        height: 56px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        border-radius: 16px;
+        font-size: 19px;
+        color: #fff;
+        font-family: inherit;
+    }
+
+    .start-btn::after,
+    .quick-btn::after {
+        content: attr(title);
+        font-size: 10.5px;
+        font-weight: 600;
+        letter-spacing: 0.2px;
+        color: rgba(255, 255, 255, 0.78);
+    }
+
+    .start-btn:active,
+    .quick-btn:active { background: rgba(255, 255, 255, 0.14); }
+
+    .start-btn.is-open { background: rgba(255, 255, 255, 0.16); }
+
+    body.sheet-open .taskbar {
+        transform: translateY(140%);
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    /* --- Başlat menüsü: alt sayfa --- */
+    .start-menu {
+        left: 12px;
+        right: 12px;
+        width: auto;
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 94px);
+        max-height: calc(100dvh - env(safe-area-inset-top, 0px) - 120px);
+        overflow-y: auto;
+        border-radius: 24px;
+    }
+
+    .start-menu-header { padding: 18px 20px; }
+    .start-menu-items { max-height: none; padding: 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+    .start-menu-item { margin: 0; padding: 14px 12px; gap: 12px; min-height: 52px; }
+    .start-menu-item i { font-size: 18px; width: 20px; }
+    .start-menu-item span { font-size: 13.5px; }
+    .start-menu-links { justify-content: space-between; padding: 12px 16px; }
+    .start-menu-links a { width: 48px; height: 44px; font-size: 16px; border-radius: 12px; }
+    .start-menu-footer { padding: 8px; }
+
+    /* --- Pencereler: alttan açılan tam ekran sayfa --- */
+    .window,
+    .window.maximized,
+    #cv-window,
+    #projects-window,
+    #about-window,
+    #contact-window,
+    #timeline-window,
+    #skills-window {
+        position: fixed !important;
+        top: calc(env(safe-area-inset-top, 0px) + 10px) !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: auto !important;
+        height: auto !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        border: none !important;
+        border-radius: 22px 22px 0 0 !important;
+        z-index: 10000 !important;
+        resize: none !important;
+        box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    .window.opening { animation: sheetUp 0.42s cubic-bezier(0.2, 0.85, 0.25, 1); }
+
+    .window.closing,
+    .window.minimizing { animation: sheetDown 0.3s cubic-bezier(0.4, 0, 1, 1) forwards; }
+
+    .window.dragging { transition: none !important; }
+
+    body::after {
+        content: '';
+        position: fixed;
+        inset: 0;
+        z-index: 9998;
+        background: rgba(3, 7, 15, 0.55);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+
+    body.sheet-open::after { opacity: 1; }
+
+    .window-header {
+        position: relative;
+        padding: 20px 14px 12px 18px;
+        cursor: default;
+        touch-action: none;
+    }
+
+    .window-header::before {
+        content: '';
+        position: absolute;
+        top: 7px;
+        left: 50%;
+        width: 38px;
+        height: 5px;
+        border-radius: 999px;
+        background: rgba(17, 24, 42, 0.18);
+        transform: translateX(-50%);
+    }
+
+    .window-title { font-size: 15px; min-width: 0; }
+    .window-title span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+    .minimize-btn,
+    .maximize-btn { display: none !important; }
+
+    .window-controls button.close-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        font-size: 14px;
+        background: rgba(17, 24, 42, 0.07);
+        color: #334155;
+    }
+
+    .window-controls button.close-btn:active { background: rgba(17, 24, 42, 0.16); }
+
+    .window-content {
+        padding: 20px 18px calc(env(safe-area-inset-bottom, 0px) + 28px);
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* --- Projeler --- */
+    .section-intro { margin-bottom: 18px; }
+    .section-intro h2 { font-size: 20px; }
+    .projects-grid { grid-template-columns: 1fr; gap: 12px; }
+    .project-card { padding: 18px; border-radius: 16px; }
+    .project-card h3 { font-size: 16px; }
+    .project-card p { font-size: 14px; }
+    .project-link { min-height: 40px; }
+
+    /* --- CV --- */
+    .cv-hero { padding: 20px; gap: 14px; margin-bottom: 24px; border-radius: 20px; }
+    .cv-hero-avatar { width: 56px; height: 56px; flex-basis: 56px; border-radius: 16px; font-size: 19px; }
+    .cv-hero-info h1 { font-size: 22px; }
+    .cv-hero-role { font-size: 13.5px; line-height: 1.45; }
+    .cv-hero-meta { flex-direction: column; gap: 10px; font-size: 13px; }
+    .cv-hero-meta a, .cv-hero-meta span { word-break: break-word; }
+    .cv-content h2 { font-size: 17.5px; }
+    .cv-section { margin-bottom: 26px; }
+    .cv-section p { font-size: 14.5px; }
+    .cv-item { padding-left: 14px; margin: 18px 0; }
+    .cv-item ul { padding-left: 18px; }
+    .cv-item li { font-size: 14px; line-height: 1.65; margin-bottom: 6px; }
+    .chip { font-size: 12.5px; padding: 6px 11px; }
+    .lang-grid { grid-template-columns: 1fr 1fr; }
+    .cv-download-btn { display: flex; justify-content: center; width: 100%; padding: 15px 20px; }
+
+    /* --- Hakkımda --- */
+    .notepad-content pre { font-size: 12px; line-height: 1.7; }
+
+    /* --- İletişim --- */
+    .contact-content h2 { font-size: 21px; }
+    .contact-intro { margin-bottom: 20px; font-size: 14px; }
+    .contact-item { padding: 12px 12px 12px 14px; margin: 10px 0; min-height: 58px; }
+    .contact-item i { font-size: 19px; flex: 0 0 22px; }
+    .contact-item a, .contact-item span { font-size: 14px; min-width: 0; overflow-wrap: anywhere; }
+    .copy-btn { width: 40px; height: 40px; flex-basis: 40px; }
+    .contact-cta { margin-top: 20px; }
+
+    /* --- Kariyer --- */
+    .timeline-content h2 { font-size: 20px; margin-bottom: 8px; }
+    .timeline { padding: 24px 0 0; }
+    .timeline-content-box { padding: 18px; border-width: 2px; border-radius: 14px; }
+    .timeline-content-box h3 { font-size: 16.5px; }
+    .timeline-content-box li { font-size: 13.5px; line-height: 1.6; }
+    .timeline-marker::before { font-size: 32px; }
+
+    /* --- Skill Tree --- */
+    .skills-content { padding: 0 !important; }
+    .game-header { padding: 16px; gap: 14px; }
+    .player-stats { display: grid; grid-template-columns: 1fr 1fr; width: 100%; gap: 8px; }
+    .stat-box { padding: 10px 8px; }
+    .stat-label { font-size: 9.5px; letter-spacing: 1.5px; }
+    .stat-value { font-size: 14px; }
+    .achievement-badge { font-size: 13px; padding: 8px 16px; }
+    .skill-tree-container { grid-template-columns: 1fr !important; padding: 16px; gap: 16px; }
+    .skill-branch { padding: 16px; border-radius: 14px; }
+    .branch-title { gap: 10px; margin-bottom: 14px; padding-bottom: 12px; }
+    .branch-title i { font-size: 22px; }
+    .branch-title h3 { font-size: 14.5px; letter-spacing: 1px; }
+    .level-badge { font-size: 11.5px; padding: 4px 10px; white-space: nowrap; }
+    .skill-nodes { gap: 10px; }
+    .skill-node { padding: 12px; gap: 12px; }
+    .node-icon { width: 40px; height: 40px; font-size: 18px; }
+    .skill-name { font-size: 14px; margin-bottom: 6px; }
+    .skill-level { font-size: 10.5px; }
+    .achievements-section { padding: 20px 16px; }
+    .achievements-section h3 { font-size: 17px; letter-spacing: 1.5px; margin-bottom: 16px; }
+    .achievements-grid { grid-template-columns: 1fr 1fr !important; gap: 10px; }
+    .achievement-card { padding: 16px 10px; border-radius: 12px; }
+    .achievement-card::after { width: 22px; height: 22px; font-size: 13px; top: 8px; right: 8px; }
+    .achievement-card i { font-size: 28px; margin-bottom: 10px; }
+    .achievement-card span { font-size: 12.5px; letter-spacing: 0.5px; }
+    .achievement-card p { font-size: 11.5px; }
+    .retro-footer { padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 20px); }
+    .retro-footer p { font-size: 12px; letter-spacing: 1px; }
+
+    /* --- Bildirim --- */
+    .toast {
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 24px);
+        max-width: calc(100vw - 32px);
+        text-align: center;
+    }
+}
+
+@media (max-width: 360px) {
+    .desktop { padding-left: 10px; padding-right: 10px; gap: 14px 4px; }
+    .desktop-icon .icon-tile { width: 54px; height: 54px; border-radius: 16px; }
+    .widget-stats { grid-template-columns: 1fr 1fr; }
+    .start-btn, .quick-btn { width: 58px; }
+}
+
+/* Dokunmatik cihazlarda hover efektleri yapışmasın */
+@media (hover: none) {
+    .desktop-icon:hover { background: transparent; transform: none; }
+    .desktop-icon:hover .icon-tile { transform: none; }
+    .desktop-icon:active .icon-tile { transform: scale(0.92); }
+    .project-card:hover,
+    .contact-item:hover,
+    .skill-node:hover,
+    .skill-branch:hover,
+    .achievement-card:hover,
+    .timeline-content-box:hover,
+    .widget-btn:hover { transform: none; }
+    .achievement-card:hover i { transform: none; }
+}
