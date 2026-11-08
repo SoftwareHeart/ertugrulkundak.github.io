@@ -139,7 +139,7 @@ function initializeStartMenu() {
     });
 
     // Power button - closes browser tab with animation
-    const powerBtn = document.querySelector('.start-menu-power');
+    const powerBtn = document.getElementById('shutdownBtn') || document.querySelector('.start-menu-power');
     if (powerBtn) {
         powerBtn.addEventListener('click', function() {
             startMenu.classList.remove('active');
@@ -439,6 +439,11 @@ document.addEventListener('touchend', function() {
     touchElement = null;
 }, { passive: true });
 
+// TR/EN seçimine göre metin (i18n.js yüklenmediyse Türkçe)
+function pick(tr, en) {
+    return window.I18N ? window.I18N.L(tr, en) : tr;
+}
+
 // Shutdown Computer Function
 function shutdownComputer() {
     const loadingScreen = document.getElementById('loadingScreen');
@@ -451,9 +456,9 @@ function shutdownComputer() {
     const loadingBar = loadingScreen.querySelector('.loading-bar');
 
     // Change text and hide elements
-    loadingText.textContent = 'Kapatılıyor...';
-    mainTitle.textContent = 'Güle güle';
-    subtitle.textContent = 'Sistem kapatılıyor';
+    loadingText.textContent = pick('Kapatılıyor...', 'Shutting down...');
+    mainTitle.textContent = pick('Güle güle', 'Goodbye');
+    subtitle.textContent = pick('Sistem kapatılıyor', 'The system is shutting down');
 
     // Hide loading bar
     loadingBar.style.opacity = '0';
@@ -473,14 +478,14 @@ function shutdownComputer() {
         // If window.close() doesn't work (browser security), show a message
         setTimeout(() => {
             loadingScreen.style.background = '#000';
-            loadingText.textContent = 'Bu sekme otomatik kapatılamıyor';
+            loadingText.textContent = pick('Bu sekme otomatik kapatılamıyor', 'This tab cannot be closed automatically');
             loadingText.style.fontSize = '14px';
             mainTitle.style.display = 'none';
             subtitle.style.display = 'none';
             windowsLogo.style.display = 'none';
 
             const closeMessage = document.createElement('p');
-            closeMessage.textContent = 'Lütfen sekmeyi manuel olarak kapatın (Ctrl+W)';
+            closeMessage.textContent = pick('Lütfen sekmeyi manuel olarak kapatın (Ctrl+W)', 'Please close the tab manually (Ctrl+W)');
             closeMessage.style.fontSize = '12px';
             closeMessage.style.marginTop = '10px';
             closeMessage.style.opacity = '0.7';
@@ -591,7 +596,7 @@ function initializeCopyButtons() {
             const icon = this.querySelector('i');
 
             const done = () => {
-                showToast('Kopyalandı: ' + value);
+                showToast(pick('Kopyalandı: ', 'Copied: ') + value);
                 if (icon) {
                     icon.className = 'fas fa-check';
                     setTimeout(() => (icon.className = 'fas fa-copy'), 1500);
@@ -620,7 +625,7 @@ function fallbackCopy(value, done) {
         document.execCommand('copy');
         done();
     } catch (err) {
-        showToast('Kopyalanamadı, elle kopyalayabilirsiniz');
+        showToast(pick('Kopyalanamadı, elle kopyalayabilirsiniz', 'Could not copy, please copy it manually'));
     }
 
     document.body.removeChild(area);

@@ -16,12 +16,44 @@
     <meta property="og:description"
         content="Bankacılık ve fintech alanında 2,5+ yıl deneyim. Core banking geliştirme, servis entegrasyonları, Oracle/MSSQL optimizasyonu, ASP.NET Core ile RESTful API.">
     <meta property="og:url" content="https://softwareheart.github.io/ertugrulkundak.github.io/">
-    <meta name="twitter:card" content="summary">
+    <meta property="og:image" content="https://softwareheart.github.io/ertugrulkundak.github.io/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Ertuğrul Kundak — Yazılım Mühendisi, Backend ve Full Stack">
+    <meta property="og:locale" content="tr_TR">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:site_name" content="Ertuğrul Kundak">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ertuğrul Kundak | Yazılım Mühendisi — Backend &amp; Full Stack">
+    <meta name="twitter:description" content="Bankacılık ve fintech alanında 2,5+ yıl deneyim. Core banking, servis entegrasyonları, ASP.NET Core, Java, Oracle.">
+    <meta name="twitter:image" content="https://softwareheart.github.io/ertugrulkundak.github.io/og-image.png">
+    <link rel="canonical" href="https://softwareheart.github.io/ertugrulkundak.github.io/">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Ertuğrul Kundak",
+        "jobTitle": "Yazılım Mühendisi",
+        "url": "https://softwareheart.github.io/ertugrulkundak.github.io/",
+        "email": "mailto:ertugrulkundak@hotmail.com",
+        "address": { "@type": "PostalAddress", "addressLocality": "İstanbul", "addressCountry": "TR" },
+        "worksFor": { "@type": "Organization", "name": "Şekerbank T.A.Ş." },
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "Manisa Celal Bayar Üniversitesi" },
+        "sameAs": [
+            "https://github.com/SoftwareHeart",
+            "https://www.linkedin.com/in/ertugrul-kundak/"
+        ],
+        "knowsAbout": ["C#", "Java", "ASP.NET Core", "Next.js", "TypeScript", "Oracle", "PostgreSQL", "RESTful API", "Core Banking"]
+    }
+    </script>
+    <!-- İsteğe bağlı analitik: hesap açtıktan sonra aşağıdaki satırı açın (olaylar features.js içinde hazır).
+    <script defer data-domain="softwareheart.github.io" src="https://plausible.io/js/script.js"></script> -->
     <link rel="icon"
         href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230078d4'/%3E%3Ctext x='32' y='44' font-family='Segoe UI,Arial,sans-serif' font-size='30' font-weight='700' text-anchor='middle' fill='white'%3EEK%3C/text%3E%3C/svg%3E">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="features.css">
 </head>
 
 <body>
@@ -66,6 +98,18 @@
         <div class="desktop-icon" data-window="skills-window" tabindex="0" role="button" aria-label="Skill Tree">
             <span class="icon-tile tile-green"><i class="fas fa-gamepad"></i></span>
             <span class="icon-label">SkillTree.exe</span>
+        </div>
+        <div class="desktop-icon" data-window="terminal-window" tabindex="0" role="button" aria-label="Terminal">
+            <span class="icon-tile tile-dark"><i class="fas fa-terminal"></i></span>
+            <span class="icon-label">Terminal.exe</span>
+        </div>
+        <div class="desktop-icon" data-window="minesweeper-window" tabindex="0" role="button" aria-label="Mayın Tarlası">
+            <span class="icon-tile tile-pink"><i class="fas fa-bomb"></i></span>
+            <span class="icon-label">Mayın.exe</span>
+        </div>
+        <div class="desktop-icon" data-window="notes-window" tabindex="0" role="button" aria-label="Notlar">
+            <span class="icon-tile tile-sky"><i class="fas fa-pen-nib"></i></span>
+            <span class="icon-label">Notlar.md</span>
         </div>
 
         <!-- Desktop Widget -->
@@ -117,7 +161,16 @@
         <a class="context-item" href="mailto:ertugrulkundak@hotmail.com">
             <i class="fas fa-envelope"></i> E-posta Gönder
         </a>
+        <div class="context-item" data-window="terminal-window">
+            <i class="fas fa-terminal"></i> Terminal
+        </div>
         <div class="context-separator"></div>
+        <div class="context-item" data-window="wallpaper-window">
+            <i class="fas fa-image"></i> Masaüstünü Özelleştir
+        </div>
+        <div class="context-item" data-action="bsod">
+            <i class="fas fa-skull-crossbones"></i> Sistem Hatası (Şaka)
+        </div>
         <div class="context-item" onclick="refreshDesktop()">
             <i class="fas fa-sync"></i> Yenile
         </div>
@@ -150,6 +203,31 @@
                 <p>Bankacılık ve finansal teknoloji alanında geliştirdiğim kurumsal ve kişisel projeler.</p>
             </div>
             <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-cart-shopping"></i></div>
+                    <h3>BkCompany &mdash; Uçtan Uca E-Ticaret Platformu</h3>
+                    <div class="tech-tags">
+                        <span class="tag">Next.js 16</span>
+                        <span class="tag">TypeScript</span>
+                        <span class="tag">Prisma</span>
+                        <span class="tag">PostgreSQL</span>
+                        <span class="tag">NextAuth</span>
+                        <span class="tag">Jest</span>
+                    </div>
+                    <p>Türkiye pazarı için tasarladığım, mağaza vitrini ve yönetim panelini birlikte sunan canlı
+                        e-ticaret platformu (~94 bin satır TypeScript, 40+ tablo, 60+ test dosyası). Paynet 3D Secure
+                        ödeme ve iade akışı, misafir ve üye sepeti, kayıtlı kartlar, kupon/kampanya motoru, mesafeli
+                        satış sözleşmesi onayı, terk edilmiş sepet hatırlatmaları, analitik raporlar ve admin paneli.
+                    </p>
+                    <p><strong>Entegrasyonlar:</strong> Paynet (3D Secure ödeme ve iade), Aras Kargo (gönderi kaydı ve
+                        otomatik takip), BiFatura (e-fatura), Trendyol (ürün/kategori senkronu), Resend ve AWS SES
+                        (e-posta), Google OAuth.</p>
+                    <a href="https://bkcompany.com.tr/" target="_blank" rel="noopener" class="project-link">
+                        <i class="fas fa-globe"></i> Canlı Siteyi Görüntüle
+                    </a>
+                    <span class="project-note"><i class="fas fa-lock"></i> Özel repo &mdash; kaynak kod
+                        paylaşılamıyor</span>
+                </div>
                 <div class="project-card">
                     <div class="project-icon"><i class="fas fa-chart-line"></i></div>
                     <h3>Financial Analytics Dashboard</h3>
@@ -290,7 +368,9 @@
                     veritabanı geliştirme alanlarında çalışıyorum. Öncesinde ASP.NET Core ve Entity Framework ile mobil
                     ve web uygulamaları için güvenli RESTful API'ler geliştirdim; portföy sayfası performansını %40
                     iyileştirdim, 30 grafik içeren finansal analiz dashboard'u kurguladım ve KNN algoritması ile yapay
-                    zeka destekli fon öneri sistemi tasarladım.
+                    zeka destekli fon öneri sistemi tasarladım. Kişisel olarak Next.js, TypeScript ve PostgreSQL ile
+                    Paynet ödeme, Aras Kargo ve e-fatura entegrasyonlarını içeren, canlıda çalışan uçtan uca bir
+                    e-ticaret platformu (BkCompany) geliştiriyorum.
                 </p>
                 <p><strong>Güçlü olduğum alanlar:</strong> sistem entegrasyonu, SQL sorgu optimizasyonu, JWT tabanlı
                     kimlik doğrulama, performans iyileştirme ve veri görselleştirme.</p>
@@ -333,6 +413,8 @@
                         <div class="chips">
                             <span class="chip">Oracle</span>
                             <span class="chip">Microsoft SQL Server</span>
+                            <span class="chip">PostgreSQL</span>
+                            <span class="chip">Prisma ORM</span>
                             <span class="chip">Stored Procedure</span>
                             <span class="chip">View</span>
                             <span class="chip">Index Yönetimi</span>
@@ -348,6 +430,11 @@
                             <span class="chip">JSON</span>
                             <span class="chip">XML</span>
                             <span class="chip">API Dokümantasyonu</span>
+                            <span class="chip">Ödeme Entegrasyonu (3D Secure)</span>
+                            <span class="chip">Aras Kargo (SOAP) Entegrasyonu</span>
+                            <span class="chip">e-Fatura Entegrasyonu</span>
+                            <span class="chip">SOAP</span>
+                            <span class="chip">Cron / Zamanlanmış Görevler</span>
                             <span class="chip">Postman</span>
                         </div>
                     </div>
@@ -355,6 +442,9 @@
                         <span class="skill-group-title">Frontend</span>
                         <div class="chips">
                             <span class="chip">React</span>
+                            <span class="chip">Next.js</span>
+                            <span class="chip">TypeScript</span>
+                            <span class="chip">Tailwind CSS</span>
                             <span class="chip">JavaScript (ES6)</span>
                             <span class="chip">Responsive Tasarım</span>
                             <span class="chip">Highcharts</span>
@@ -375,6 +465,9 @@
                         <div class="chips">
                             <span class="chip">Git</span>
                             <span class="chip">GitHub</span>
+                            <span class="chip">Docker</span>
+                            <span class="chip">Coolify</span>
+                            <span class="chip">Jest</span>
                             <span class="chip">Visual Studio</span>
                             <span class="chip">IntelliJ IDEA</span>
                             <span class="chip">VS Code</span>
@@ -459,6 +552,43 @@
             </div>
 
             <div class="cv-section">
+                <h2><i class="fas fa-diagram-project"></i> Kişisel Projeler</h2>
+
+                <div class="cv-item">
+                    <h3>BkCompany &mdash; E-Ticaret Platformu</h3>
+                    <p class="cv-company">Next.js 16 · TypeScript · Prisma · PostgreSQL | Kasım 2025 - Halen |
+                        <a href="https://bkcompany.com.tr/" target="_blank" rel="noopener">bkcompany.com.tr</a></p>
+                    <ul>
+                        <li><strong>Ödeme Altyapısı:</strong> Paynet 3D Secure ödeme, taksit, kayıtlı kart ve tam iade
+                            akışını geliştirdim; stok düşümü, sipariş ve ödeme kaydı tek veritabanı işleminde atomik
+                            yapılıyor, aynı işlem referansı iki kez ödeme üretemiyor.</li>
+                        <li><strong>Sipariş Yaşam Döngüsü:</strong> Tek noktadan yönetilen sipariş durum makinesi,
+                            iptal-iade, iade/değişim talepleri, cayma süresinin tesliminden itibaren işletilmesi ve
+                            misafir siparişlerinin sonradan hesaba güvenli şekilde bağlanması.</li>
+                        <li><strong>Aras Kargo Entegrasyonu:</strong> Aras SOAP servisiyle gönderi kaydı (SetOrder),
+                            koli barkodu ve Code128 sevk fişi üretimi; cron ile (30 dk) takip numarası, kargoya
+                            veriliş ve teslim bilgisinin geri okunması (QT1/QT12), siparişin durum makinesinden
+                            otomatik ilerletilmesi. Aras'ın canlı yanıtlarındaki doküman farklarına karşı yedek sorgu
+                            stratejisi, Türkiye saatine göre tarih çevirme, kaybolan kargonun tespiti ve admin
+                            bildirimi, iptalde önce Aras kaydını kapatıp sonra para iadesi (parası dönmüş paketin yola
+                            çıkmasını önleyen sıralama) ve alıcı ödemeli şube iadesi.</li>
+                        <li><strong>Güvenlik ve Mevzuat:</strong> Google OAuth hesap bağlama kuralları, imzalı sipariş
+                            bağlantıları, IP tabanlı rate limiting ve mesafeli satış sözleşmesi / ön bilgilendirme formu
+                            onayının kayıt altına alınması.</li>
+                        <li><strong>Diğer Entegrasyonlar:</strong> BiFatura e-fatura, Trendyol ürün/kategori senkronu,
+                            Resend ve AWS SES ile işlem e-postaları, terk edilmiş sepet hatırlatmaları.</li>
+                        <li><strong>Dağıtım ve Operasyon:</strong> Docker ve Coolify üzerinde canlı yayın; zamanlanmış
+                            görevler (kargo takibi, sepet hatırlatma, bildirim temizliği), KVKK uyumlu aydınlatma ve
+                            çerez onayı, imzalı e-posta bağlantıları.</li>
+                        <li><strong>Yönetim Paneli ve Analitik:</strong> Ürün/varyant, kampanya, kupon, koleksiyon ve
+                            müşteri yönetimi; CLV, kohort ve stok analizi grafikleri ile raporlama.</li>
+                        <li><strong>Kalite:</strong> 60+ Jest test dosyası, 40+ tablolu Prisma şeması ve 35+ migration;
+                            sahte Paynet/Aras servisleriyle uçtan uca doğrulama akışı.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cv-section">
                 <h2><i class="fas fa-graduation-cap"></i> Eğitim</h2>
                 <div class="cv-item">
                     <h3>Yazılım Mühendisliği, Lisans</h3>
@@ -518,7 +648,7 @@
             </div>
         </div>
         <div class="window-content notepad-content">
-            <pre>=========================================
+            <pre id="aboutText" data-no-i18n>=========================================
              HAKKIMDA
 =========================================
 
@@ -626,6 +756,22 @@ Manisa Celal Bayar Üniversitesi - Yazılım Mühendisliği (2020-2024)
                 <i class="fas fa-location-dot"></i>
                 <span>İstanbul, Türkiye</span>
             </div>
+
+            <form class="contact-form" id="contactForm" novalidate>
+                <h3>Bana Mesaj Gönderin</h3>
+                <label>Adınız
+                    <input type="text" name="name" required autocomplete="name" maxlength="80">
+                </label>
+                <label>E-posta adresiniz
+                    <input type="email" name="email" required autocomplete="email" maxlength="120">
+                </label>
+                <label>Mesajınız
+                    <textarea name="message" rows="4" required maxlength="2000"></textarea>
+                </label>
+                <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+                <button type="submit" class="form-submit"><i class="fas fa-paper-plane"></i> <span>Gönder</span></button>
+                <p class="form-note" id="contactNote" role="status"></p>
+            </form>
 
             <div class="contact-cta">
                 <p>Birlikte harika projeler geliştirelim!</p>
@@ -1273,6 +1419,167 @@ Manisa Celal Bayar Üniversitesi - Yazılım Mühendisliği (2020-2024)
         </div>
     </div>
 
+    <!-- Terminal Window -->
+    <div class="window" id="terminal-window">
+        <div class="window-header">
+            <div class="window-title">
+                <i class="fas fa-terminal"></i>
+                <span>Komut İstemi</span>
+            </div>
+            <div class="window-controls">
+                <button class="minimize-btn" title="Küçült" onclick="minimizeWindow('terminal-window')">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button class="maximize-btn" title="Büyüt" onclick="maximizeWindow('terminal-window')">
+                    <i class="far fa-square"></i>
+                </button>
+                <button class="close-btn" title="Kapat" onclick="closeWindow('terminal-window')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="window-content terminal-content">
+            <div class="term-body" id="termBody" data-no-i18n>
+                <div id="termOutput" aria-live="polite"></div>
+                <div class="term-row">
+                    <label for="termInput">ertugrul@portfolio:~$</label>
+                    <input class="term-input" id="termInput" type="text" autocomplete="off" autocapitalize="off"
+                        autocorrect="off" spellcheck="false" aria-label="Komut">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Minesweeper Window -->
+    <div class="window" id="minesweeper-window">
+        <div class="window-header">
+            <div class="window-title">
+                <i class="fas fa-bomb"></i>
+                <span>Mayın Tarlası</span>
+            </div>
+            <div class="window-controls">
+                <button class="minimize-btn" title="Küçült" onclick="minimizeWindow('minesweeper-window')">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button class="maximize-btn" title="Büyüt" onclick="maximizeWindow('minesweeper-window')">
+                    <i class="far fa-square"></i>
+                </button>
+                <button class="close-btn" title="Kapat" onclick="closeWindow('minesweeper-window')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="window-content ms-content">
+            <div class="ms-toolbar">
+                <select id="msLevel" aria-label="Zorluk">
+                    <option value="easy">Kolay (9×9, 10 mayın)</option>
+                    <option value="medium">Orta (12×12, 24 mayın)</option>
+                </select>
+                <button type="button" class="ms-btn" id="msFlagMode" aria-pressed="false">🚩 <span>Bayrak modu</span></button>
+                <button type="button" class="ms-btn" id="msNew"><span>Yeni Oyun</span></button>
+            </div>
+            <div class="ms-hud" data-no-i18n>
+                <span id="msMines">010</span>
+                <button type="button" class="ms-face" id="msFace" title="Yeni oyun" aria-label="Yeni oyun">🙂</button>
+                <span id="msTime">000</span>
+            </div>
+            <div class="ms-grid" id="msGrid" role="group" aria-label="Mayın tarlası"></div>
+            <p class="ms-status" id="msStatus" role="status" data-no-i18n></p>
+            <p class="ms-hint">Sağ tık veya basılı tutma: bayrak koyar.</p>
+            <p class="ms-hint" id="msBest" data-no-i18n></p>
+        </div>
+    </div>
+
+    <!-- Notes Window -->
+    <div class="window" id="notes-window">
+        <div class="window-header">
+            <div class="window-title">
+                <i class="fas fa-pen-nib"></i>
+                <span>Notlar.md</span>
+            </div>
+            <div class="window-controls">
+                <button class="minimize-btn" title="Küçült" onclick="minimizeWindow('notes-window')">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button class="maximize-btn" title="Büyüt" onclick="maximizeWindow('notes-window')">
+                    <i class="far fa-square"></i>
+                </button>
+                <button class="close-btn" title="Kapat" onclick="closeWindow('notes-window')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="window-content notes-content">
+            <h2>Mühendislik Notları</h2>
+            <p class="notes-intro">BkCompany’yi geliştirirken karşıma çıkan sorunlar ve öğrendiklerim.</p>
+
+            <details class="note-card" open>
+                <summary>Önce kargo, sonra para</summary>
+                <div class="note-body">
+                    <p>Sipariş iptalinde parayı Aras kaydı kapanmadan iade edersem, depodaki sevk fişi okutulduğunda parası dönmüş bir paket yola çıkabilir. BkCompany'de iptal bu yüzden önce Aras kaydını kapatır: takip numarası çıkmışsa iptal durur ve sipariş kargoya alınır, ancak ondan sonra Paynet iadesi yapılır. Aras'a ulaşılamazsa da iptal durur; çünkü yola çıkmış bir paketi iptal etmek geri alınamaz, bekletmek ise güvenlidir.</p>
+                    <div class="note-tags"><span>Aras Kargo</span><span>Paynet</span><span>Sipariş iptali</span></div>
+                </div>
+            </details>
+
+            <details class="note-card">
+                <summary>Canlı yanıt dokümandaki gibi değildi</summary>
+                <div class="note-body">
+                    <p>Aras'ın sorgu servisinin canlı yanıtı dokümandan farklı çıktı: satırlar farklı bir etiketin içinde geliyor, teslim saati ayrı bir alanda dönüyor ve aynı gün çıkan gönderi listede hiç görünmüyor. Çözüm olarak listede eşleşmeyen açık siparişleri tek tek sipariş koduyla sorguluyorum. Ders: entegrasyonu dokümana değil, canlı yanıta göre yaz ve ayrıştırıcıyı gerçek yanıt örnekleriyle test et.</p>
+                    <div class="note-tags"><span>SOAP</span><span>Entegrasyon</span><span>Test</span></div>
+                </div>
+            </details>
+
+            <details class="note-card">
+                <summary>Prisma'da undefined filtresi sessizce yok sayılır</summary>
+                <div class="note-body">
+                    <p>Prisma, where içinde değeri undefined olan bir filtreyi yok sayar. Misafir ödeme oturumunu çerezdeki token ile ararken token yoksa filtre kalkar, sorgu yalnızca id'ye düşer ve başkasının oturumunu döndürebilir. Bu yüzden kural şu: erişim filtresi asla undefined kalmamalı.</p>
+                    <div class="note-tags"><span>Prisma</span><span>Güvenlik</span><span>Misafir ödeme</span></div>
+                </div>
+            </details>
+
+            <details class="note-card">
+                <summary>Sunucu UTC çalışır, Aras Türkiye saatiyle yazar</summary>
+                <div class="note-body">
+                    <p>Aras'ın teslim tarihleri Türkiye saatiyle geliyor, konteyner ise UTC çalışıyor. new Date(y, m, d) kullanınca teslim 3 saat kayıyor ve gün sınırındaki kayıt bir önceki güne yazılıyor. Tarihleri sabit UTC+3 üzerinden çeviren tek bir fonksiyon kullanıyorum; aynı sebeple yılı ve ayı da Türkiye saatine göre okuyorum (sipariş numarasındaki yıl/ay dahil).</p>
+                    <div class="note-tags"><span>Zaman dilimi</span><span>Docker</span></div>
+                </div>
+            </details>
+        </div>
+    </div>
+
+    <!-- Wallpaper Window -->
+    <div class="window" id="wallpaper-window">
+        <div class="window-header">
+            <div class="window-title">
+                <i class="fas fa-image"></i>
+                <span>Görünüm Ayarları</span>
+            </div>
+            <div class="window-controls">
+                <button class="minimize-btn" title="Küçült" onclick="minimizeWindow('wallpaper-window')">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button class="maximize-btn" title="Büyüt" onclick="maximizeWindow('wallpaper-window')">
+                    <i class="far fa-square"></i>
+                </button>
+                <button class="close-btn" title="Kapat" onclick="closeWindow('wallpaper-window')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="window-content">
+            <h2>Masaüstü Arka Planı</h2>
+            <p class="wp-intro">Beğendiğin bir arka planı seç; tercihin bu tarayıcıda hatırlanır.</p>
+            <div class="wp-grid">
+                <button type="button" class="wp-swatch wp-xp" data-wp="xp" aria-pressed="true"><span class="wp-preview"></span><span class="wp-label">Klasik XP</span></button>
+                <button type="button" class="wp-swatch wp-sky" data-wp="sky" aria-pressed="false"><span class="wp-preview"></span><span class="wp-label">Gökyüzü</span></button>
+                <button type="button" class="wp-swatch wp-night" data-wp="night" aria-pressed="false"><span class="wp-preview"></span><span class="wp-label">Gece</span></button>
+                <button type="button" class="wp-swatch wp-sunset" data-wp="sunset" aria-pressed="false"><span class="wp-preview"></span><span class="wp-label">Gün Batımı</span></button>
+                <button type="button" class="wp-swatch wp-aurora" data-wp="aurora" aria-pressed="false"><span class="wp-preview"></span><span class="wp-label">Aurora</span></button>
+                <button type="button" class="wp-swatch wp-graphite" data-wp="graphite" aria-pressed="false"><span class="wp-preview"></span><span class="wp-label">Grafit</span></button>
+            </div>
+        </div>
+    </div>
+
     <!-- Start Menu -->
     <div class="start-menu" id="startMenu">
         <div class="start-menu-header">
@@ -1309,6 +1616,22 @@ Manisa Celal Bayar Üniversitesi - Yazılım Mühendisliği (2020-2024)
                 <i class="fas fa-gamepad"></i>
                 <span>Skill Tree</span>
             </div>
+            <div class="start-menu-item" data-window="terminal-window">
+                <i class="fas fa-terminal"></i>
+                <span>Terminal</span>
+            </div>
+            <div class="start-menu-item" data-window="minesweeper-window">
+                <i class="fas fa-bomb"></i>
+                <span>Mayın Tarlası</span>
+            </div>
+            <div class="start-menu-item" data-window="notes-window">
+                <i class="fas fa-pen-nib"></i>
+                <span>Notlar</span>
+            </div>
+            <div class="start-menu-item" data-window="wallpaper-window">
+                <i class="fas fa-image"></i>
+                <span>Görünüm</span>
+            </div>
         </div>
         <div class="start-menu-links">
             <a href="https://github.com/SoftwareHeart" target="_blank" rel="noopener" title="GitHub">
@@ -1325,7 +1648,11 @@ Manisa Celal Bayar Üniversitesi - Yazılım Mühendisliği (2020-2024)
             </a>
         </div>
         <div class="start-menu-footer">
-            <div class="start-menu-power">
+            <div class="start-menu-power" id="restartBtn" role="button" tabindex="0">
+                <i class="fas fa-rotate-right"></i>
+                <span>Yeniden Başlat</span>
+            </div>
+            <div class="start-menu-power" id="shutdownBtn">
                 <i class="fas fa-power-off"></i>
                 <span>Kapat</span>
             </div>
@@ -1358,6 +1685,12 @@ Manisa Celal Bayar Üniversitesi - Yazılım Mühendisliği (2020-2024)
                 title="GitHub"><i class="fab fa-github"></i></a>
             <a class="tray-link" href="https://www.linkedin.com/in/ertugrul-kundak/" target="_blank" rel="noopener"
                 title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <button type="button" class="tray-btn" id="soundToggle" title="Sesi aç / kapat" aria-pressed="false">
+                <i class="fas fa-volume-xmark"></i>
+            </button>
+            <button type="button" class="tray-btn" id="langToggle" title="Dili değiştir">
+                <span class="lang-pill" data-no-i18n><span class="on" data-lang="tr">TR</span><span data-lang="en">EN</span></span>
+            </button>
             <div class="clock-wrap">
                 <div class="clock" id="clock">00:00</div>
                 <div class="clock-date" id="clockDate"></div>
@@ -1368,7 +1701,15 @@ Manisa Celal Bayar Üniversitesi - Yazılım Mühendisliği (2020-2024)
     <!-- Toast -->
     <div class="toast" id="toast"></div>
 
+    <!-- BSOD (şaka) -->
+    <div class="bsod" id="bsod" role="alertdialog" aria-label="Mavi ekran">
+        <span class="bsod-title">Windows</span>
+        <pre id="bsodText"></pre>
+    </div>
+
     <script src="script.js"></script>
+    <script src="i18n.js"></script>
+    <script src="features.js"></script>
 </body>
 
 </html>

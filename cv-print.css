@@ -1,0 +1,252 @@
+/* ===============================================
+   CV'nin PDF (A4) çıktısı için baskı düzeni.
+   scripts/build-cv.mjs, index.html içindeki CV bölümünü
+   bu stille yazdırarak PDF üretir; CV'nin tek kaynağı index.html'dir.
+   =============================================== */
+@page {
+    size: A4;
+    margin: 10mm 12mm;
+}
+
+html,
+body.cv-print {
+    background: #fff !important;
+    min-height: 0;
+    height: auto;
+    overflow: visible;
+}
+
+body.cv-print {
+    margin: 0;
+    color: #111827;
+    font-family: 'Segoe UI', 'Liberation Sans', Arial, Helvetica, sans-serif;
+    font-size: 9.1pt;
+    line-height: 1.38;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+.cv-print .cv-content {
+    display: block;
+    padding: 0;
+    max-width: none;
+    overflow: visible;
+    background: none;
+}
+
+/* Simgeler yazdırmada gereksiz (ve yazı tipi dosyasına bağımlılık yaratır) */
+.cv-print i,
+.cv-print .cv-hero-avatar,
+.cv-print .badge-now {
+    display: none !important;
+}
+
+/* Başlık */
+.cv-print .cv-hero {
+    display: block;
+    padding: 0 0 8px;
+    margin: 0 0 6px;
+    border-radius: 0;
+    border-bottom: 2px solid #0b74d8;
+    background: none;
+    box-shadow: none;
+    color: #111827;
+}
+
+.cv-print .cv-hero-info h1 {
+    font-size: 21pt;
+    line-height: 1.1;
+    color: #0b2f57;
+    margin: 0 0 2px;
+}
+
+.cv-print .cv-hero-role {
+    font-size: 10.5pt;
+    font-weight: 600;
+    color: #374151;
+    margin: 0 0 5px;
+}
+
+.cv-print .cv-hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1px 14px;
+    font-size: 8.6pt;
+}
+
+.cv-print .cv-hero-meta a,
+.cv-print .cv-hero-meta span {
+    padding: 0;
+    border: none;
+    background: none;
+    color: #0b4f94;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* Bölümler */
+.cv-print .cv-section {
+    margin: 0 0 3px;
+}
+
+.cv-print .cv-content h2 {
+    margin: 11px 0 5px;
+    padding: 0 0 2px;
+    font-size: 10.6pt;
+    letter-spacing: 0.9px;
+    text-transform: uppercase;
+    color: #0b4f94;
+    border-bottom: 1px solid #cbd5e1;
+    break-after: avoid;
+}
+
+.cv-print .cv-section p {
+    margin: 0 0 3px;
+}
+
+.cv-print .cv-item {
+    margin: 0 0 7px;
+    padding: 0;
+    border: none;
+    background: none;
+    box-shadow: none;
+    break-inside: avoid;
+}
+
+.cv-print .cv-item h3 {
+    margin: 0;
+    font-size: 10.2pt;
+    color: #111827;
+}
+
+.cv-print .cv-company {
+    margin: 0 0 2px;
+    font-size: 8.9pt;
+    font-weight: 600;
+    color: #4b5563;
+}
+
+.cv-print .cv-item ul,
+.cv-print .cv-section > ul {
+    margin: 2px 0 0 15px;
+    padding: 0;
+}
+
+.cv-print .cv-item li,
+.cv-print .cv-section > ul li {
+    margin: 0 0 1.5px;
+    padding: 0;
+}
+
+.cv-print .cv-item li::before,
+.cv-print .cv-section > ul li::before {
+    display: none;
+}
+
+.cv-print strong {
+    color: #111827;
+}
+
+/* Teknik yetkinlikler: kutucuk yerine "Başlık: a · b · c" satırları */
+.cv-print .skill-groups {
+    display: block;
+}
+
+.cv-print .skill-group {
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+    margin: 0 0 2.5px;
+    padding: 0;
+    border: none;
+    background: none;
+    box-shadow: none;
+    break-inside: avoid;
+}
+
+.cv-print .skill-group-title {
+    flex: 0 0 34mm;
+    margin: 0;
+    font-size: 8.6pt;
+    font-weight: 700;
+    color: #0b2f57;
+}
+
+.cv-print .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 5px;
+}
+
+.cv-print .chip {
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    font-size: 8.6pt;
+    color: #1f2937;
+}
+
+.cv-print .chip:not(:last-child)::after {
+    content: ' ·';
+    color: #94a3b8;
+}
+
+/* Diller */
+.cv-print .lang-grid {
+    display: flex;
+    gap: 22px;
+}
+
+.cv-print .lang-item {
+    padding: 0;
+    border: none;
+    background: none;
+    box-shadow: none;
+    display: flex;
+    gap: 6px;
+}
+
+.cv-print .cv-download-section {
+    display: none !important;
+}
+
+/* Satır aralıkları: style.css'teki geniş değerleri baskıda sıkılaştır (2 sayfaya sığsın) */
+.cv-print .cv-item li,
+.cv-print .cv-section > ul li,
+.cv-print .cv-section p {
+    line-height: 1.34;
+}
+
+.cv-print .lang-item {
+    align-items: baseline;
+}
+
+.cv-print .lang-name {
+    font-weight: 700;
+}
+
+/* style.css madde/paragraf yazı boyutunu sabitliyor; baskıda gövde boyutunu kullan */
+.cv-print .cv-item li,
+.cv-print .cv-section > ul li,
+.cv-print .cv-section p,
+.cv-print .lang-item {
+    font-size: 9.1pt;
+}
+
+/* Uzun iş kutuları sayfa sonunda boşluk bırakmasın: kutu bölünebilir,
+   ama başlık/şirket satırı ilk maddeden, madde de kendi içinden ayrılmasın */
+.cv-print .cv-item {
+    break-inside: auto;
+}
+
+.cv-print .cv-item h3,
+.cv-print .cv-company {
+    break-after: avoid;
+}
+
+.cv-print .cv-item li,
+.cv-print .cv-section > ul li {
+    break-inside: avoid;
+}
